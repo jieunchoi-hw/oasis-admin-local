@@ -1,18 +1,17 @@
 <script setup>
 import { ref, computed } from "vue";
+import UserTable from "../components/UserTable.vue";
+import UserModal from "../components/UserModal.vue";
 import {
-  VIcon,
   VBtn,
-  VDialog,
-  VCard,
-  VCardTitle,
-  VCardText,
-  VCardActions,
-  VTextField,
   VSelect,
+  VTextField,
   VTooltip,
-  VTable,
-  VPagination,
+  VIcon,
+  VSpacer,
+  VRow,
+  VCol,
+  VCard,
 } from "vuetify/components";
 
 // Mock 데이터
@@ -70,48 +69,50 @@ const filteredUsers = computed(() => {
 // 페이징
 const page = ref(1);
 const itemsPerPage = 5;
-const pagedUsers = computed(() => {
-  const start = (page.value - 1) * itemsPerPage;
-  return filteredUsers.value.slice(start, start + itemsPerPage);
-});
+const totalItems = computed(() => filteredUsers.value.length);
 
 // 다이얼로그 상태
 const dialogAdd = ref(false);
 const dialogEdit = ref(false);
 const editUser = ref(null);
 
-// 추가 폼
-const addForm = ref({ name: "", email: "", role: roles[0] });
+// 추가/수정 모드
+const modalMode = ref("add");
+const modalUser = ref(null);
+
 function openAddDialog() {
-  addForm.value = { name: "", email: "", role: roles[0] };
+  modalMode.value = "add";
+  modalUser.value = null;
   dialogAdd.value = true;
 }
-function confirmAdd() {
+function openEditDialog(user) {
+  modalMode.value = "edit";
+  modalUser.value = user;
+  dialogEdit.value = true;
+}
+function handleAddConfirm(form) {
   users.value.push({
     id: Date.now(),
-    name: addForm.value.name,
+    name: form.name,
     tenant: "한화시스템",
-    email: addForm.value.email,
-    role: addForm.value.role,
+    email: form.email,
+    role: form.role,
     updated: new Date().toISOString().slice(0, 16).replace("T", " "),
     description: "",
   });
   dialogAdd.value = false;
 }
-
-// 수정 폼
-const editForm = ref({ name: "", email: "", role: "", description: "" });
-function openEditDialog(user) {
-  editUser.value = user;
-  editForm.value = { ...user };
-  dialogEdit.value = true;
-}
-function confirmEdit() {
-  Object.assign(editUser.value, editForm.value);
+function handleEditConfirm(form) {
+  if (modalUser.value) {
+    Object.assign(modalUser.value, form);
+  }
   dialogEdit.value = false;
 }
-function deleteUser(user) {
+function handleDelete(user) {
   users.value = users.value.filter((u) => u.id !== user.id);
+}
+function handlePageChange(val) {
+  page.value = val;
 }
 </script>
 
@@ -159,103 +160,33 @@ function deleteUser(user) {
       />
       <VBtn variant="outlined" color="primary" @click="page = 1">검색</VBtn>
     </div>
-    <VRow>
-      <VCol cols="12">
-        <VCard rounded="lg" elevation="1">
-          <VTable class="mb-2" density="comfortable">
-            <thead>
-              <tr>
-                <th>이름</th>
-                <th>Tenant 명</th>
-                <th>이메일</th>
-                <th>권한</th>
-                <th>Last Updated</th>
-                <th>관리</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="user in pagedUsers" :key="user.id">
-                <td>{{ user.name }}</td>
-                <td>{{ user.tenant }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.role }}</td>
-                <td>{{ user.updated }}</td>
-                <td>
-                  <VBtn
-                    size="small"
-                    variant="tonal"
-                    color="primary"
-                    @click="openEditDialog(user)"
-                    >수정</VBtn
-                  >
-                  <VBtn
-                    size="small"
-                    variant="tonal"
-                    color="error"
-                    class="ml-2"
-                    @click="deleteUser(user)"
-                    >삭제</VBtn
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </VTable>
-        </VCard>
-      </VCol>
-    </VRow>
-    <!-- 유저 테이블 -->
-
-    <!-- 페이징 -->
-    <VPagination
-      v-model="page"
-      class="mt-4"
-      :length="Math.ceil(filteredUsers.length / itemsPerPage)"
-      size="small"
+    <UserTable
+      :users="filteredUsers"
+      :page="page"
+      :itemsPerPage="itemsPerPage"
+      :totalItems="totalItems"
+      @edit="openEditDialog"
+      @delete="handleDelete"
+      @page-change="handlePageChange"
     />
 
     <!-- 추가 다이얼로그 -->
-    <VDialog v-model="dialogAdd" max-width="400">
-      <VCard>
-        <VCardTitle class="d-flex align-center justify-space-between">
-          <span class="font-weight-bold">System Admin 추가</span>
-          <VBtn icon @click="dialogAdd = false"
-            ><VIcon icon="ri-close-line"
-          /></VBtn>
-        </VCardTitle>
-        <VCardText>
-          <VTextField v-model="addForm.name" label="이름" class="mb-2" />
-          <VTextField v-model="addForm.email" label="이메일" class="mb-2" />
-          <VSelect v-model="addForm.role" :items="roles" label="권한" />
-        </VCardText>
-        <VCardActions class="justify-end">
-          <VBtn color="black" @click="confirmAdd">Confirm</VBtn>
-        </VCardActions>
-      </VCard>
-    </VDialog>
-
+    <UserModal
+      :visible="dialogAdd"
+      mode="add"
+      :roles="roles"
+      @confirm="handleAddConfirm"
+      @close="dialogAdd = false"
+    />
     <!-- 수정 다이얼로그 -->
-    <VDialog v-model="dialogEdit" max-width="400">
-      <VCard>
-        <VCardTitle class="d-flex align-center justify-space-between">
-          <span class="font-weight-bold">[{{ editForm.name }}] 수정</span>
-          <VBtn icon @click="dialogEdit = false"
-            ><VIcon icon="ri-close-line"
-          /></VBtn>
-        </VCardTitle>
-        <VCardText>
-          <VSelect
-            v-model="editForm.role"
-            :items="roles"
-            label="권한"
-            class="mb-2"
-          />
-          <VTextField v-model="editForm.description" label="Description" />
-        </VCardText>
-        <VCardActions class="justify-end">
-          <VBtn color="black" @click="confirmEdit">Save</VBtn>
-        </VCardActions>
-      </VCard>
-    </VDialog>
+    <UserModal
+      :visible="dialogEdit"
+      mode="edit"
+      :user="modalUser"
+      :roles="roles"
+      @confirm="handleEditConfirm"
+      @close="dialogEdit = false"
+    />
   </div>
 </template>
 
