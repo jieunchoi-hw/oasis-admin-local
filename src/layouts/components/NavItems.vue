@@ -153,11 +153,24 @@ const currentMenus = computed(() => {
       to: currentMenus.dashboard.to,
     }"
   />
+  <!-- 👉 공통 메뉴 -->
+  <VerticalNavSectionTitle
+    v-if="props.currentAccountType !== 'Tenant'"
+    :item="{
+      heading: 'management',
+    }"
+  />
 
   <!-- 👉 권한별 메뉴 렌더링 -->
   <template v-for="(menu, key) in currentMenus" :key="key">
     <template v-if="key !== 'dashboard'">
       <!-- 탭이 있는 메뉴 -->
+      <VerticalNavSectionTitle
+        v-if="key === 'tenantManagement' || key === 'tenantSettings'"
+        :item="{
+          heading: 'tenant',
+        }"
+      />
       <VerticalNavGroup
         v-if="menu.hasTabs"
         :item="{
@@ -190,7 +203,7 @@ const currentMenus = computed(() => {
   <!-- 👉 공통 메뉴 -->
   <VerticalNavSectionTitle
     :item="{
-      heading: '시스템',
+      heading: 'system',
     }"
   />
 
