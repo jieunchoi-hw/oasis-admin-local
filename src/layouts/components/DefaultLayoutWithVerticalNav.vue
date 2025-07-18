@@ -35,6 +35,7 @@ const isAccountMenuOpen = ref(false);
 const switchAccount = (account) => {
   currentAccount.value = account;
   isAccountMenuOpen.value = false;
+  router.push("/dashboard");
 };
 </script>
 
@@ -138,13 +139,13 @@ const switchAccount = (account) => {
     <template #vertical-nav-header="{ toggleIsOverlayNavActive }">
       <RouterLink to="/" class="app-logo app-title-wrapper">
         <!-- eslint-disable vue/no-v-html -->
-        <img src="/logo.png" alt="logo" class="d-flex" style="height: 40px" />
+        <img src="/logo.png" alt="logo" class="d-flex" style="height: 30px" />
         <!-- eslint-enable -->
 
         <img
           src="/logo_full.png"
           alt="logo"
-          style="height: 24px; object-fit: contain; margin-left: 20px"
+          style="height: 22px; object-fit: contain"
         />
       </RouterLink>
 
