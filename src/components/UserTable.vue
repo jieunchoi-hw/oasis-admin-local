@@ -31,7 +31,7 @@ watch(pageProxy, (val) => {
   <VRow>
     <VCol cols="12">
       <VCard rounded="lg" elevation="1">
-        <VTable class="mb-2" density="comfortable">
+        <VTable density="comfortable">
           <thead>
             <tr>
               <th>이름</th>

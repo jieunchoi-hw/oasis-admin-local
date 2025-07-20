@@ -36,6 +36,10 @@ export const routes = [
         path: "system/admin-users",
         component: () => import("@/pages/system-admin-users.vue"),
       },
+      {
+        path: "system/llm-management",
+        component: () => import("@/pages/system-admin-llm.vue"),
+      },
     ],
   },
   {
