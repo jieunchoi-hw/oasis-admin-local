@@ -34,55 +34,57 @@ export const routes = [
       },
       {
         path: "system/admin-users",
-        component: () => import("@/pages/system-admin-users.vue"),
+        component: () => import("@/pages/system/admin-users.vue"),
       },
       {
         path: "system/llm-management",
-        component: () => import("@/pages/system-admin-llm.vue"),
+        component: () => import("@/pages/system/admin-llm.vue"),
       },
       {
         path: "system/mcp-server",
-        component: () => import("@/pages/system-admin-mcp.vue"),
+        component: () => import("@/pages/system/admin-mcp.vue"),
       },
       {
         path: "system/vector-db",
-        component: () => import("@/pages/system-admin-vectordb.vue"),
+        component: () => import("@/pages/system/admin-vectordb.vue"),
       },
       {
         path: "system/official-secretary",
-        component: () => import("@/pages/system-admin-secretary.vue"),
+        component: () => import("@/pages/system/admin-secretary.vue"),
       },
       {
         path: "system/tenant-management",
-        component: () => import("@/pages/system-admin-tenant.vue"),
+        component: () => import("@/pages/system/admin-tenant.vue"),
       },
       {
         path: "system/tenant-settings",
-        component: () => import("@/pages/system-tenant-settings.vue"),
+        component: () => import("@/pages/system/tenant-settings/index.vue"),
         children: [
-          {
-            path: "",
-            redirect: "admin-users",
-          },
+          { path: "", redirect: "admin-users" },
           {
             path: "admin-users",
-            component: () => import("@/pages/system-tenant-settings.vue"),
+            component: () =>
+              import("@/pages/system/tenant-settings/TenantAdminTab.vue"),
           },
           {
             path: "llm",
-            component: () => import("@/pages/system-tenant-settings.vue"),
+            component: () =>
+              import("@/pages/system/tenant-settings/LLMTab.vue"),
           },
           {
             path: "mcp-server",
-            component: () => import("@/pages/system-tenant-settings.vue"),
+            component: () =>
+              import("@/pages/system/tenant-settings/MCPServerTab.vue"),
           },
           {
             path: "vectordb",
-            component: () => import("@/pages/system-tenant-settings.vue"),
+            component: () =>
+              import("@/pages/system/tenant-settings/VectorDBTab.vue"),
           },
           {
             path: "secretary",
-            component: () => import("@/pages/system-tenant-settings.vue"),
+            component: () =>
+              import("@/pages/system/tenant-settings/SecretaryTab.vue"),
           },
         ],
       },

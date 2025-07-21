@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
-import CommonTable from "../components/CommonTable.vue";
-import CommonModal from "../components/CommonModal.vue";
+import CommonTable from "@/components/CommonTable.vue";
+import CommonModal from "@/components/CommonModal.vue";
 import {
   VBtn,
   VSelect,

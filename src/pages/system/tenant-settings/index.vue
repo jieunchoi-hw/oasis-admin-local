@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import CommonTable from "../components/CommonTable.vue";
-import CommonModal from "../components/CommonModal.vue";
+import CommonTable from "@/components/CommonTable.vue";
+import CommonModal from "@/components/CommonModal.vue";
 import {
   VBtn,
   VSelect,
@@ -330,6 +330,18 @@ function saveLLMAssignments() {
   // LLM 배정 저장 로직
   console.log("Save LLM assignments");
 }
+
+watch(
+  () => route.path,
+  (newPath) => {
+    if (newPath.includes("/admin-users")) activeTab.value = 0;
+    else if (newPath.includes("/llm")) activeTab.value = 1;
+    else if (newPath.includes("/mcp-server")) activeTab.value = 2;
+    else if (newPath.includes("/vectordb")) activeTab.value = 3;
+    else if (newPath.includes("/secretary")) activeTab.value = 4;
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
