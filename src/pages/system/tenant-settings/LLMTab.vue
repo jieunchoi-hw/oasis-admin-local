@@ -155,7 +155,7 @@
                     <VIcon :icon="llm.icon" size="24" color="primary" />
                   </template>
                   <div>
-                    <div class="text-subtitle-1 font-weight-medium">
+                    <div class="text-heading-6 font-weight-medium">
                       {{ llm.name }} ({{ llm.level }})
                     </div>
                     <div class="text-caption text-medium-emphasis">
@@ -254,7 +254,7 @@ const availableLLMs = ref([
     used: true,
   },
 ]);
-const selectedLLMs = ref([false, false, false, false, false]);
+const selectedLLMs = ref([true, false, false, true, true]);
 
 // 배정된 LLM 목록(예시)
 const assignedLLMs = ref([

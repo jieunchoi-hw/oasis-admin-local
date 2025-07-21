@@ -91,7 +91,12 @@ onMounted(() => {
       class="mb-4"
       @update:model-value="handleTabChange"
     >
-      <VTab v-for="(tab, index) in tabs" :key="tab.key" :value="index">
+      <VTab
+        min-width="100"
+        v-for="(tab, index) in tabs"
+        :key="tab.key"
+        :value="index"
+      >
         {{ tab.title }}
       </VTab>
     </VTabs>
