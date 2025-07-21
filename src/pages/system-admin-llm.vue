@@ -293,6 +293,35 @@ function getStatusColor(status) {
         </VChip>
       </template>
 
+      <!-- Provider 컬럼 커스텀 렌더링 -->
+      <template #cell-provider="{ value }">
+        <span class="d-flex align-center gap-1">
+          <img
+            v-if="value === 'Open AI'"
+            src="@/assets/images/logos/openai.png"
+            alt="OpenAI"
+            style="
+              width: 20px;
+              height: 20px;
+              vertical-align: middle;
+              margin-right: 4px;
+            "
+          />
+          <img
+            v-else-if="value === 'AOAI'"
+            src="@/assets/images/logos/aoai.png"
+            alt="AOAI"
+            style="
+              width: 20px;
+              height: 20px;
+              vertical-align: middle;
+              margin-right: 4px;
+            "
+          />
+          <span>{{ value }}</span>
+        </span>
+      </template>
+
       <!-- Control 컬럼 커스텀 렌더링 -->
       <template #cell-control="{ item }">
         <VSwitch

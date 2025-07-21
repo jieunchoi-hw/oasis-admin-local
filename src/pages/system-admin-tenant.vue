@@ -141,7 +141,7 @@ function goToSettings(tenant) {
   // 테넌트 설정 페이지로 이동하는 로직
   console.log("Go to settings for:", tenant.name);
   // 실제로는 라우터를 통해 이동
-  router.push(`/system/tenant-settings/admin-users?tenantId=${tenant.id}`);
+  router.push(`/system/tenant-settings/admin-users?tenant=${tenant.id}`);
 }
 
 // 커스텀 렌더링 함수들

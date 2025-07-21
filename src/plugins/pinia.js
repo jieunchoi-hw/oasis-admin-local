@@ -1,6 +1,6 @@
-import { createPinia } from 'pinia'
+import { createPinia } from "pinia";
 
-export const store = createPinia()
+export const store = createPinia();
 export default function (app) {
-  app.use(store)
+  app.use(store);
 }

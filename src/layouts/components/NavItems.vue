@@ -3,6 +3,7 @@ import { computed } from "vue";
 import VerticalNavSectionTitle from "@/@layouts/components/VerticalNavSectionTitle.vue";
 import VerticalNavGroup from "@layouts/components/VerticalNavGroup.vue";
 import VerticalNavLink from "@layouts/components/VerticalNavLink.vue";
+import { useTenantStore } from "@/stores/tenant";
 
 // props 정의
 const props = defineProps({
@@ -60,18 +61,18 @@ const menuStructure = {
           title: "Tenant Admin 사용자 관리",
           to: "/system/tenant-settings/admin-users",
         },
-        { title: "LLM 배정", to: "/system/tenant-settings/llm-assignment" },
+        { title: "LLM 배정", to: "/system/tenant-settings/llm" },
         {
           title: "MCP 서버 배정",
-          to: "/system/tenant-settings/mcp-assignment",
+          to: "/system/tenant-settings/mcp-server",
         },
         {
           title: "Vector DB 배정",
-          to: "/system/tenant-settings/vector-assignment",
+          to: "/system/tenant-settings/vectordb",
         },
         {
           title: "공식비서 배정",
-          to: "/system/tenant-settings/secretary-assignment",
+          to: "/system/tenant-settings/secretary",
         },
       ],
     },
@@ -148,6 +149,14 @@ const menuStructure = {
 const currentMenus = computed(() => {
   return menuStructure[props.currentAccountType] || menuStructure.System;
 });
+const tenantStore = useTenantStore();
+
+function getTabTo(tabTo) {
+  if (tabTo.startsWith("/system/tenant-settings/")) {
+    return { path: tabTo, query: { tenantId: tenantStore.tenantId } };
+  }
+  return tabTo;
+}
 </script>
 
 <template>
@@ -189,7 +198,7 @@ const currentMenus = computed(() => {
           :key="tab.to"
           :item="{
             title: tab.title,
-            to: tab.to,
+            to: getTabTo(tab.to),
           }"
         />
       </VerticalNavGroup>
