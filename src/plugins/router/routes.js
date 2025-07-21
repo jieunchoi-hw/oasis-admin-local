@@ -40,6 +40,18 @@ export const routes = [
         path: "system/llm-management",
         component: () => import("@/pages/system-admin-llm.vue"),
       },
+      {
+        path: "system/mcp-server",
+        component: () => import("@/pages/system-admin-mcp.vue"),
+      },
+      {
+        path: "system/vector-db",
+        component: () => import("@/pages/system-admin-vectordb.vue"),
+      },
+      {
+        path: "system/official-secretary",
+        component: () => import("@/pages/system-admin-secretary.vue"),
+      },
     ],
   },
   {
