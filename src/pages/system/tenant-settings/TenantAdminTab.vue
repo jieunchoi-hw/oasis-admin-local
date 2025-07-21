@@ -5,6 +5,9 @@
     </div>
     <!-- 필터/검색 영역 -->
     <div class="d-flex align-center mb-4 gap-2">
+      <VBtn color="primary" @click="openAddDialog" style="min-width: 120px"
+        >+ New</VBtn
+      >
       <VSpacer />
       <VSelect
         v-model="selectedColumn"
@@ -23,9 +26,6 @@
         @keyup.enter="page = 1"
       />
       <VBtn variant="outlined" color="primary" @click="page = 1">검색</VBtn>
-      <VBtn color="primary" @click="openAddDialog" style="min-width: 120px"
-        >+ New</VBtn
-      >
     </div>
     <!-- 공통 테이블 -->
     <CommonTable
@@ -124,6 +124,121 @@ import CommonTable from "@/components/CommonTable.vue";
 import CommonModal from "@/components/CommonModal.vue";
 import { VBtn, VSelect, VTextField, VSpacer } from "vuetify/components";
 
-// ... 기존 system-tenant-settings.vue에서 이 탭에 해당하는 상태/함수만 복사 ...
-// (필요한 상태/props/emit 등은 실제 분리 시 추가로 조정)
+// props: tenants, selectedTenant 등 필요시 받을 수 있음
+// defineProps<{ tenants: any, selectedTenant: any }>()
+
+const tenantAdmins = ref([
+  {
+    id: 1,
+    name: "최지은",
+    userId: "choijieun",
+    email: "111@aaa.com",
+    role: "Tenant Admin",
+    updated: "2025-05-12 10:21",
+  },
+  {
+    id: 2,
+    name: "김종성",
+    userId: "ziippy",
+    email: "ziippy@hanwha.com",
+    role: "Tenant Operator",
+    updated: "2025-05-12 10:21",
+  },
+  {
+    id: 3,
+    name: "민지영",
+    userId: "gzeromin",
+    email: "gzeromin@hanwha.com",
+    role: "Tenant Operator",
+    updated: "2025-05-12 10:21",
+  },
+]);
+
+const roles = ["Tenant Admin", "Tenant Operator"];
+const columns = [
+  { key: "name", label: "이름" },
+  { key: "userId", label: "ID" },
+  { key: "email", label: "이메일" },
+  { key: "role", label: "권한" },
+  { key: "updated", label: "Last Updated" },
+];
+const modalFields = [
+  { key: "name", label: "이름", type: "text", required: true },
+  { key: "userId", label: "ID", type: "text", required: true },
+  { key: "email", label: "이메일", type: "text", required: true },
+  {
+    key: "role",
+    label: "권한",
+    type: "select",
+    options: roles,
+    required: true,
+  },
+];
+const filterColumns = [
+  { label: "이름", key: "name" },
+  { label: "ID", key: "userId" },
+  { label: "이메일", key: "email" },
+  { label: "권한", key: "role" },
+];
+const selectedColumn = ref(filterColumns[0]);
+const searchValue = ref("");
+const filteredAdmins = computed(() => {
+  if (!Array.isArray(tenantAdmins.value)) return [];
+  if (!searchValue.value) return tenantAdmins.value;
+  const key = selectedColumn.value.key;
+  return tenantAdmins.value.filter((admin) =>
+    String(admin[key] ?? "").includes(searchValue.value)
+  );
+});
+const page = ref(1);
+const itemsPerPage = 5;
+const totalItems = computed(() => filteredAdmins.value.length);
+const dialogAdd = ref(false);
+const dialogEdit = ref(false);
+const modalForm = ref({
+  name: "",
+  userId: "",
+  email: "",
+  role: roles[0],
+});
+function openAddDialog() {
+  modalForm.value = {
+    name: "",
+    userId: "",
+    email: "",
+    role: roles[0],
+  };
+  dialogAdd.value = true;
+}
+function openEditDialog(admin) {
+  modalForm.value = { ...admin };
+  dialogEdit.value = true;
+}
+function handleAddConfirm(form) {
+  tenantAdmins.value.push({
+    id: Date.now(),
+    name: form.name,
+    userId: form.userId,
+    email: form.email,
+    role: form.role,
+    updated: new Date().toISOString().slice(0, 16).replace("T", " "),
+  });
+  dialogAdd.value = false;
+}
+function handleEditConfirm(form) {
+  const admin = tenantAdmins.value.find((a) => a.id === form.id);
+  if (admin) {
+    Object.assign(admin, form);
+  }
+  dialogEdit.value = false;
+}
+function handleDelete(admin) {
+  tenantAdmins.value = tenantAdmins.value.filter((a) => a.id !== admin.id);
+}
+function handlePageChange(val) {
+  page.value = val;
+}
+function handleFormUpdate(updatedForm) {
+  modalForm.value = updatedForm;
+}
 </script>
