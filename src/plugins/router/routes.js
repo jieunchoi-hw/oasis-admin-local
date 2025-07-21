@@ -56,6 +56,36 @@ export const routes = [
         path: "system/tenant-management",
         component: () => import("@/pages/system-admin-tenant.vue"),
       },
+      {
+        path: "system/tenant-settings",
+        component: () => import("@/pages/system-tenant-settings.vue"),
+        children: [
+          {
+            path: "",
+            redirect: "admin-users",
+          },
+          {
+            path: "admin-users",
+            component: () => import("@/pages/system-tenant-settings.vue"),
+          },
+          {
+            path: "llm",
+            component: () => import("@/pages/system-tenant-settings.vue"),
+          },
+          {
+            path: "mcp-server",
+            component: () => import("@/pages/system-tenant-settings.vue"),
+          },
+          {
+            path: "vectordb",
+            component: () => import("@/pages/system-tenant-settings.vue"),
+          },
+          {
+            path: "secretary",
+            component: () => import("@/pages/system-tenant-settings.vue"),
+          },
+        ],
+      },
     ],
   },
   {

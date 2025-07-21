@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 import CommonTable from "../components/CommonTable.vue";
 import CommonModal from "../components/CommonModal.vue";
 import {
@@ -134,10 +135,13 @@ function handlePageChange(val) {
 function handleFormUpdate(updatedForm) {
   modalForm.value = updatedForm;
 }
+const router = useRouter();
+
 function goToSettings(tenant) {
   // 테넌트 설정 페이지로 이동하는 로직
   console.log("Go to settings for:", tenant.name);
   // 실제로는 라우터를 통해 이동
+  router.push(`/system/tenant-settings/admin-users?tenant=${tenant.id}`);
 }
 
 // 커스텀 렌더링 함수들
