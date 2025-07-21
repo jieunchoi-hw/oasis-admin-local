@@ -46,27 +46,32 @@ const menuStructure = {
       to: "/system/official-secretary",
     },
     tenantManagement: {
-      title: "테넌트 관리",
+      title: "Tenant 관리",
       icon: "ri-building-line",
       to: "/system/tenant-management",
+    },
+    systemTenantSettings: {
+      title: "Tenant별 설정",
+      icon: "ri-settings-3-line",
+      to: "/system/tenant-settings",
       hasTabs: true,
       tabs: [
         {
           title: "Tenant Admin 사용자 관리",
-          to: "/system/tenant-management/admin-users",
+          to: "/system/tenant-settings/admin-users",
         },
-        { title: "LLM 배정", to: "/system/tenant-management/llm-assignment" },
+        { title: "LLM 배정", to: "/system/tenant-settings/llm-assignment" },
         {
           title: "MCP 서버 배정",
-          to: "/system/tenant-management/mcp-assignment",
+          to: "/system/tenant-settings/mcp-assignment",
         },
         {
           title: "Vector DB 배정",
-          to: "/system/tenant-management/vector-assignment",
+          to: "/system/tenant-settings/vector-assignment",
         },
         {
           title: "공식비서 배정",
-          to: "/system/tenant-management/secretary-assignment",
+          to: "/system/tenant-settings/secretary-assignment",
         },
       ],
     },

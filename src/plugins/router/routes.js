@@ -52,6 +52,10 @@ export const routes = [
         path: "system/official-secretary",
         component: () => import("@/pages/system-admin-secretary.vue"),
       },
+      {
+        path: "system/tenant-management",
+        component: () => import("@/pages/system-admin-tenant.vue"),
+      },
     ],
   },
   {
