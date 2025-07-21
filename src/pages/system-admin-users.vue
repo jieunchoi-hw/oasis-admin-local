@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
-import UserTable from "../components/UserTable.vue";
-import UserModal from "../components/UserModal.vue";
+import CommonTable from "../components/CommonTable.vue";
+import CommonModal from "../components/CommonModal.vue";
 import {
   VBtn,
   VSelect,
@@ -9,9 +9,7 @@ import {
   VTooltip,
   VIcon,
   VSpacer,
-  VRow,
-  VCol,
-  VCard,
+  VTextField as VTextFieldComponent,
 } from "vuetify/components";
 
 // Mock 데이터
@@ -47,6 +45,28 @@ const users = ref([
 
 const roles = ["System Admin", "System Operator"];
 
+// 테이블 컬럼 정의
+const columns = [
+  { key: "name", label: "이름" },
+  { key: "tenant", label: "Tenant 명" },
+  { key: "email", label: "이메일" },
+  { key: "role", label: "권한" },
+  { key: "updated", label: "Last Updated" },
+];
+
+// 모달 필드 정의
+const modalFields = [
+  { key: "name", label: "이름", type: "text", required: true },
+  { key: "email", label: "이메일", type: "text", required: true },
+  {
+    key: "role",
+    label: "권한",
+    type: "select",
+    options: roles,
+    required: true,
+  },
+];
+
 // 검색/필터
 const filterColumns = [
   { label: "이름", key: "name" },
@@ -74,20 +94,14 @@ const totalItems = computed(() => filteredUsers.value.length);
 // 다이얼로그 상태
 const dialogAdd = ref(false);
 const dialogEdit = ref(false);
-const editUser = ref(null);
-
-// 추가/수정 모드
-const modalMode = ref("add");
-const modalUser = ref(null);
+const modalForm = ref({ name: "", email: "", role: roles[0] });
 
 function openAddDialog() {
-  modalMode.value = "add";
-  modalUser.value = null;
+  modalForm.value = { name: "", email: "", role: roles[0] };
   dialogAdd.value = true;
 }
 function openEditDialog(user) {
-  modalMode.value = "edit";
-  modalUser.value = user;
+  modalForm.value = { ...user };
   dialogEdit.value = true;
 }
 function handleAddConfirm(form) {
@@ -103,8 +117,9 @@ function handleAddConfirm(form) {
   dialogAdd.value = false;
 }
 function handleEditConfirm(form) {
-  if (modalUser.value) {
-    Object.assign(modalUser.value, form);
+  const user = users.value.find((u) => u.id === form.id);
+  if (user) {
+    Object.assign(user, form);
   }
   dialogEdit.value = false;
 }
@@ -113,6 +128,9 @@ function handleDelete(user) {
 }
 function handlePageChange(val) {
   page.value = val;
+}
+function handleFormUpdate(updatedForm) {
+  modalForm.value = updatedForm;
 }
 </script>
 
@@ -160,33 +178,79 @@ function handlePageChange(val) {
       />
       <VBtn variant="outlined" color="primary" @click="page = 1">검색</VBtn>
     </div>
-    <UserTable
-      :users="filteredUsers"
+
+    <!-- 공통 테이블 -->
+    <CommonTable
+      :data="filteredUsers"
+      :columns="columns"
       :page="page"
       :itemsPerPage="itemsPerPage"
       :totalItems="totalItems"
+      :actions="['edit', 'delete']"
       @edit="openEditDialog"
       @delete="handleDelete"
       @page-change="handlePageChange"
     />
 
     <!-- 추가 다이얼로그 -->
-    <UserModal
+    <CommonModal
       :visible="dialogAdd"
       mode="add"
-      :roles="roles"
+      title="System Admin 추가"
+      :form="modalForm"
+      :fields="modalFields"
       @confirm="handleAddConfirm"
       @close="dialogAdd = false"
-    />
+      @update:form="handleFormUpdate"
+    >
+      <template #default="{ form, updateForm }">
+        <VTextField
+          v-model="form.name"
+          label="이름"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('name', val)"
+        />
+        <VTextField
+          v-model="form.email"
+          label="이메일"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('email', val)"
+        />
+        <VSelect
+          v-model="form.role"
+          :items="roles"
+          label="권한"
+          @update:model-value="(val) => updateForm('role', val)"
+        />
+      </template>
+    </CommonModal>
+
     <!-- 수정 다이얼로그 -->
-    <UserModal
+    <CommonModal
       :visible="dialogEdit"
       mode="edit"
-      :user="modalUser"
-      :roles="roles"
+      :title="`${modalForm.name} 수정`"
+      :form="modalForm"
+      :fields="modalFields"
       @confirm="handleEditConfirm"
       @close="dialogEdit = false"
-    />
+      @update:form="handleFormUpdate"
+    >
+      <template #default="{ form, updateForm }">
+        <VSelect
+          v-model="form.role"
+          :items="roles"
+          label="권한"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('role', val)"
+        />
+        <VTextField
+          v-model="form.description"
+          label="Description"
+          @update:model-value="(val) => updateForm('description', val)"
+        />
+      </template>
+    </CommonModal>
   </div>
 </template>
 

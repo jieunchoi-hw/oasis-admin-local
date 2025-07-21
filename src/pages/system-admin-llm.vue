@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
-import LLMTable from "../components/LLMTable.vue";
-import LLMModal from "../components/LLMModal.vue";
+import CommonTable from "../components/CommonTable.vue";
+import CommonModal from "../components/CommonModal.vue";
 import {
   VBtn,
   VSelect,
@@ -9,6 +9,8 @@ import {
   VTooltip,
   VIcon,
   VSpacer,
+  VChip,
+  VSwitch,
 } from "vuetify/components";
 
 // Mock 데이터
@@ -69,6 +71,44 @@ const levels = ["Dedicated", "Public", "Private"];
 const providers = ["Open AI", "AOAI", "-"];
 const statuses = ["Running", "Stopped", "Pending", ""];
 
+// 테이블 컬럼 정의
+const columns = [
+  { key: "name", label: "이름" },
+  { key: "level", label: "Level" },
+  { key: "provider", label: "Provider" },
+  { key: "credential", label: "Credential" },
+  { key: "control", label: "Control" },
+  { key: "status", label: "Status" },
+  { key: "updated", label: "Last Updated" },
+];
+
+// 모달 필드 정의
+const modalFields = [
+  { key: "name", label: "이름", type: "text", required: true },
+  {
+    key: "level",
+    label: "Level",
+    type: "select",
+    options: levels,
+    required: true,
+  },
+  {
+    key: "provider",
+    label: "Provider",
+    type: "select",
+    options: providers,
+    required: true,
+  },
+  { key: "credential", label: "Credential", type: "text", required: true },
+  {
+    key: "status",
+    label: "Status",
+    type: "select",
+    options: statuses,
+    required: false,
+  },
+];
+
 // 검색/필터
 const filterColumns = [
   { label: "이름", key: "name" },
@@ -96,14 +136,28 @@ const totalItems = computed(() => filteredLLMs.value.length);
 // 다이얼로그 상태
 const dialogAdd = ref(false);
 const dialogEdit = ref(false);
-const modalLLM = ref(null);
+const modalForm = ref({
+  name: "",
+  level: levels[0],
+  provider: "",
+  credential: "",
+  control: false,
+  status: "",
+});
 
 function openAddDialog() {
-  modalLLM.value = null;
+  modalForm.value = {
+    name: "",
+    level: levels[0],
+    provider: "",
+    credential: "",
+    control: false,
+    status: "",
+  };
   dialogAdd.value = true;
 }
 function openEditDialog(llm) {
-  modalLLM.value = llm;
+  modalForm.value = { ...llm };
   dialogEdit.value = true;
 }
 function handleAddConfirm(form) {
@@ -120,8 +174,9 @@ function handleAddConfirm(form) {
   dialogAdd.value = false;
 }
 function handleEditConfirm(form) {
-  if (modalLLM.value) {
-    Object.assign(modalLLM.value, form);
+  const llm = llms.value.find((l) => l.id === form.id);
+  if (llm) {
+    Object.assign(llm, form);
   }
   dialogEdit.value = false;
 }
@@ -132,11 +187,40 @@ function handlePageChange(val) {
   page.value = val;
 }
 function handleToggleControl(llm) {
-  // Control 토글 시 상태 업데이트 로직
   if (llm.control) {
     llm.status = "Running";
   } else {
     llm.status = "Stopped";
+  }
+}
+function handleFormUpdate(updatedForm) {
+  modalForm.value = updatedForm;
+}
+
+// 커스텀 렌더링 함수들
+function getLevelColor(level) {
+  switch (level) {
+    case "Dedicated":
+      return "primary";
+    case "Public":
+      return "warning";
+    case "Private":
+      return "success";
+    default:
+      return "default";
+  }
+}
+
+function getStatusColor(status) {
+  switch (status) {
+    case "Running":
+      return "success";
+    case "Stopped":
+      return "error";
+    case "Pending":
+      return "warning";
+    default:
+      return "default";
   }
 }
 </script>
@@ -186,39 +270,168 @@ function handleToggleControl(llm) {
       <VBtn variant="outlined" color="primary" @click="page = 1">검색</VBtn>
     </div>
 
-    <!-- LLM 테이블 -->
-    <LLMTable
-      :llms="filteredLLMs"
+    <!-- 공통 테이블 -->
+    <CommonTable
+      :data="filteredLLMs"
+      :columns="columns"
       :page="page"
       :itemsPerPage="itemsPerPage"
       :totalItems="totalItems"
+      :actions="['edit', 'delete']"
       @edit="openEditDialog"
       @delete="handleDelete"
       @page-change="handlePageChange"
-      @toggle-control="handleToggleControl"
-    />
+      @action="
+        ({ action, item }) =>
+          action === 'toggle-control' && handleToggleControl(item)
+      "
+    >
+      <!-- Level 컬럼 커스텀 렌더링 -->
+      <template #cell-level="{ value }">
+        <VChip :color="getLevelColor(value)" size="small" variant="tonal">
+          {{ value }}
+        </VChip>
+      </template>
+
+      <!-- Control 컬럼 커스텀 렌더링 -->
+      <template #cell-control="{ item }">
+        <VSwitch
+          v-if="item.level === 'Private'"
+          v-model="item.control"
+          @change="handleToggleControl(item)"
+          color="primary"
+          hide-details
+        />
+        <span v-else>-</span>
+      </template>
+
+      <!-- Status 컬럼 커스텀 렌더링 -->
+      <template #cell-status="{ value }">
+        <VChip
+          v-if="value"
+          :color="getStatusColor(value)"
+          size="small"
+          variant="tonal"
+        >
+          {{ value }}
+        </VChip>
+        <span v-else>-</span>
+      </template>
+    </CommonTable>
 
     <!-- 추가 다이얼로그 -->
-    <LLMModal
+    <CommonModal
       :visible="dialogAdd"
       mode="add"
-      :levels="levels"
-      :providers="providers"
-      :statuses="statuses"
+      title="LLM 추가"
+      :form="modalForm"
+      :fields="modalFields"
       @confirm="handleAddConfirm"
       @close="dialogAdd = false"
-    />
+      @update:form="handleFormUpdate"
+    >
+      <template #default="{ form, updateForm }">
+        <VTextField
+          v-model="form.name"
+          label="이름"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('name', val)"
+        />
+        <VSelect
+          v-model="form.level"
+          :items="levels"
+          label="Level"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('level', val)"
+        />
+        <VSelect
+          v-model="form.provider"
+          :items="providers"
+          label="Provider"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('provider', val)"
+        />
+        <VTextField
+          v-model="form.credential"
+          label="Credential"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('credential', val)"
+        />
+        <VSelect
+          v-model="form.status"
+          :items="statuses"
+          label="Status"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('status', val)"
+        />
+        <div class="d-flex align-center">
+          <VSwitch
+            v-model="form.control"
+            label="Control"
+            color="primary"
+            class="mr-2"
+            @update:model-value="(val) => updateForm('control', val)"
+          />
+          <span class="text-caption text-medium-emphasis"
+            >Private Level에서만 사용 가능</span
+          >
+        </div>
+      </template>
+    </CommonModal>
+
     <!-- 수정 다이얼로그 -->
-    <LLMModal
+    <CommonModal
       :visible="dialogEdit"
       mode="edit"
-      :llm="modalLLM"
-      :levels="levels"
-      :providers="providers"
-      :statuses="statuses"
+      :title="`${modalForm.name} 수정`"
+      :form="modalForm"
+      :fields="modalFields"
       @confirm="handleEditConfirm"
       @close="dialogEdit = false"
-    />
+      @update:form="handleFormUpdate"
+    >
+      <template #default="{ form, updateForm }">
+        <VSelect
+          v-model="form.level"
+          :items="levels"
+          label="Level"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('level', val)"
+        />
+        <VSelect
+          v-model="form.provider"
+          :items="providers"
+          label="Provider"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('provider', val)"
+        />
+        <VTextField
+          v-model="form.credential"
+          label="Credential"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('credential', val)"
+        />
+        <VSelect
+          v-model="form.status"
+          :items="statuses"
+          label="Status"
+          class="mb-3"
+          @update:model-value="(val) => updateForm('status', val)"
+        />
+        <div class="d-flex align-center">
+          <VSwitch
+            v-model="form.control"
+            label="Control"
+            color="primary"
+            class="mr-2"
+            @update:model-value="(val) => updateForm('control', val)"
+          />
+          <span class="text-caption text-medium-emphasis"
+            >Private Level에서만 사용 가능</span
+          >
+        </div>
+      </template>
+    </CommonModal>
   </div>
 </template>
 
