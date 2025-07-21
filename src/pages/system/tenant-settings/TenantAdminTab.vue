@@ -120,8 +120,8 @@
 </template>
 <script setup>
 import { ref, computed } from "vue";
-import CommonTable from "../../../components/CommonTable.vue";
-import CommonModal from "../../../components/CommonModal.vue";
+import CommonTable from "@/components/CommonTable.vue";
+import CommonModal from "@/components/CommonModal.vue";
 import { VBtn, VSelect, VTextField, VSpacer } from "vuetify/components";
 
 // ... 기존 system-tenant-settings.vue에서 이 탭에 해당하는 상태/함수만 복사 ...
