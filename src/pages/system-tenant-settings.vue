@@ -77,6 +77,15 @@ const pathToTabIndex = {
   secretary: 4,
 };
 
+// URL 파라미터에서 테넌트 ID 감지
+const tenantIdFromUrl = route.query.tenantId;
+if (tenantIdFromUrl) {
+  const tenant = tenants.value.find((t) => t.id == tenantIdFromUrl);
+  if (tenant) {
+    selectedTenant.value = tenant;
+  }
+}
+
 // 현재 경로에 따라 탭 설정
 if (route.path.includes("/admin-users")) {
   activeTab.value = 0;
@@ -188,6 +197,11 @@ function handleFormUpdate(updatedForm) {
 }
 function handleTenantChange(tenant) {
   selectedTenant.value = tenant;
+  // URL 파라미터 업데이트
+  router.push({
+    path: route.path,
+    query: { ...route.query, tenantId: tenant.id },
+  });
   // 여기서 해당 테넌트의 데이터를 로드하는 로직 추가
   console.log("Tenant changed to:", tenant.name);
 }
@@ -195,7 +209,10 @@ function handleTenantChange(tenant) {
 function handleTabChange(tabIndex) {
   const tab = tabs[tabIndex];
   if (tab && tab.path) {
-    router.push(`/system/tenant-settings/${tab.path}`);
+    router.push({
+      path: `/system/tenant-settings/${tab.path}`,
+      query: { ...route.query },
+    });
   }
 }
 </script>
