@@ -27,6 +27,16 @@ const isPasswordVisible = ref(false);
   <!-- eslint-disable vue/no-v-html -->
 
   <div class="auth-wrapper d-flex align-center justify-center pa-4">
+    <!-- 배경 비디오 -->
+    <video
+      class="login-bg-video"
+      src="@/assets/video/background_video.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+    ></video>
+
     <VCard class="auth-card pa-4 pt-7" max-width="448">
       <VCardItem class="d-flex align-center justify-center">
         <!-- eslint-disable vue/no-v-html -->
@@ -124,6 +134,23 @@ const isPasswordVisible = ref(false);
 
 <style lang="scss">
 @use '@core/scss/template/pages/page-auth';
+
+// 로그인 배경 비디오 스타일
+.login-bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.auth-wrapper {
+  position: relative;
+  z-index: 1;
+}
 
 .checkbox-remember {
   .v-selection-control {
