@@ -16,6 +16,10 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  isNavCollapsed: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const { mdAndDown } = useDisplay();
@@ -64,6 +68,7 @@ const handleNavScroll = (evt) => {
           <img src="/logo.png" alt="logo" class="d-flex" style="height: 40px" />
 
           <img
+            v-if="!isNavCollapsed"
             src="/logo_full.png"
             alt="logo"
             style="height: 24px; object-fit: contain"
@@ -75,6 +80,7 @@ const handleNavScroll = (evt) => {
       <div class="vertical-nav-items-shadow" />
     </slot>
     <slot
+      v-if="!isNavCollapsed"
       name="nav-items"
       :update-is-vertical-nav-scrolled="updateIsVerticalNavScrolled"
     >
@@ -165,7 +171,11 @@ const handleNavScroll = (evt) => {
   // 👉 Collapsed
   .layout-vertical-nav-collapsed & {
     &:not(.hovered) {
-      inline-size: variables.$layout-vertical-nav-collapsed-width;
+      transform: translateX(-#{variables.$layout-vertical-nav-width});
+      
+      @include mixins.rtl {
+        transform: translateX(variables.$layout-vertical-nav-width);
+      }
     }
   }
 }

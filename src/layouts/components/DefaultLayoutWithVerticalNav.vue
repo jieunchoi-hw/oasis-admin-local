@@ -1,6 +1,7 @@
 <script setup>
 import NavItems from "@/layouts/components/NavItems.vue";
 import VerticalNavLayout from "@layouts/components/VerticalNavLayout.vue";
+import { useDisplay } from "vuetify";
 
 // Components
 import Footer from "@/layouts/components/Footer.vue";
@@ -37,17 +38,27 @@ const switchAccount = (account) => {
   isAccountMenuOpen.value = false;
   router.push("/dashboard");
 };
+
+const display = useDisplay();
+const isNavCollapsed = ref(false);
+function handleLargeScreenClick() {
+  isNavCollapsed.value = !isNavCollapsed.value;
+}
 </script>
 
 <template>
-  <VerticalNavLayout>
+  <VerticalNavLayout :is-nav-collapsed="isNavCollapsed">
     <!-- 👉 navbar -->
     <template #navbar="{ toggleVerticalOverlayNavActive }">
       <div class="d-flex h-100 align-center">
         <!-- 👉 Vertical nav toggle in overlay mode -->
         <IconBtn
-          class="ms-n3 d-lg-none"
-          @click="toggleVerticalOverlayNavActive(true)"
+          class="ms-n3"
+          @click="
+            display.lgAndUp.value
+              ? handleLargeScreenClick()
+              : toggleVerticalOverlayNavActive(true)
+          "
         >
           <VIcon icon="ri-menu-line" />
         </IconBtn>
