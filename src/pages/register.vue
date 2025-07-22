@@ -32,12 +32,7 @@ const isPasswordVisible = ref(false);
       <VCardItem class="justify-center">
         <RouterLink to="/" class="d-flex align-center gap-3">
           <!-- eslint-disable vue/no-v-html -->
-          <img
-            src="/logo.png"
-            alt="logo"
-            class="auth-logo"
-            style="height: 40px"
-          />
+          <img src="/logo.png" alt="logo" class="me-2" style="height: 40px" />
           <img
             src="/logo_full.png"
             alt="logo"
@@ -125,7 +120,7 @@ const isPasswordVisible = ref(false);
       </VCardText>
     </VCard>
 
-    <VImg
+    <!-- <VImg
       class="auth-footer-start-tree d-none d-md-block"
       :src="authV1Tree"
       :width="250"
@@ -135,10 +130,10 @@ const isPasswordVisible = ref(false);
       :src="authV1Tree2"
       class="auth-footer-end-tree d-none d-md-block"
       :width="350"
-    />
+    /> -->
 
     <!-- bg img -->
-    <VImg class="auth-footer-mask d-none d-md-block" :src="authThemeMask" />
+    <!-- <VImg class="auth-footer-mask d-none d-md-block" :src="authThemeMask" /> -->
   </div>
 </template>
 

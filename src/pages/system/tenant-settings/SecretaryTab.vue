@@ -81,7 +81,6 @@
         <VBtn
           color="primary"
           variant="outlined"
-          size="large"
           prepend-icon="ri-arrow-right-line"
           :disabled="!hasSelectedLeft"
           @click="moveToRight"
@@ -89,7 +88,6 @@
         <VBtn
           color="primary"
           variant="outlined"
-          size="large"
           prepend-icon="ri-arrow-left-line"
           :disabled="!hasSelectedRight"
           @click="moveToLeft"

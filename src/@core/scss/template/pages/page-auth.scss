@@ -1,6 +1,12 @@
 .layout-blank {
   .auth-wrapper {
     min-block-size: 100dvh;
+    background: linear-gradient(
+      to top,
+      rgba(121, 166, 210, 1),
+      rgba(184, 214, 235, 1)
+    );
+    min-height: 100vh;
   }
 
   .auth-footer-mask {
@@ -31,8 +37,12 @@
     inset-block-end: 4.625rem;
     inset-inline-end: 5rem;
   }
+  .auth-card {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    z-index: 1 !important;
+  }
 
-  .auth-card,
   .auth-card-v2,
   .auth-illustration {
     z-index: 1 !important;

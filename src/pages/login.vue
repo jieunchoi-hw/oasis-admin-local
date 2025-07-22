@@ -28,18 +28,11 @@ const isPasswordVisible = ref(false);
 
   <div class="auth-wrapper d-flex align-center justify-center pa-4">
     <VCard class="auth-card pa-4 pt-7" max-width="448">
-      <VCardItem class="">
+      <VCardItem class="d-flex align-center justify-center">
         <!-- eslint-disable vue/no-v-html -->
 
-        <div class="d-flex align-center justify-center">
-          <img
-            src="/logo.png"
-            alt="logo"
-            class="auth-logo"
-            style="height: 40px; margin-top: 20px; margin-left: 70px"
-          />
-          <img src="/logo_full.png" alt="logo" style="height: 40px" />
-        </div>
+        <img src="/logo.png" alt="logo" class="me-2" style="height: 40px" />
+        <img src="/logo_full.png" alt="logo" style="height: 40px" />
       </VCardItem>
 
       <VCardText class="pt-2">
@@ -125,7 +118,7 @@ const isPasswordVisible = ref(false);
     /> -->
 
     <!-- bg img -->
-    <VImg class="auth-footer-mask d-none d-md-block" :src="authThemeMask" />
+    <!-- <VImg class="auth-footer-mask d-none d-md-block" :src="authThemeMask" /> -->
   </div>
 </template>
 
