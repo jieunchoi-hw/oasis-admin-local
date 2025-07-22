@@ -1,8 +1,8 @@
 <script setup>
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
-import CommonTable from "@/components/CommonTable.vue";
-import CommonModal from "@/components/CommonModal.vue";
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import CommonTable from '@/components/CommonTable.vue';
+import CommonModal from '@/components/CommonModal.vue';
 import {
   VBtn,
   VSelect,
@@ -11,55 +11,55 @@ import {
   VIcon,
   VSpacer,
   VChip,
-} from "vuetify/components";
+} from 'vuetify/components';
 
 // Mock 데이터
 const tenants = ref([
   {
     id: 1,
-    name: "한화시스템",
-    description: "한화시스템 테넌트",
+    name: '한화시스템',
+    description: '한화시스템 테넌트',
     integratedSecretary: 7,
-    allowedLLMLevel: "Public",
-    updated: "2025-05-12 10:21",
+    allowedLLMLevel: 'Public',
+    updated: '2025-05-12 10:21',
   },
   {
     id: 2,
-    name: "한화비전",
-    description: "한화시스템 비전",
+    name: '한화비전',
+    description: '한화시스템 비전',
     integratedSecretary: 12,
-    allowedLLMLevel: "Dedicated",
-    updated: "2025-05-12 10:21",
+    allowedLLMLevel: 'Dedicated',
+    updated: '2025-05-12 10:21',
   },
   {
     id: 3,
-    name: "한화오션",
-    description: "한화시스템 오션 테스트",
+    name: '한화오션',
+    description: '한화시스템 오션 테스트',
     integratedSecretary: 5,
-    allowedLLMLevel: "Private",
-    updated: "2025-05-12 10:21",
+    allowedLLMLevel: 'Private',
+    updated: '2025-05-12 10:21',
   },
 ]);
 
-const llmLevels = ["Public", "Dedicated", "Private"];
+const llmLevels = ['Public', 'Dedicated', 'Private'];
 
 // 테이블 컬럼 정의
 const columns = [
-  { key: "name", label: "Tenant 명" },
-  { key: "description", label: "설명" },
-  { key: "integratedSecretary", label: "연동 비서" },
-  { key: "allowedLLMLevel", label: "허용 LLM Level" },
-  { key: "updated", label: "Last Updated" },
+  { key: 'name', label: 'Tenant 명' },
+  { key: 'description', label: '설명' },
+  { key: 'integratedSecretary', label: '연동 비서' },
+  { key: 'allowedLLMLevel', label: '허용 LLM Level' },
+  { key: 'updated', label: 'Last Updated' },
 ];
 
 // 모달 필드 정의
 const modalFields = [
-  { key: "name", label: "Tenant 명", type: "text", required: true },
-  { key: "description", label: "설명", type: "textarea", required: true },
+  { key: 'name', label: 'Tenant 명', type: 'text', required: true },
+  { key: 'description', label: '설명', type: 'textarea', required: true },
   {
-    key: "allowedLLMLevel",
-    label: "허용 LLM Level",
-    type: "select",
+    key: 'allowedLLMLevel',
+    label: '허용 LLM Level',
+    type: 'select',
     options: llmLevels,
     required: true,
   },
@@ -67,18 +67,18 @@ const modalFields = [
 
 // 검색/필터
 const filterColumns = [
-  { label: "Tenant 명", key: "name" },
-  { label: "설명", key: "description" },
-  { label: "허용 LLM Level", key: "allowedLLMLevel" },
+  { label: 'Tenant 명', key: 'name' },
+  { label: '설명', key: 'description' },
+  { label: '허용 LLM Level', key: 'allowedLLMLevel' },
 ];
 const selectedColumn = ref(filterColumns[0]);
-const searchValue = ref("");
+const searchValue = ref('');
 const filteredTenants = computed(() => {
   if (!Array.isArray(tenants.value)) return [];
   if (!searchValue.value) return tenants.value;
   const key = selectedColumn.value.key;
-  return tenants.value.filter((tenant) =>
-    String(tenant[key] ?? "").includes(searchValue.value)
+  return tenants.value.filter(tenant =>
+    String(tenant[key] ?? '').includes(searchValue.value)
   );
 });
 
@@ -91,15 +91,15 @@ const totalItems = computed(() => filteredTenants.value.length);
 const dialogAdd = ref(false);
 const dialogEdit = ref(false);
 const modalForm = ref({
-  name: "",
-  description: "",
+  name: '',
+  description: '',
   allowedLLMLevel: llmLevels[0],
 });
 
 function openAddDialog() {
   modalForm.value = {
-    name: "",
-    description: "",
+    name: '',
+    description: '',
     allowedLLMLevel: llmLevels[0],
   };
   dialogAdd.value = true;
@@ -115,19 +115,19 @@ function handleAddConfirm(form) {
     description: form.description,
     integratedSecretary: 0,
     allowedLLMLevel: form.allowedLLMLevel,
-    updated: new Date().toISOString().slice(0, 16).replace("T", " "),
+    updated: new Date().toISOString().slice(0, 16).replace('T', ' '),
   });
   dialogAdd.value = false;
 }
 function handleEditConfirm(form) {
-  const tenant = tenants.value.find((t) => t.id === form.id);
+  const tenant = tenants.value.find(t => t.id === form.id);
   if (tenant) {
     Object.assign(tenant, form);
   }
   dialogEdit.value = false;
 }
 function handleDelete(tenant) {
-  tenants.value = tenants.value.filter((t) => t.id !== tenant.id);
+  tenants.value = tenants.value.filter(t => t.id !== tenant.id);
 }
 function handlePageChange(val) {
   page.value = val;
@@ -139,7 +139,7 @@ const router = useRouter();
 
 function goToSettings(tenant) {
   // 테넌트 설정 페이지로 이동하는 로직
-  console.log("Go to settings for:", tenant.name);
+  console.log('Go to settings for:', tenant.name);
   // 실제로는 라우터를 통해 이동
   router.push(`/system/tenant-settings/admin-users?tenant=${tenant.id}`);
 }
@@ -147,14 +147,14 @@ function goToSettings(tenant) {
 // 커스텀 렌더링 함수들
 function getLLMLevelColor(level) {
   switch (level) {
-    case "Public":
-      return "warning";
-    case "Dedicated":
-      return "primary";
-    case "Private":
-      return "success";
+    case 'Public':
+      return 'warning';
+    case 'Dedicated':
+      return 'primary';
+    case 'Private':
+      return 'success';
     default:
-      return "default";
+      return 'default';
   }
 }
 </script>
@@ -278,21 +278,21 @@ function getLLMLevelColor(level) {
           v-model="form.name"
           label="Tenant 명"
           class="mb-3"
-          @update:model-value="(val) => updateForm('name', val)"
+          @update:model-value="val => updateForm('name', val)"
         />
         <VTextarea
           v-model="form.description"
           label="설명"
           class="mb-3"
           rows="3"
-          @update:model-value="(val) => updateForm('description', val)"
+          @update:model-value="val => updateForm('description', val)"
         />
         <VSelect
           v-model="form.allowedLLMLevel"
           :items="llmLevels"
           label="허용 LLM Level"
           class="mb-3"
-          @update:model-value="(val) => updateForm('allowedLLMLevel', val)"
+          @update:model-value="val => updateForm('allowedLLMLevel', val)"
         />
       </template>
     </CommonModal>
@@ -313,21 +313,21 @@ function getLLMLevelColor(level) {
           v-model="form.name"
           label="Tenant 명"
           class="mb-3"
-          @update:model-value="(val) => updateForm('name', val)"
+          @update:model-value="val => updateForm('name', val)"
         />
         <VTextarea
           v-model="form.description"
           label="설명"
           class="mb-3"
           rows="3"
-          @update:model-value="(val) => updateForm('description', val)"
+          @update:model-value="val => updateForm('description', val)"
         />
         <VSelect
           v-model="form.allowedLLMLevel"
           :items="llmLevels"
           label="허용 LLM Level"
           class="mb-3"
-          @update:model-value="(val) => updateForm('allowedLLMLevel', val)"
+          @update:model-value="val => updateForm('allowedLLMLevel', val)"
         />
       </template>
     </CommonModal>

@@ -24,9 +24,9 @@ const recentDevices = ref([
     browser: false,
     app: false,
   },
-])
+]);
 
-const selectedNotification = ref('Only when I\'m online')
+const selectedNotification = ref("Only when I'm online");
 </script>
 
 <template>
@@ -39,25 +39,14 @@ const selectedNotification = ref('Only when I\'m online')
     <VTable class="text-no-wrap">
       <thead>
         <tr>
-          <th scope="col">
-            Type
-          </th>
-          <th scope="col">
-            EMAIL
-          </th>
-          <th scope="col">
-            BROWSER
-          </th>
-          <th scope="col">
-            App
-          </th>
+          <th scope="col">Type</th>
+          <th scope="col">EMAIL</th>
+          <th scope="col">BROWSER</th>
+          <th scope="col">App</th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="device in recentDevices"
-          :key="device.type"
-        >
+        <tr v-for="device in recentDevices" :key="device.type">
           <td>
             {{ device.type }}
           </td>
@@ -82,10 +71,7 @@ const selectedNotification = ref('Only when I\'m online')
         </p>
 
         <VRow>
-          <VCol
-            cols="12"
-            sm="6"
-          >
+          <VCol cols="12" sm="6">
             <VSelect
               v-model="selectedNotification"
               mandatory
@@ -95,16 +81,8 @@ const selectedNotification = ref('Only when I\'m online')
         </VRow>
 
         <div class="d-flex flex-wrap gap-4 mt-4">
-          <VBtn type="submit">
-            Save Changes
-          </VBtn>
-          <VBtn
-            color="secondary"
-            variant="outlined"
-            type="reset"
-          >
-            Reset
-          </VBtn>
+          <VBtn type="submit"> Save Changes </VBtn>
+          <VBtn color="secondary" variant="outlined" type="reset"> Reset </VBtn>
         </div>
       </VForm>
     </VCardText>

@@ -1,7 +1,7 @@
 <script setup>
-import aviato from '@images/logos/aviato.png'
-import bitbank from '@images/logos/bitbank.png'
-import zipcar from '@images/logos/zipcar.png'
+import aviato from '@images/logos/aviato.png';
+import bitbank from '@images/logos/bitbank.png';
+import zipcar from '@images/logos/zipcar.png';
 
 const earnings = [
   {
@@ -25,7 +25,7 @@ const earnings = [
     amount: '$1,2450.80',
     progress: 'secondary',
   },
-]
+];
 
 const moreList = [
   {
@@ -40,7 +40,7 @@ const moreList = [
     title: 'Update',
     value: 'Update',
   },
-]
+];
 </script>
 
 <template>
@@ -57,34 +57,17 @@ const moreList = [
 
     <VCardText>
       <div class="d-flex align-center">
-        <h3 class="text-h3">
-          $24,895
-        </h3>
+        <h3 class="text-h3">$24,895</h3>
 
-        <VIcon
-          size="24"
-          icon="ri-arrow-up-s-line"
-          color="success"
-        />
-        <div class="text-success">
-          10%
-        </div>
+        <VIcon size="24" icon="ri-arrow-up-s-line" color="success" />
+        <div class="text-success">10%</div>
       </div>
-      <div class="text-body-1 mb-12">
-        Compared to $84,325 last year
-      </div>
+      <div class="text-body-1 mb-12">Compared to $84,325 last year</div>
 
       <VList class="card-list">
-        <VListItem
-          v-for="earning in earnings"
-          :key="earning.title"
-        >
+        <VListItem v-for="earning in earnings" :key="earning.title">
           <template #prepend>
-            <VAvatar
-              rounded
-              :image="earning.avatar"
-              variant="tonal"
-            />
+            <VAvatar rounded :image="earning.avatar" variant="tonal" />
           </template>
 
           <VListItemTitle class="font-weight-medium">

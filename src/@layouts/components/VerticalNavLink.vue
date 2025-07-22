@@ -4,14 +4,11 @@ const props = defineProps({
     type: null,
     required: true,
   },
-})
+});
 </script>
 
 <template>
-  <li
-    class="nav-link"
-    :class="{ disabled: item.disable }"
-  >
+  <li class="nav-link" :class="{ disabled: item.disable }">
     <Component
       :is="item.to ? 'RouterLink' : 'a'"
       :to="item.to"
@@ -26,10 +23,7 @@ const props = defineProps({
       <span class="nav-item-title">
         {{ item.title }}
       </span>
-      <span
-        class="nav-item-badge"
-        :class="item.badgeClass"
-      >
+      <span class="nav-item-badge" :class="item.badgeClass">
         {{ item.badgeContent }}
       </span>
     </Component>

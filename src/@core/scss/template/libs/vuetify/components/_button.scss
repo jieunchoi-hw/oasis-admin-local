@@ -1,7 +1,7 @@
 /* stylelint-disable no-descending-specificity */
-@use "sass:list";
-@use "sass:map";
-@use "@configured-variables" as variables;
+@use 'sass:list';
+@use 'sass:map';
+@use '@configured-variables' as variables;
 
 /* 👉 Button
  Above map but opacity values as key and variant as value */
@@ -39,7 +39,9 @@ body {
             &:hover,
             &:active,
             &:focus {
-              background-color: rgb(var(--v-theme-#{$color-name}-darken-1)) !important;
+              background-color: rgb(
+                var(--v-theme-#{$color-name}-darken-1)
+              ) !important;
             }
           }
         }
@@ -226,13 +228,19 @@ body {
         }
 
         .v-icon {
-          color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
+          color: rgba(
+            var(--v-theme-on-surface),
+            var(--v-medium-emphasis-opacity)
+          );
           font-size: 24px;
         }
 
         &--active {
           .v-icon {
-            color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
+            color: rgba(
+              var(--v-theme-on-surface),
+              var(--v-high-emphasis-opacity)
+            );
           }
         }
       }

@@ -1,9 +1,9 @@
 /* eslint-disable regex/invalid */
-import checkboxChecked from '@images/svg/checkbox-checked.svg'
-import checkboxIndeterminate from '@images/svg/checkbox-indeterminate.svg'
-import checkboxUnchecked from '@images/svg/checkbox-unchecked.svg'
-import radioChecked from '@images/svg/radio-checked.svg'
-import radioUnchecked from '@images/svg/radio-unchecked.svg'
+import checkboxChecked from '@images/svg/checkbox-checked.svg';
+import checkboxIndeterminate from '@images/svg/checkbox-indeterminate.svg';
+import checkboxUnchecked from '@images/svg/checkbox-unchecked.svg';
+import radioChecked from '@images/svg/radio-checked.svg';
+import radioUnchecked from '@images/svg/radio-unchecked.svg';
 
 const customIcons = {
   'mdi-checkbox-blank-outline': checkboxUnchecked,
@@ -11,7 +11,7 @@ const customIcons = {
   'mdi-minus-box': checkboxIndeterminate,
   'mdi-radiobox-marked': radioChecked,
   'mdi-radiobox-blank': radioUnchecked,
-}
+};
 
 const aliases = {
   info: 'ri-error-warning-line',
@@ -46,18 +46,17 @@ const aliases = {
   minus: 'ri-subtract-line',
   sortAsc: 'ri-arrow-up-line',
   sortDesc: 'ri-arrow-down-line',
-}
+};
 
 /* eslint-enable */
 export const iconify = {
   component: props => {
     // Load custom SVG directly instead of going through icon component
     if (typeof props.icon === 'string') {
-      const iconComponent = customIcons[props.icon]
-      if (iconComponent)
-        return h(iconComponent)
+      const iconComponent = customIcons[props.icon];
+      if (iconComponent) return h(iconComponent);
     }
-    
+
     return h(props.tag, {
       ...props,
 
@@ -67,13 +66,13 @@ export const iconify = {
       // Remove used props from DOM rendering
       tag: undefined,
       icon: undefined,
-    })
+    });
   },
-}
+};
 export const icons = {
   defaultSet: 'iconify',
   aliases,
   sets: {
     iconify,
   },
-}
+};

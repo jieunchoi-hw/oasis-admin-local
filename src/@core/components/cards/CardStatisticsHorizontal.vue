@@ -21,9 +21,12 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-})
+});
 
-const isPositive = controlledComputed(() => props.change, () => Math.sign(props.change) === 1)
+const isPositive = controlledComputed(
+  () => props.change,
+  () => Math.sign(props.change) === 1
+);
 </script>
 
 <template>
@@ -36,16 +39,15 @@ const isPositive = controlledComputed(() => props.change, () => Math.sign(props.
         variant="tonal"
         class="me-4"
       >
-        <VIcon
-          :icon="props.icon"
-          size="30"
-        />
+        <VIcon :icon="props.icon" size="30" />
       </VAvatar>
 
       <div>
         <span class="text-caption">{{ props.title }}</span>
         <div class="d-flex align-center flex-wrap">
-          <span class="text-h6 font-weight-semibold">{{ kFormatter(props.stats) }}</span>
+          <span class="text-h6 font-weight-semibold">{{
+            kFormatter(props.stats)
+          }}</span>
           <div
             v-if="props.change"
             :class="`${isPositive ? 'text-success' : 'text-error'} mt-1`"
@@ -54,9 +56,7 @@ const isPositive = controlledComputed(() => props.change, () => Math.sign(props.
               :icon="isPositive ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'"
               size="24"
             />
-            <span class="text-base">
-              {{ Math.abs(props.change) }}%
-            </span>
+            <span class="text-base"> {{ Math.abs(props.change) }}% </span>
           </div>
         </div>
       </div>

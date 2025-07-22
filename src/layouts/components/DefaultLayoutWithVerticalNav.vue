@@ -1,42 +1,42 @@
 <script setup>
-import NavItems from "@/layouts/components/NavItems.vue";
-import VerticalNavLayout from "@layouts/components/VerticalNavLayout.vue";
-import { useDisplay } from "vuetify";
+import NavItems from '@/layouts/components/NavItems.vue';
+import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue';
+import { useDisplay } from 'vuetify';
 
 // Components
-import Footer from "@/layouts/components/Footer.vue";
-import NavbarThemeSwitcher from "@/layouts/components/NavbarThemeSwitcher.vue";
-import UserProfile from "@/layouts/components/UserProfile.vue";
+import Footer from '@/layouts/components/Footer.vue';
+import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue';
+import UserProfile from '@/layouts/components/UserProfile.vue';
 
 // 계정 데이터
 const accounts = ref([
   {
     id: 1,
-    name: "choijieun",
-    type: "System",
-    bgColor: "#2196F3",
+    name: 'choijieun',
+    type: 'System',
+    bgColor: '#2196F3',
   },
   {
     id: 2,
-    name: "한화시스템",
-    type: "Tenant",
-    bgColor: "#4CAF50",
+    name: '한화시스템',
+    type: 'Tenant',
+    bgColor: '#4CAF50',
   },
   {
     id: 3,
-    name: "AI솔루션팀",
-    type: "Workspace",
-    bgColor: "#FFC107",
+    name: 'AI솔루션팀',
+    type: 'Workspace',
+    bgColor: '#FFC107',
   },
 ]);
 
 const currentAccount = ref(accounts.value[0]);
 const isAccountMenuOpen = ref(false);
 
-const switchAccount = (account) => {
+const switchAccount = account => {
   currentAccount.value = account;
   isAccountMenuOpen.value = false;
-  router.push("/dashboard");
+  router.push('/dashboard');
 };
 
 const display = useDisplay();

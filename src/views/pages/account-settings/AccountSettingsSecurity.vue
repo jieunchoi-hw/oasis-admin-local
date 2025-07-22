@@ -1,16 +1,16 @@
 <script setup>
-const isCurrentPasswordVisible = ref(false)
-const isNewPasswordVisible = ref(false)
-const isConfirmPasswordVisible = ref(false)
-const currentPassword = ref('12345678')
-const newPassword = ref('87654321')
-const confirmPassword = ref('87654321')
+const isCurrentPasswordVisible = ref(false);
+const isNewPasswordVisible = ref(false);
+const isConfirmPasswordVisible = ref(false);
+const currentPassword = ref('12345678');
+const newPassword = ref('87654321');
+const confirmPassword = ref('87654321');
 
 const passwordRequirements = [
   'Minimum 8 characters long - the more, the better',
   'At least one lowercase character',
   'At least one number, symbol, or whitespace character',
-]
+];
 
 const serverKeys = [
   {
@@ -31,7 +31,7 @@ const serverKeys = [
     createdOn: '28 Dec 2020, 12:21 GTM+4:10',
     permission: 'Full Access',
   },
-]
+];
 
 const recentDevicesHeaders = [
   {
@@ -50,7 +50,7 @@ const recentDevicesHeaders = [
     title: 'RECENT ACTIVITY',
     key: 'recentActivity',
   },
-]
+];
 
 const recentDevices = [
   {
@@ -113,7 +113,7 @@ const recentDevices = [
       color: 'success',
     },
   },
-]
+];
 </script>
 
 <template>
@@ -125,54 +125,57 @@ const recentDevices = [
           <VCardText>
             <!-- 👉 Current Password -->
             <VRow class="mb-3">
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <!-- 👉 current password -->
                 <VTextField
                   v-model="currentPassword"
                   :type="isCurrentPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isCurrentPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'"
+                  :append-inner-icon="
+                    isCurrentPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'
+                  "
                   autocomplete="on"
                   label="Current Password"
                   placeholder="············"
-                  @click:append-inner="isCurrentPasswordVisible = !isCurrentPasswordVisible"
+                  @click:append-inner="
+                    isCurrentPasswordVisible = !isCurrentPasswordVisible
+                  "
                 />
               </VCol>
             </VRow>
 
             <!-- 👉 New Password -->
             <VRow>
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <!-- 👉 new password -->
                 <VTextField
                   v-model="newPassword"
                   :type="isNewPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isNewPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'"
+                  :append-inner-icon="
+                    isNewPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'
+                  "
                   label="New Password"
                   autocomplete="on"
                   placeholder="············"
-                  @click:append-inner="isNewPasswordVisible = !isNewPasswordVisible"
+                  @click:append-inner="
+                    isNewPasswordVisible = !isNewPasswordVisible
+                  "
                 />
               </VCol>
 
-              <VCol
-                cols="12"
-                md="6"
-              >
+              <VCol cols="12" md="6">
                 <!-- 👉 confirm password -->
                 <VTextField
                   v-model="confirmPassword"
                   :type="isConfirmPasswordVisible ? 'text' : 'password'"
-                  :append-inner-icon="isConfirmPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'"
+                  :append-inner-icon="
+                    isConfirmPasswordVisible ? 'ri-eye-off-line' : 'ri-eye-line'
+                  "
                   autocomplete="on"
                   label="Confirm New Password"
                   placeholder="············"
-                  @click:append-inner="isConfirmPasswordVisible = !isConfirmPasswordVisible"
+                  @click:append-inner="
+                    isConfirmPasswordVisible = !isConfirmPasswordVisible
+                  "
                 />
               </VCol>
             </VRow>
@@ -206,11 +209,7 @@ const recentDevices = [
           <VCardText class="d-flex flex-wrap gap-4">
             <VBtn>Save changes</VBtn>
 
-            <VBtn
-              type="reset"
-              color="secondary"
-              variant="outlined"
-            >
+            <VBtn type="reset" color="secondary" variant="outlined">
               Reset
             </VBtn>
           </VCardText>
@@ -227,16 +226,14 @@ const recentDevices = [
             Two factor authentication is not enabled yet.
           </p>
           <p>
-            Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.
-            <a
-              href="javascript:void(0)"
-              class="text-decoration-none"
-            >Learn more.</a>
+            Two-factor authentication adds an additional layer of security to
+            your account by requiring more than just a password to log in.
+            <a href="javascript:void(0)" class="text-decoration-none"
+              >Learn more.</a
+            >
           </p>
 
-          <VBtn>
-            Enable two-factor authentication
-          </VBtn>
+          <VBtn> Enable two-factor authentication </VBtn>
         </VCardText>
       </VCard>
     </VCol>
@@ -247,12 +244,7 @@ const recentDevices = [
       <VCard title="Create an API key">
         <VRow>
           <!-- 👉 Choose API Key -->
-          <VCol
-            cols="12"
-            md="5"
-            order-md="0"
-            order="1"
-          >
+          <VCol cols="12" md="5" order-md="0" order="1">
             <VCardText>
               <VForm @submit.prevent="() => {}">
                 <VRow>
@@ -261,7 +253,14 @@ const recentDevices = [
                     <VSelect
                       label="Choose the API key type you want to create"
                       placeholder="Select API key type"
-                      :items="['Full Control', 'Modify', 'Read & Execute', 'List Folder Contents', 'Read Only', 'Read & Write']"
+                      :items="[
+                        'Full Control',
+                        'Modify',
+                        'Read & Execute',
+                        'List Folder Contents',
+                        'Read Only',
+                        'Read & Write',
+                      ]"
                     />
                   </VCol>
 
@@ -275,12 +274,7 @@ const recentDevices = [
 
                   <!-- 👉 Create Key Button -->
                   <VCol cols="12">
-                    <VBtn
-                      type="submit"
-                      block
-                    >
-                      Create Key
-                    </VBtn>
+                    <VBtn type="submit" block> Create Key </VBtn>
                   </VCol>
                 </VRow>
               </VForm>
@@ -288,14 +282,17 @@ const recentDevices = [
           </VCol>
         </VRow>
       </VCard>
-    <!-- !SECTION -->
+      <!-- !SECTION -->
     </VCol>
 
     <VCol cols="12">
       <!-- SECTION: API Keys List -->
       <VCard title="API Key List &amp; Access">
         <VCardText>
-          An API key is a simple encrypted string that identifies an application without any principal. They are useful for accessing public data anonymously, and are used to associate API requests with your project for quota and billing.
+          An API key is a simple encrypted string that identifies an application
+          without any principal. They are useful for accessing public data
+          anonymously, and are used to associate API requests with your project
+          for quota and billing.
         </VCardText>
 
         <!-- 👉 Server Status -->
@@ -309,10 +306,7 @@ const recentDevices = [
               <h6 class="text-h6 mb-0 me-3">
                 {{ serverKey.name }}
               </h6>
-              <VChip
-                color="primary"
-                size="small"
-              >
+              <VChip color="primary" size="small">
                 {{ serverKey.permission }}
               </VChip>
             </div>

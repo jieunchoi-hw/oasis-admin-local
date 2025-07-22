@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -28,20 +28,18 @@
     </div>
     <script type="module" src="/src/main.js"></script>
     <script>
-      const loaderColor =
-        localStorage.getItem("materio-initial-loader-bg") || "#FFFFFF";
-      const primaryColor =
-        localStorage.getItem("materio-initial-loader-color") || "#9155FD";
+      const loaderColor = '#FFFFFF';
+      const primaryColor = '#165ef0';
 
       if (loaderColor)
         document.documentElement.style.setProperty(
-          "--initial-loader-bg",
+          '--initial-loader-bg',
           loaderColor
         );
 
       if (primaryColor)
         document.documentElement.style.setProperty(
-          "--initial-loader-color",
+          '--initial-loader-color',
           primaryColor
         );
     </script>

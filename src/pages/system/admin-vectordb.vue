@@ -1,7 +1,7 @@
 <script setup>
-import { ref, computed } from "vue";
-import CommonTable from "@/components/CommonTable.vue";
-import CommonModal from "@/components/CommonModal.vue";
+import { ref, computed } from 'vue';
+import CommonTable from '@/components/CommonTable.vue';
+import CommonModal from '@/components/CommonModal.vue';
 import {
   VBtn,
   VSelect,
@@ -11,62 +11,62 @@ import {
   VSpacer,
   VChip,
   VSwitch,
-} from "vuetify/components";
+} from 'vuetify/components';
 
 // Mock 데이터
 const vectorDBs = ref([
   {
     id: 1,
-    name: "VectorDB 1",
-    status: "Active",
-    capacity: "2.5GB",
+    name: 'VectorDB 1',
+    status: 'Active',
+    capacity: '2.5GB',
     control: false,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
   {
     id: 2,
-    name: "VectorDB 2",
-    status: "Active",
-    capacity: "1.8GB",
+    name: 'VectorDB 2',
+    status: 'Active',
+    capacity: '1.8GB',
     control: true,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
   {
     id: 3,
-    name: "VectorDB 3",
-    status: "Inactive",
-    capacity: "3.2GB",
+    name: 'VectorDB 3',
+    status: 'Inactive',
+    capacity: '3.2GB',
     control: true,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
 ]);
 
-const statuses = ["Active", "Inactive", "Maintenance"];
-const capacities = ["1GB", "2GB", "3GB", "4GB", "5GB"];
+const statuses = ['Active', 'Inactive', 'Maintenance'];
+const capacities = ['1GB', '2GB', '3GB', '4GB', '5GB'];
 
 // 테이블 컬럼 정의
 const columns = [
-  { key: "name", label: "이름" },
-  { key: "status", label: "상태" },
-  { key: "capacity", label: "용량" },
-  { key: "control", label: "Control" },
-  { key: "updated", label: "Last Updated" },
+  { key: 'name', label: '이름' },
+  { key: 'status', label: '상태' },
+  { key: 'capacity', label: '용량' },
+  { key: 'control', label: 'Control' },
+  { key: 'updated', label: 'Last Updated' },
 ];
 
 // 모달 필드 정의
 const modalFields = [
-  { key: "name", label: "DB 이름", type: "text", required: true },
+  { key: 'name', label: 'DB 이름', type: 'text', required: true },
   {
-    key: "status",
-    label: "상태",
-    type: "select",
+    key: 'status',
+    label: '상태',
+    type: 'select',
     options: statuses,
     required: true,
   },
   {
-    key: "capacity",
-    label: "용량",
-    type: "select",
+    key: 'capacity',
+    label: '용량',
+    type: 'select',
     options: capacities,
     required: true,
   },
@@ -74,18 +74,18 @@ const modalFields = [
 
 // 검색/필터
 const filterColumns = [
-  { label: "이름", key: "name" },
-  { label: "상태", key: "status" },
-  { label: "용량", key: "capacity" },
+  { label: '이름', key: 'name' },
+  { label: '상태', key: 'status' },
+  { label: '용량', key: 'capacity' },
 ];
 const selectedColumn = ref(filterColumns[0]);
-const searchValue = ref("");
+const searchValue = ref('');
 const filteredDBs = computed(() => {
   if (!Array.isArray(vectorDBs.value)) return [];
   if (!searchValue.value) return vectorDBs.value;
   const key = selectedColumn.value.key;
-  return vectorDBs.value.filter((db) =>
-    String(db[key] ?? "").includes(searchValue.value)
+  return vectorDBs.value.filter(db =>
+    String(db[key] ?? '').includes(searchValue.value)
   );
 });
 
@@ -98,7 +98,7 @@ const totalItems = computed(() => filteredDBs.value.length);
 const dialogAdd = ref(false);
 const dialogEdit = ref(false);
 const modalForm = ref({
-  name: "",
+  name: '',
   status: statuses[0],
   capacity: capacities[0],
   control: false,
@@ -106,7 +106,7 @@ const modalForm = ref({
 
 function openAddDialog() {
   modalForm.value = {
-    name: "",
+    name: '',
     status: statuses[0],
     capacity: capacities[0],
     control: false,
@@ -124,19 +124,19 @@ function handleAddConfirm(form) {
     status: form.status,
     capacity: form.capacity,
     control: form.control,
-    updated: new Date().toISOString().slice(0, 16).replace("T", " "),
+    updated: new Date().toISOString().slice(0, 16).replace('T', ' '),
   });
   dialogAdd.value = false;
 }
 function handleEditConfirm(form) {
-  const db = vectorDBs.value.find((d) => d.id === form.id);
+  const db = vectorDBs.value.find(d => d.id === form.id);
   if (db) {
     Object.assign(db, form);
   }
   dialogEdit.value = false;
 }
 function handleDelete(db) {
-  vectorDBs.value = vectorDBs.value.filter((d) => d.id !== db.id);
+  vectorDBs.value = vectorDBs.value.filter(d => d.id !== db.id);
 }
 function handlePageChange(val) {
   page.value = val;
@@ -144,9 +144,9 @@ function handlePageChange(val) {
 function handleToggleControl(db) {
   // Control 토글 시 상태 업데이트 로직
   if (db.control) {
-    db.status = "Active";
+    db.status = 'Active';
   } else {
-    db.status = "Inactive";
+    db.status = 'Inactive';
   }
 }
 function handleFormUpdate(updatedForm) {
@@ -156,22 +156,22 @@ function handleFormUpdate(updatedForm) {
 // 커스텀 렌더링 함수들
 function getStatusColor(status) {
   switch (status) {
-    case "Active":
-      return "success";
-    case "Inactive":
-      return "error";
-    case "Maintenance":
-      return "warning";
+    case 'Active':
+      return 'success';
+    case 'Inactive':
+      return 'error';
+    case 'Maintenance':
+      return 'warning';
     default:
-      return "default";
+      return 'default';
   }
 }
 
 function getCapacityColor(capacity) {
   const size = parseInt(capacity);
-  if (size >= 4) return "error";
-  if (size >= 2) return "warning";
-  return "success";
+  if (size >= 4) return 'error';
+  if (size >= 2) return 'warning';
+  return 'success';
 }
 </script>
 
@@ -277,21 +277,21 @@ function getCapacityColor(capacity) {
           v-model="form.name"
           label="DB 이름"
           class="mb-3"
-          @update:model-value="(val) => updateForm('name', val)"
+          @update:model-value="val => updateForm('name', val)"
         />
         <VSelect
           v-model="form.status"
           :items="statuses"
           label="상태"
           class="mb-3"
-          @update:model-value="(val) => updateForm('status', val)"
+          @update:model-value="val => updateForm('status', val)"
         />
         <VSelect
           v-model="form.capacity"
           :items="capacities"
           label="용량"
           class="mb-3"
-          @update:model-value="(val) => updateForm('capacity', val)"
+          @update:model-value="val => updateForm('capacity', val)"
         />
         <div class="d-flex align-center">
           <VSwitch
@@ -299,7 +299,7 @@ function getCapacityColor(capacity) {
             label="Control"
             color="primary"
             class="mr-2"
-            @update:model-value="(val) => updateForm('control', val)"
+            @update:model-value="val => updateForm('control', val)"
           />
           <span class="text-caption text-medium-emphasis"
             >DB 활성화/비활성화</span
@@ -325,14 +325,14 @@ function getCapacityColor(capacity) {
           :items="statuses"
           label="상태"
           class="mb-3"
-          @update:model-value="(val) => updateForm('status', val)"
+          @update:model-value="val => updateForm('status', val)"
         />
         <VSelect
           v-model="form.capacity"
           :items="capacities"
           label="용량"
           class="mb-3"
-          @update:model-value="(val) => updateForm('capacity', val)"
+          @update:model-value="val => updateForm('capacity', val)"
         />
         <div class="d-flex align-center">
           <VSwitch
@@ -340,7 +340,7 @@ function getCapacityColor(capacity) {
             label="Control"
             color="primary"
             class="mr-2"
-            @update:model-value="(val) => updateForm('control', val)"
+            @update:model-value="val => updateForm('control', val)"
           />
           <span class="text-caption text-medium-emphasis"
             >DB 활성화/비활성화</span

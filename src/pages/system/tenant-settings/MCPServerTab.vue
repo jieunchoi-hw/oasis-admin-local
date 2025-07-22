@@ -123,7 +123,7 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch } from 'vue';
 import {
   VBtn,
   VChip,
@@ -131,44 +131,44 @@ import {
   VIcon,
   VCheckbox,
   VCard,
-} from "vuetify/components";
+} from 'vuetify/components';
 
 const mcpServers = ref([
   {
     id: 1,
-    name: "MCP Server 1",
-    desc: "MCP Server 1 is blah blah...",
-    icon: "ri-server-line",
-    color: "warning",
-    variant: "tonal",
+    name: 'MCP Server 1',
+    desc: 'MCP Server 1 is blah blah...',
+    icon: 'ri-server-line',
+    color: 'warning',
+    variant: 'tonal',
   },
   {
     id: 2,
-    name: "MCP Server 2",
-    desc: "MCP Server 2 is blah blah...",
-    icon: "ri-server-line",
+    name: 'MCP Server 2',
+    desc: 'MCP Server 2 is blah blah...',
+    icon: 'ri-server-line',
   },
   {
     id: 3,
-    name: "MCP Server 3",
-    desc: "MCP Server 3 is blah blah...",
-    icon: "ri-server-line",
+    name: 'MCP Server 3',
+    desc: 'MCP Server 3 is blah blah...',
+    icon: 'ri-server-line',
   },
   {
     id: 4,
-    name: "MCP Server 4",
-    desc: "MCP Server 4 is blah blah...",
-    icon: "ri-server-line",
-    color: "warning",
-    variant: "tonal",
+    name: 'MCP Server 4',
+    desc: 'MCP Server 4 is blah blah...',
+    icon: 'ri-server-line',
+    color: 'warning',
+    variant: 'tonal',
   },
   {
     id: 5,
-    name: "MCP Server 5",
-    desc: "MCP Server 5 is blah blah...",
-    icon: "ri-server-line",
-    color: "warning",
-    variant: "tonal",
+    name: 'MCP Server 5',
+    desc: 'MCP Server 5 is blah blah...',
+    icon: 'ri-server-line',
+    color: 'warning',
+    variant: 'tonal',
   },
 ]);
 const selectedMCPs = ref([true, false, false, true, true]);
@@ -176,24 +176,24 @@ const selectedMCPs = ref([true, false, false, true, true]);
 const assignedMCPs = ref([
   {
     id: 1,
-    name: "MCP Server 1",
-    desc: "MCP Server 1 is blah blah...",
-    icon: "ri-server-line",
-    color: "warning",
+    name: 'MCP Server 1',
+    desc: 'MCP Server 1 is blah blah...',
+    icon: 'ri-server-line',
+    color: 'warning',
   },
   {
     id: 4,
-    name: "MCP Server 4",
-    desc: "MCP Server 4 is blah blah...",
-    icon: "ri-server-line",
-    color: "warning",
+    name: 'MCP Server 4',
+    desc: 'MCP Server 4 is blah blah...',
+    icon: 'ri-server-line',
+    color: 'warning',
   },
   {
     id: 5,
-    name: "MCP Server 5",
-    desc: "MCP Server 5 is blah blah...",
-    icon: "ri-server-line",
-    color: "warning",
+    name: 'MCP Server 5',
+    desc: 'MCP Server 5 is blah blah...',
+    icon: 'ri-server-line',
+    color: 'warning',
   },
 ]);
 const selectedAssignedMCPs = ref([false, false, false]);
@@ -210,10 +210,10 @@ const allRightSelected = computed(() =>
   selectedAssignedMCPs.value.every(Boolean)
 );
 
-watch(selectAllLeft, (val) => {
+watch(selectAllLeft, val => {
   selectedMCPs.value = selectedMCPs.value.map(() => val);
 });
-watch(selectAllRight, (val) => {
+watch(selectAllRight, val => {
   selectedAssignedMCPs.value = selectedAssignedMCPs.value.map(() => val);
 });
 watch(selectedMCPs, () => {
@@ -227,7 +227,7 @@ function moveToRight() {
   mcpServers.value.forEach((mcp, idx) => {
     if (
       selectedMCPs.value[idx] &&
-      !assignedMCPs.value.find((a) => a.id === mcp.id)
+      !assignedMCPs.value.find(a => a.id === mcp.id)
     ) {
       assignedMCPs.value.push({ ...mcp });
       selectedAssignedMCPs.value.push(false);
@@ -244,6 +244,6 @@ function moveToLeft() {
   }
 }
 function saveMCPAssignments() {
-  console.log("Save MCP assignments", assignedMCPs.value);
+  console.log('Save MCP assignments', assignedMCPs.value);
 }
 </script>

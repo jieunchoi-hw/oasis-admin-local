@@ -1,14 +1,14 @@
 <script setup>
-import americanBank from '@images/logos/american-bank.png'
-import aws from '@images/logos/aws.png'
-import citiBank from '@images/logos/citi-bank.png'
-import digitalOcean from '@images/logos/digital-ocean.png'
-import github from '@images/logos/github.png'
-import google from '@images/logos/google.png'
-import gumroad from '@images/logos/gumroad.png'
-import mastercardLabel from '@images/logos/mastercard-label.png'
-import slack from '@images/logos/slack.png'
-import stripe from '@images/logos/stripe.png'
+import americanBank from '@images/logos/american-bank.png';
+import aws from '@images/logos/aws.png';
+import citiBank from '@images/logos/citi-bank.png';
+import digitalOcean from '@images/logos/digital-ocean.png';
+import github from '@images/logos/github.png';
+import google from '@images/logos/google.png';
+import gumroad from '@images/logos/gumroad.png';
+import mastercardLabel from '@images/logos/mastercard-label.png';
+import slack from '@images/logos/slack.png';
+import stripe from '@images/logos/stripe.png';
 
 const deposits = [
   {
@@ -41,7 +41,7 @@ const deposits = [
     amount: '+$8,934',
     logo: citiBank,
   },
-]
+];
 
 const withdraws = [
   {
@@ -74,42 +74,29 @@ const withdraws = [
     amount: '-$21',
     logo: aws,
   },
-]
+];
 </script>
 
 <template>
   <VCard>
     <VRow no-gutters>
-      <VCol
-        cols="12"
-        md="6"
-      >
+      <VCol cols="12" md="6">
         <VCardItem>
           <VCardTitle>Deposit</VCardTitle>
 
           <template #append>
             <h6 class="text-h6">
-              <a
-                href="javascript:void(0)"
-                class="text-primary"
-              >View All</a>
+              <a href="javascript:void(0)" class="text-primary">View All</a>
             </h6>
           </template>
         </VCardItem>
 
         <VCardText>
           <VList class="card-list">
-            <VListItem
-              v-for="deposit in deposits"
-              :key="deposit.logo"
-            >
+            <VListItem v-for="deposit in deposits" :key="deposit.logo">
               <template #prepend>
                 <div class="me-4">
-                  <VImg
-                    :height="30"
-                    :width="30"
-                    :src="deposit.logo"
-                  />
+                  <VImg :height="30" :width="30" :src="deposit.logo" />
                 </div>
               </template>
 
@@ -132,36 +119,23 @@ const withdraws = [
 
       <VDivider :vertical="$vuetify.display.mdAndUp" />
 
-      <VCol
-        cols="12"
-        md="6"
-      >
+      <VCol cols="12" md="6">
         <VCardItem>
           <VCardTitle>Withdraw</VCardTitle>
 
           <template #append>
             <h6 class="text-h6">
-              <a
-                href="javascript:void(0)"
-                class="text-primary"
-              >View All</a>
+              <a href="javascript:void(0)" class="text-primary">View All</a>
             </h6>
           </template>
         </VCardItem>
 
         <VCardText>
           <VList class="card-list">
-            <VListItem
-              v-for="withdraw in withdraws"
-              :key="withdraw.logo"
-            >
+            <VListItem v-for="withdraw in withdraws" :key="withdraw.logo">
               <template #prepend>
                 <div class="me-4">
-                  <VImg
-                    :height="30"
-                    :width="30"
-                    :src="withdraw.logo"
-                  />
+                  <VImg :height="30" :width="30" :src="withdraw.logo" />
                 </div>
               </template>
 

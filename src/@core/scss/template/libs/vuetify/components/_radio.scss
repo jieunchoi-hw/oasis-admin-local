@@ -1,5 +1,5 @@
-@use "@core/scss/base/mixins";
-@use "@configured-variables" as variables;
+@use '@core/scss/base/mixins';
+@use '@configured-variables' as variables;
 
 // 👉 Radio
 .v-radio,
@@ -7,7 +7,9 @@
   &.v-selection-control--dirty {
     .v-selection-control__input {
       .custom-radio-checked {
-        filter: drop-shadow(rgba(var(--v-shadow-key-umbra-color), 16%) 0 2px 4px);
+        filter: drop-shadow(
+          rgba(var(--v-shadow-key-umbra-color), 16%) 0 2px 4px
+        );
       }
     }
   }

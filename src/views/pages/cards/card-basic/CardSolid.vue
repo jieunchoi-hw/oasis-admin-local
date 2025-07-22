@@ -1,7 +1,7 @@
 <script setup>
-import avatar1 from '@images/avatars/avatar-1.png'
-import avatar4 from '@images/avatars/avatar-4.png'
-import avatar8 from '@images/avatars/avatar-8.png'
+import avatar1 from '@images/avatars/avatar-1.png';
+import avatar4 from '@images/avatars/avatar-4.png';
+import avatar8 from '@images/avatars/avatar-8.png';
 
 const solidCardData = [
   {
@@ -18,7 +18,7 @@ const solidCardData = [
     cardBg: '#3B5998',
     title: 'Facebook Card',
     icon: 'ri-facebook-circle-line',
-    text: 'You\'ve read about the importance of being courageous, rebellious and imaginative. These are all vital ingredients.',
+    text: "You've read about the importance of being courageous, rebellious and imaginative. These are all vital ingredients.",
     avatarImg: avatar1,
     avatarName: 'Eugene Clarke',
     likes: '3.2k',
@@ -34,7 +34,7 @@ const solidCardData = [
     likes: '1.2k',
     share: '80',
   },
-]
+];
 </script>
 
 <template>
@@ -49,11 +49,7 @@ const solidCardData = [
       <VCard :color="data.cardBg">
         <VCardItem>
           <template #prepend>
-            <VIcon
-              size="1.9rem"
-              color="white"
-              :icon="data.icon"
-            />
+            <VIcon size="1.9rem" color="white" :icon="data.icon" />
           </template>
           <VCardTitle class="text-white">
             {{ data.title }}
@@ -68,26 +64,17 @@ const solidCardData = [
 
         <VCardText class="d-flex justify-space-between align-center flex-wrap">
           <div class="text-no-wrap">
-            <VAvatar
-              size="34"
-              :image="data.avatarImg"
-            />
+            <VAvatar size="34" :image="data.avatarImg" />
             <span class="text-white ms-2">{{ data.avatarName }}</span>
           </div>
 
           <div class="d-flex align-center">
-            <IconBtn
-              icon="ri-heart-line"
-              color="white"
-              class="me-1"
-            />
-            <span class="text-subtitle-2 text-white me-4">{{ data.likes }}</span>
+            <IconBtn icon="ri-heart-line" color="white" class="me-1" />
+            <span class="text-subtitle-2 text-white me-4">{{
+              data.likes
+            }}</span>
 
-            <IconBtn
-              icon="ri-share-line"
-              color="white"
-              class="me-1"
-            />
+            <IconBtn icon="ri-share-line" color="white" class="me-1" />
             <span class="text-subtitle-2 text-white">{{ data.share }}</span>
           </div>
         </VCardText>

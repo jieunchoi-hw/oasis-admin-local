@@ -156,7 +156,7 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch } from 'vue';
 import {
   VBtn,
   VChip,
@@ -164,43 +164,43 @@ import {
   VIcon,
   VCheckbox,
   VCard,
-} from "vuetify/components";
+} from 'vuetify/components';
 
 const secretaries = ref([
   {
     id: 1,
-    name: "전사 업무 규정",
-    description: "회사 업무 규정 Q&A, 업무 담당자 검색 등 전사 공통 업무 비서",
+    name: '전사 업무 규정',
+    description: '회사 업무 규정 Q&A, 업무 담당자 검색 등 전사 공통 업무 비서',
     capabilities: [
-      "첨부된 파일 기반 질문/답변",
-      "실시간 검색 + 이미지 생성/편집 능력",
+      '첨부된 파일 기반 질문/답변',
+      '실시간 검색 + 이미지 생성/편집 능력',
     ],
     monthlyUsage: 100,
-    updated: "2025-05-12 10:21",
-    color: "primary",
-    variant: "tonal",
+    updated: '2025-05-12 10:21',
+    color: 'primary',
+    variant: 'tonal',
   },
   {
     id: 2,
-    name: "키워드 검색",
-    description: "키워드만 넣으면 핵심 정보와 최신 소식 정리",
+    name: '키워드 검색',
+    description: '키워드만 넣으면 핵심 정보와 최신 소식 정리',
     capabilities: [
-      "첨부된 파일 기반 질문/답변",
-      "실시간 검색 + 이미지 생성/편집 능력",
+      '첨부된 파일 기반 질문/답변',
+      '실시간 검색 + 이미지 생성/편집 능력',
     ],
     monthlyUsage: 100,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
   {
     id: 3,
-    name: "데이터 분석",
-    description: "엑셀/CSV 올리고 분석, 편집 요청",
+    name: '데이터 분석',
+    description: '엑셀/CSV 올리고 분석, 편집 요청',
     capabilities: [
-      "첨부된 파일 기반 질문/답변",
-      "실시간 검색 + 이미지 생성/편집 능력",
+      '첨부된 파일 기반 질문/답변',
+      '실시간 검색 + 이미지 생성/편집 능력',
     ],
     monthlyUsage: 200,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
 ]);
 const selectedSecretaries = ref([true, false, false]);
@@ -208,14 +208,14 @@ const selectedSecretaries = ref([true, false, false]);
 const assignedSecretaries = ref([
   {
     id: 1,
-    name: "전사 업무 규정",
-    description: "회사 업무 규정 Q&A, 업무 담당자 검색 등 전사 공통 업무 비서",
+    name: '전사 업무 규정',
+    description: '회사 업무 규정 Q&A, 업무 담당자 검색 등 전사 공통 업무 비서',
     capabilities: [
-      "첨부된 파일 기반 질문/답변",
-      "실시간 검색 + 이미지 생성/편집 능력",
+      '첨부된 파일 기반 질문/답변',
+      '실시간 검색 + 이미지 생성/편집 능력',
     ],
     monthlyUsage: 100,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
 ]);
 const selectedAssignedSecretaries = ref([false]);
@@ -234,10 +234,10 @@ const allRightSelected = computed(() =>
   selectedAssignedSecretaries.value.every(Boolean)
 );
 
-watch(selectAllLeft, (val) => {
+watch(selectAllLeft, val => {
   selectedSecretaries.value = selectedSecretaries.value.map(() => val);
 });
-watch(selectAllRight, (val) => {
+watch(selectAllRight, val => {
   selectedAssignedSecretaries.value = selectedAssignedSecretaries.value.map(
     () => val
   );
@@ -253,7 +253,7 @@ function moveToRight() {
   secretaries.value.forEach((sec, idx) => {
     if (
       selectedSecretaries.value[idx] &&
-      !assignedSecretaries.value.find((a) => a.id === sec.id)
+      !assignedSecretaries.value.find(a => a.id === sec.id)
     ) {
       assignedSecretaries.value.push({ ...sec });
       selectedAssignedSecretaries.value.push(false);
@@ -270,6 +270,6 @@ function moveToLeft() {
   }
 }
 function saveSecretaryAssignments() {
-  console.log("Save Secretary assignments", assignedSecretaries.value);
+  console.log('Save Secretary assignments', assignedSecretaries.value);
 }
 </script>

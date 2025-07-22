@@ -1,12 +1,12 @@
 <script setup>
-import { PerfectScrollbar } from "vue3-perfect-scrollbar";
-import { useDisplay } from "vuetify";
+import { PerfectScrollbar } from 'vue3-perfect-scrollbar';
+import { useDisplay } from 'vuetify';
 
 const props = defineProps({
   tag: {
     type: null,
     required: false,
-    default: "aside",
+    default: 'aside',
   },
   isOverlayNavActive: {
     type: Boolean,
@@ -38,10 +38,9 @@ watch(
 );
 
 const isVerticalNavScrolled = ref(false);
-const updateIsVerticalNavScrolled = (val) =>
-  (isVerticalNavScrolled.value = val);
+const updateIsVerticalNavScrolled = val => (isVerticalNavScrolled.value = val);
 
-const handleNavScroll = (evt) => {
+const handleNavScroll = evt => {
   isVerticalNavScrolled.value = evt.target.scrollTop > 0;
 };
 </script>
@@ -113,8 +112,8 @@ const handleNavScroll = (evt) => {
 </style>
 
 <style lang="scss">
-@use "@configured-variables" as variables;
-@use "@layouts/styles/mixins";
+@use '@configured-variables' as variables;
+@use '@layouts/styles/mixins';
 
 // 👉 Vertical Nav
 .layout-vertical-nav {
@@ -126,7 +125,9 @@ const handleNavScroll = (evt) => {
   inline-size: variables.$layout-vertical-nav-width;
   inset-block-start: 0;
   inset-inline-start: 0;
-  transition: inline-size 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  transition:
+    inline-size 0.25s ease-in-out,
+    box-shadow 0.25s ease-in-out;
   will-change: transform, inline-size;
 
   .nav-header {
@@ -172,7 +173,7 @@ const handleNavScroll = (evt) => {
   .layout-vertical-nav-collapsed & {
     &:not(.hovered) {
       transform: translateX(-#{variables.$layout-vertical-nav-width});
-      
+
       @include mixins.rtl {
         transform: translateX(variables.$layout-vertical-nav-width);
       }

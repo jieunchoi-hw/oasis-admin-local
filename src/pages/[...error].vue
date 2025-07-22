@@ -1,14 +1,14 @@
 <script setup>
-import { useTheme } from "vuetify";
-import misc404 from "@images/pages/404.png";
-import miscMaskDark from "@images/pages/misc-mask-dark.png";
-import miscMaskLight from "@images/pages/misc-mask-light.png";
-import tree from "@images/pages/tree.png";
+import { useTheme } from 'vuetify';
+import misc404 from '@images/pages/404.png';
+import miscMaskDark from '@images/pages/misc-mask-dark.png';
+import miscMaskLight from '@images/pages/misc-mask-light.png';
+import tree from '@images/pages/tree.png';
 
 const vuetifyTheme = useTheme();
 
 const authThemeMask = computed(() => {
-  return vuetifyTheme.global.name.value === "light"
+  return vuetifyTheme.global.name.value === 'light'
     ? miscMaskLight
     : miscMaskDark;
 });
@@ -36,7 +36,7 @@ const authThemeMask = computed(() => {
 </template>
 
 <style lang="scss">
-@use "@core/scss/template/pages/misc.scss";
+@use '@core/scss/template/pages/misc.scss';
 
 .misc-footer-tree {
   inline-size: 15.625rem;

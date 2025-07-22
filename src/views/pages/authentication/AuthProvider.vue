@@ -1,7 +1,7 @@
 <script setup>
-import { useTheme } from 'vuetify'
+import { useTheme } from 'vuetify';
 
-const { global } = useTheme()
+const { global } = useTheme();
 
 const authProviders = [
   {
@@ -24,7 +24,7 @@ const authProviders = [
     color: '#db4437',
     colorInDark: '#db4437',
   },
-]
+];
 </script>
 
 <template>

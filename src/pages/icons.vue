@@ -54,29 +54,19 @@ const iconsList = [
   ' ri-contract-left-line',
   ' ri-contract-left-fill',
   ' ri-contract-right-line',
-]
+];
 </script>
 
 <template>
   <div>
     <div class="d-flex align-center flex-wrap">
-      <VCard
-        v-for="icon in iconsList"
-        :key="icon"
-        class="mb-6 me-6"
-      >
+      <VCard v-for="icon in iconsList" :key="icon" class="mb-6 me-6">
         <VCardText class="py-3 px-4">
-          <VIcon
-            size="30"
-            :icon="icon"
-          />
+          <VIcon size="30" :icon="icon" />
         </VCardText>
 
         <!-- tooltips -->
-        <VTooltip
-          location="top"
-          activator="parent"
-        >
+        <VTooltip location="top" activator="parent">
           {{ icon }}
         </VTooltip>
       </VCard>

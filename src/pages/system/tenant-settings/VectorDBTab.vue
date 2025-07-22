@@ -123,7 +123,7 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch } from 'vue';
 import {
   VBtn,
   VChip,
@@ -131,45 +131,45 @@ import {
   VIcon,
   VCheckbox,
   VCard,
-} from "vuetify/components";
+} from 'vuetify/components';
 
 const vectorDBs = ref([
   {
     id: 1,
-    name: "Vector DB 1",
-    desc: "Vector DB 1 is blah blah...",
-    icon: "ri-database-2-line",
-    color: "info",
-    variant: "tonal",
+    name: 'Vector DB 1',
+    desc: 'Vector DB 1 is blah blah...',
+    icon: 'ri-database-2-line',
+    color: 'info',
+    variant: 'tonal',
   },
   {
     id: 2,
-    name: "Vector DB 2",
-    desc: "Vector DB 2 is blah blah...",
-    icon: "ri-database-2-line",
-    color: "gray",
+    name: 'Vector DB 2',
+    desc: 'Vector DB 2 is blah blah...',
+    icon: 'ri-database-2-line',
+    color: 'gray',
   },
   {
     id: 3,
-    name: "Vector DB 3",
-    desc: "Vector DB 3 is blah blah...",
-    icon: "ri-database-2-line",
+    name: 'Vector DB 3',
+    desc: 'Vector DB 3 is blah blah...',
+    icon: 'ri-database-2-line',
   },
   {
     id: 4,
-    name: "Vector DB 4",
-    desc: "Vector DB 4 is blah blah...",
-    icon: "ri-database-2-line",
-    color: "info",
-    variant: "tonal",
+    name: 'Vector DB 4',
+    desc: 'Vector DB 4 is blah blah...',
+    icon: 'ri-database-2-line',
+    color: 'info',
+    variant: 'tonal',
   },
   {
     id: 5,
-    name: "Vector DB 5",
-    desc: "Vector DB 5 is blah blah...",
-    icon: "ri-database-2-line",
-    color: "info",
-    variant: "tonal",
+    name: 'Vector DB 5',
+    desc: 'Vector DB 5 is blah blah...',
+    icon: 'ri-database-2-line',
+    color: 'info',
+    variant: 'tonal',
   },
 ]);
 const selectedVectorDBs = ref([true, false, false, true, true]);
@@ -177,24 +177,24 @@ const selectedVectorDBs = ref([true, false, false, true, true]);
 const assignedVectorDBs = ref([
   {
     id: 1,
-    name: "Vector DB 1",
-    desc: "Vector DB 1 is blah blah...",
-    icon: "ri-database-2-line",
-    color: "info",
+    name: 'Vector DB 1',
+    desc: 'Vector DB 1 is blah blah...',
+    icon: 'ri-database-2-line',
+    color: 'info',
   },
   {
     id: 4,
-    name: "Vector DB 4",
-    desc: "Vector DB 4 is blah blah...",
-    icon: "ri-database-2-line",
-    color: "info",
+    name: 'Vector DB 4',
+    desc: 'Vector DB 4 is blah blah...',
+    icon: 'ri-database-2-line',
+    color: 'info',
   },
   {
     id: 5,
-    name: "Vector DB 5",
-    desc: "Vector DB 5 is blah blah...",
-    icon: "ri-database-2-line",
-    color: "info",
+    name: 'Vector DB 5',
+    desc: 'Vector DB 5 is blah blah...',
+    icon: 'ri-database-2-line',
+    color: 'info',
   },
 ]);
 const selectedAssignedVectorDBs = ref([false, false, false]);
@@ -211,10 +211,10 @@ const allRightSelected = computed(() =>
   selectedAssignedVectorDBs.value.every(Boolean)
 );
 
-watch(selectAllLeft, (val) => {
+watch(selectAllLeft, val => {
   selectedVectorDBs.value = selectedVectorDBs.value.map(() => val);
 });
-watch(selectAllRight, (val) => {
+watch(selectAllRight, val => {
   selectedAssignedVectorDBs.value = selectedAssignedVectorDBs.value.map(
     () => val
   );
@@ -230,7 +230,7 @@ function moveToRight() {
   vectorDBs.value.forEach((db, idx) => {
     if (
       selectedVectorDBs.value[idx] &&
-      !assignedVectorDBs.value.find((a) => a.id === db.id)
+      !assignedVectorDBs.value.find(a => a.id === db.id)
     ) {
       assignedVectorDBs.value.push({ ...db });
       selectedAssignedVectorDBs.value.push(false);
@@ -247,6 +247,6 @@ function moveToLeft() {
   }
 }
 function saveVectorDBAssignments() {
-  console.log("Save Vector DB assignments", assignedVectorDBs.value);
+  console.log('Save Vector DB assignments', assignedVectorDBs.value);
 }
 </script>

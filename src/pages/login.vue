@@ -1,21 +1,21 @@
 <script setup>
-import { useTheme } from "vuetify";
-import AuthProvider from "@/views/pages/authentication/AuthProvider.vue";
-import authV1MaskDark from "@images/pages/auth-v1-mask-dark.png";
-import authV1MaskLight from "@images/pages/auth-v1-mask-light.png";
-import authV1Tree2 from "@images/pages/auth-v1-tree-2.png";
-import authV1Tree from "@images/pages/auth-v1-tree.png";
+import { useTheme } from 'vuetify';
+import AuthProvider from '@/views/pages/authentication/AuthProvider.vue';
+import authV1MaskDark from '@images/pages/auth-v1-mask-dark.png';
+import authV1MaskLight from '@images/pages/auth-v1-mask-light.png';
+import authV1Tree2 from '@images/pages/oasisImg.png';
+import authV1Tree from '@images/pages/oasisImg2.png';
 
 const form = ref({
-  email: "",
-  password: "",
+  email: '',
+  password: '',
   remember: false,
 });
 
 const vuetifyTheme = useTheme();
 
 const authThemeMask = computed(() => {
-  return vuetifyTheme.global.name.value === "light"
+  return vuetifyTheme.global.name.value === 'light'
     ? authV1MaskLight
     : authV1MaskDark;
 });
@@ -28,21 +28,18 @@ const isPasswordVisible = ref(false);
 
   <div class="auth-wrapper d-flex align-center justify-center pa-4">
     <VCard class="auth-card pa-4 pt-7" max-width="448">
-      <VCardItem class="justify-center">
-        <RouterLink to="/" class="d-flex align-center gap-3">
-          <!-- eslint-disable vue/no-v-html -->
+      <VCardItem class="">
+        <!-- eslint-disable vue/no-v-html -->
+
+        <div class="d-flex align-center justify-center">
           <img
             src="/logo.png"
             alt="logo"
             class="auth-logo"
-            style="height: 40px"
+            style="height: 40px; margin-top: 20px; margin-left: 70px"
           />
-          <img
-            src="/logo_full.png"
-            alt="logo"
-            style="height: 32px; object-fit: contain"
-          />
-        </RouterLink>
+          <img src="/logo_full.png" alt="logo" style="height: 40px" />
+        </div>
       </VCardItem>
 
       <VCardText class="pt-2">
@@ -115,18 +112,17 @@ const isPasswordVisible = ref(false);
         </VForm>
       </VCardText>
     </VCard>
+    <!-- <VImg
+      :src="authV1Tree2"
+      class="auth-footer-end-tree d-none d-md-block"
+      :width="200"
+    />
 
     <VImg
       class="auth-footer-start-tree d-none d-md-block"
       :src="authV1Tree"
-      :width="250"
-    />
-
-    <VImg
-      :src="authV1Tree2"
-      class="auth-footer-end-tree d-none d-md-block"
-      :width="350"
-    />
+      :width="180"
+    /> -->
 
     <!-- bg img -->
     <VImg class="auth-footer-mask d-none d-md-block" :src="authThemeMask" />
@@ -134,7 +130,7 @@ const isPasswordVisible = ref(false);
 </template>
 
 <style lang="scss">
-@use "@core/scss/template/pages/page-auth";
+@use '@core/scss/template/pages/page-auth';
 
 .checkbox-remember {
   .v-selection-control {

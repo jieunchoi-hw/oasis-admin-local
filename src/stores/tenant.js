@@ -1,6 +1,6 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
-export const useTenantStore = defineStore("tenant", {
+export const useTenantStore = defineStore('tenant', {
   state: () => ({
     tenantId: 1, // 기본값(최초 진입시 1번)
   }),

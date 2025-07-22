@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch } from 'vue';
 import {
   VTable,
   VBtn,
@@ -7,7 +7,7 @@ import {
   VRow,
   VCol,
   VCard,
-} from "vuetify/components";
+} from 'vuetify/components';
 
 const props = defineProps({
   data: { type: Array, required: true },
@@ -18,14 +18,14 @@ const props = defineProps({
   actions: { type: Array, default: () => [] }, // ['edit', 'delete']
   actionLabels: {
     type: Object,
-    default: () => ({ edit: "수정", delete: "삭제" }),
+    default: () => ({ edit: '수정', delete: '삭제' }),
   },
   actionColors: {
     type: Object,
-    default: () => ({ edit: "primary", delete: "error" }),
+    default: () => ({ edit: 'primary', delete: 'error' }),
   },
 });
-const emit = defineEmits(["edit", "delete", "page-change", "action"]);
+const emit = defineEmits(['edit', 'delete', 'page-change', 'action']);
 
 const pagedData = computed(() => {
   const start = (props.page - 1) * props.itemsPerPage;
@@ -36,18 +36,18 @@ const pagedData = computed(() => {
 const pageProxy = ref(props.page);
 watch(
   () => props.page,
-  (val) => {
+  val => {
     pageProxy.value = val;
   }
 );
-watch(pageProxy, (val) => {
-  if (val !== props.page) emit("page-change", val);
+watch(pageProxy, val => {
+  if (val !== props.page) emit('page-change', val);
 });
 
 function handleAction(action, item) {
-  emit("action", { action, item });
-  if (action === "edit") emit("edit", item);
-  if (action === "delete") emit("delete", item);
+  emit('action', { action, item });
+  if (action === 'edit') emit('edit', item);
+  if (action === 'delete') emit('delete', item);
 }
 </script>
 
@@ -105,7 +105,7 @@ function handleAction(action, item) {
     class="mt-4"
     :length="Math.ceil(totalItems / itemsPerPage)"
     size="small"
-    @update:modelValue="(val) => $emit('page-change', val)"
+    @update:modelValue="val => $emit('page-change', val)"
   />
 </template>
 

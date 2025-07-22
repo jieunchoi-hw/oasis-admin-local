@@ -24,7 +24,7 @@ const statistics = [
     icon: 'ri-money-dollar-circle-line',
     color: 'info',
   },
-]
+];
 
 const moreList = [
   {
@@ -39,14 +39,17 @@ const moreList = [
     title: 'Update',
     value: 'Update',
   },
-]
+];
 </script>
 
 <template>
   <VCard title="Transactions">
     <template #subtitle>
       <p class="text-body-1 mb-0">
-        <span class="d-inline-block font-weight-medium text-high-emphasis">Total 48.5% Growth</span> <span class="text-high-emphasis">😎</span> this month
+        <span class="d-inline-block font-weight-medium text-high-emphasis"
+          >Total 48.5% Growth</span
+        >
+        <span class="text-high-emphasis">😎</span> this month
       </p>
     </template>
 
@@ -64,16 +67,8 @@ const moreList = [
           md="3"
         >
           <div class="d-flex align-center gap-x-3">
-            <VAvatar
-              :color="item.color"
-              rounded
-              size="40"
-              class="elevation-2"
-            >
-              <VIcon
-                size="24"
-                :icon="item.icon"
-              />
+            <VAvatar :color="item.color" rounded size="40" class="elevation-2">
+              <VIcon size="24" :icon="item.icon" />
             </VAvatar>
 
             <div class="d-flex flex-column">

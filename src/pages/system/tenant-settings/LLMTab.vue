@@ -182,7 +182,7 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch } from 'vue';
 import {
   VBtn,
   VChip,
@@ -190,9 +190,9 @@ import {
   VIcon,
   VCheckbox,
   VCard,
-} from "vuetify/components";
-import openaiLogo from "@/assets/images/logos/openai.png";
-import aoaiLogo from "@/assets/images/logos/aoai.png";
+} from 'vuetify/components';
+import openaiLogo from '@/assets/images/logos/openai.png';
+import aoaiLogo from '@/assets/images/logos/aoai.png';
 // 필요시 props로 tenants, selectedTenant 받을 수 있음
 // defineProps<{ tenants: any, selectedTenant: any }>()
 
@@ -200,57 +200,57 @@ import aoaiLogo from "@/assets/images/logos/aoai.png";
 const availableLLMs = ref([
   {
     id: 1,
-    name: "LLM 1",
-    provider: "Open AI",
-    level: "Dedicated",
-    desc: "LLM 1 is blah blah...",
+    name: 'LLM 1',
+    provider: 'Open AI',
+    level: 'Dedicated',
+    desc: 'LLM 1 is blah blah...',
     icon: openaiLogo,
-    color: "warning",
-    variant: "tonal",
+    color: 'warning',
+    variant: 'tonal',
     used: true,
   },
   {
     id: 2,
-    name: "LLM 2",
-    provider: "Open AI",
-    level: "Public",
-    desc: "LLM 1 is blah blah...",
+    name: 'LLM 2',
+    provider: 'Open AI',
+    level: 'Public',
+    desc: 'LLM 1 is blah blah...',
     icon: openaiLogo,
-    color: "gray",
-    variant: "tonal",
+    color: 'gray',
+    variant: 'tonal',
     used: false,
   },
   {
     id: 3,
-    name: "LLM 3",
-    provider: "AOAI",
-    level: "Dedicated",
-    desc: "LLM 1 is blah blah...",
+    name: 'LLM 3',
+    provider: 'AOAI',
+    level: 'Dedicated',
+    desc: 'LLM 1 is blah blah...',
     icon: aoaiLogo,
-    color: "gray",
-    variant: "tonal",
+    color: 'gray',
+    variant: 'tonal',
     used: false,
   },
   {
     id: 4,
-    name: "LLM 4",
-    provider: "AOAI",
-    level: "Public",
-    desc: "LLM 1 is blah blah...",
+    name: 'LLM 4',
+    provider: 'AOAI',
+    level: 'Public',
+    desc: 'LLM 1 is blah blah...',
     icon: aoaiLogo,
-    color: "warning",
-    variant: "tonal",
+    color: 'warning',
+    variant: 'tonal',
     used: true,
   },
   {
     id: 5,
-    name: "LLM 5",
-    provider: "Private",
-    level: "Private",
-    desc: "LLM 1 is blah blah...",
-    icon: "ri-bill-line",
-    color: "warning",
-    variant: "tonal",
+    name: 'LLM 5',
+    provider: 'Private',
+    level: 'Private',
+    desc: 'LLM 1 is blah blah...',
+    icon: 'ri-bill-line',
+    color: 'warning',
+    variant: 'tonal',
     used: true,
   },
 ]);
@@ -260,27 +260,27 @@ const selectedLLMs = ref([true, false, false, true, true]);
 const assignedLLMs = ref([
   {
     id: 1,
-    name: "LLM 1",
-    provider: "Open AI",
-    level: "Dedicated",
-    desc: "LLM 1 is blah blah...",
+    name: 'LLM 1',
+    provider: 'Open AI',
+    level: 'Dedicated',
+    desc: 'LLM 1 is blah blah...',
     icon: openaiLogo,
   },
   {
     id: 4,
-    name: "LLM 4",
-    provider: "AOAI",
-    level: "Public",
-    desc: "LLM 1 is blah blah...",
+    name: 'LLM 4',
+    provider: 'AOAI',
+    level: 'Public',
+    desc: 'LLM 1 is blah blah...',
     icon: aoaiLogo,
   },
   {
     id: 5,
-    name: "LLM 5",
-    provider: "Private",
-    level: "Private",
-    desc: "LLM 1 is blah blah...",
-    icon: "ri-bill-line",
+    name: 'LLM 5',
+    provider: 'Private',
+    level: 'Private',
+    desc: 'LLM 1 is blah blah...',
+    icon: 'ri-bill-line',
   },
 ]);
 const selectedAssignedLLMs = ref([false, false, false]);
@@ -298,10 +298,10 @@ const allRightSelected = computed(() =>
   selectedAssignedLLMs.value.every(Boolean)
 );
 
-watch(selectAllLeft, (val) => {
+watch(selectAllLeft, val => {
   selectedLLMs.value = selectedLLMs.value.map(() => val);
 });
-watch(selectAllRight, (val) => {
+watch(selectAllRight, val => {
   selectedAssignedLLMs.value = selectedAssignedLLMs.value.map(() => val);
 });
 watch(selectedLLMs, () => {
@@ -316,7 +316,7 @@ function moveToRight() {
   availableLLMs.value.forEach((llm, idx) => {
     if (
       selectedLLMs.value[idx] &&
-      !assignedLLMs.value.find((a) => a.id === llm.id)
+      !assignedLLMs.value.find(a => a.id === llm.id)
     ) {
       assignedLLMs.value.push({ ...llm });
       selectedAssignedLLMs.value.push(false);
@@ -335,6 +335,6 @@ function moveToLeft() {
 }
 function saveLLMAssignments() {
   // LLM 배정 저장 로직
-  console.log("Save LLM assignments", assignedLLMs.value);
+  console.log('Save LLM assignments', assignedLLMs.value);
 }
 </script>

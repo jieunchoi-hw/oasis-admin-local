@@ -1,5 +1,5 @@
-@use "sass:map";
-@use "utils";
+@use 'sass:map';
+@use 'utils';
 
 $vertical-nav-horizontal-padding-custom: 1.4375rem 1rem;
 
@@ -15,7 +15,7 @@ $vertical-nav-horizontal-padding-start: utils.get-first-value(
 ) !default;
 $vertical-nav-items-icon-margin-inline-end: 0 !default;
 
-@forward "@core/scss/base/variables" with (
+@forward '@core/scss/base/variables' with (
   $layout-vertical-nav-collapsed-width: 68px !default,
   // ℹ️ This is used to keep consistency between nav items and nav header left & right margin
   // This is used by nav items & nav header
@@ -51,11 +51,11 @@ $vertical-nav-items-icon-margin-inline-end: 0 !default;
     !default,
 
   $font-sizes: (
-    "sm": 0.8125rem,
-    "base": 0.9375rem,
+    'sm': 0.8125rem,
+    'base': 0.9375rem,
   ),
   $font-line-height: (
-    "base": 1.375rem,
+    'base': 1.375rem,
   )
 );
 

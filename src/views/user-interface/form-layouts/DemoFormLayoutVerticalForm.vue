@@ -1,9 +1,9 @@
 <script setup>
-const firstName = ref('')
-const email = ref('')
-const mobile = ref()
-const password = ref()
-const checkbox = ref(false)
+const firstName = ref('');
+const email = ref('');
+const mobile = ref();
+const password = ref();
+const checkbox = ref(false);
 </script>
 
 <template>
@@ -45,27 +45,13 @@ const checkbox = ref(false)
       </VCol>
 
       <VCol cols="12">
-        <VCheckbox
-          v-model="checkbox"
-          label="Remember me"
-        />
+        <VCheckbox v-model="checkbox" label="Remember me" />
       </VCol>
 
-      <VCol
-        cols="12"
-        class="d-flex gap-4"
-      >
-        <VBtn type="submit">
-          Submit
-        </VBtn>
+      <VCol cols="12" class="d-flex gap-4">
+        <VBtn type="submit"> Submit </VBtn>
 
-        <VBtn
-          type="reset"
-          color="secondary"
-          variant="outlined"
-        >
-          Reset
-        </VBtn>
+        <VBtn type="reset" color="secondary" variant="outlined"> Reset </VBtn>
       </VCol>
     </VRow>
   </VForm>

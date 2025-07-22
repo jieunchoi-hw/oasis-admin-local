@@ -1,7 +1,7 @@
 <script setup>
-import { ref, computed } from "vue";
-import CommonTable from "@/components/CommonTable.vue";
-import CommonModal from "@/components/CommonModal.vue";
+import { ref, computed } from 'vue';
+import CommonTable from '@/components/CommonTable.vue';
+import CommonModal from '@/components/CommonModal.vue';
 import {
   VBtn,
   VSelect,
@@ -11,62 +11,62 @@ import {
   VSpacer,
   VChip,
   VSwitch,
-} from "vuetify/components";
+} from 'vuetify/components';
 
 // Mock 데이터
 const mcpServers = ref([
   {
     id: 1,
-    name: "MCP Server 1",
-    status: "Offline",
-    connection: "Disconnected",
+    name: 'MCP Server 1',
+    status: 'Offline',
+    connection: 'Disconnected',
     control: false,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
   {
     id: 2,
-    name: "MCP Server 2",
-    status: "Online",
-    connection: "Connected",
+    name: 'MCP Server 2',
+    status: 'Online',
+    connection: 'Connected',
     control: true,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
   {
     id: 3,
-    name: "MCP Server 3",
-    status: "Online",
-    connection: "Connected",
+    name: 'MCP Server 3',
+    status: 'Online',
+    connection: 'Connected',
     control: true,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
 ]);
 
-const statuses = ["Online", "Offline", "Maintenance"];
-const connections = ["Connected", "Disconnected", "Pending"];
+const statuses = ['Online', 'Offline', 'Maintenance'];
+const connections = ['Connected', 'Disconnected', 'Pending'];
 
 // 테이블 컬럼 정의
 const columns = [
-  { key: "name", label: "이름" },
-  { key: "status", label: "상태" },
-  { key: "connection", label: "연결 상태" },
-  { key: "control", label: "Control" },
-  { key: "updated", label: "Last Updated" },
+  { key: 'name', label: '이름' },
+  { key: 'status', label: '상태' },
+  { key: 'connection', label: '연결 상태' },
+  { key: 'control', label: 'Control' },
+  { key: 'updated', label: 'Last Updated' },
 ];
 
 // 모달 필드 정의
 const modalFields = [
-  { key: "name", label: "서버 이름", type: "text", required: true },
+  { key: 'name', label: '서버 이름', type: 'text', required: true },
   {
-    key: "status",
-    label: "상태",
-    type: "select",
+    key: 'status',
+    label: '상태',
+    type: 'select',
     options: statuses,
     required: true,
   },
   {
-    key: "connection",
-    label: "연결 상태",
-    type: "select",
+    key: 'connection',
+    label: '연결 상태',
+    type: 'select',
     options: connections,
     required: true,
   },
@@ -74,18 +74,18 @@ const modalFields = [
 
 // 검색/필터
 const filterColumns = [
-  { label: "이름", key: "name" },
-  { label: "상태", key: "status" },
-  { label: "연결 상태", key: "connection" },
+  { label: '이름', key: 'name' },
+  { label: '상태', key: 'status' },
+  { label: '연결 상태', key: 'connection' },
 ];
 const selectedColumn = ref(filterColumns[0]);
-const searchValue = ref("");
+const searchValue = ref('');
 const filteredServers = computed(() => {
   if (!Array.isArray(mcpServers.value)) return [];
   if (!searchValue.value) return mcpServers.value;
   const key = selectedColumn.value.key;
-  return mcpServers.value.filter((server) =>
-    String(server[key] ?? "").includes(searchValue.value)
+  return mcpServers.value.filter(server =>
+    String(server[key] ?? '').includes(searchValue.value)
   );
 });
 
@@ -98,7 +98,7 @@ const totalItems = computed(() => filteredServers.value.length);
 const dialogAdd = ref(false);
 const dialogEdit = ref(false);
 const modalForm = ref({
-  name: "",
+  name: '',
   status: statuses[0],
   connection: connections[0],
   control: false,
@@ -106,7 +106,7 @@ const modalForm = ref({
 
 function openAddDialog() {
   modalForm.value = {
-    name: "",
+    name: '',
     status: statuses[0],
     connection: connections[0],
     control: false,
@@ -124,19 +124,19 @@ function handleAddConfirm(form) {
     status: form.status,
     connection: form.connection,
     control: form.control,
-    updated: new Date().toISOString().slice(0, 16).replace("T", " "),
+    updated: new Date().toISOString().slice(0, 16).replace('T', ' '),
   });
   dialogAdd.value = false;
 }
 function handleEditConfirm(form) {
-  const server = mcpServers.value.find((s) => s.id === form.id);
+  const server = mcpServers.value.find(s => s.id === form.id);
   if (server) {
     Object.assign(server, form);
   }
   dialogEdit.value = false;
 }
 function handleDelete(server) {
-  mcpServers.value = mcpServers.value.filter((s) => s.id !== server.id);
+  mcpServers.value = mcpServers.value.filter(s => s.id !== server.id);
 }
 function handlePageChange(val) {
   page.value = val;
@@ -144,11 +144,11 @@ function handlePageChange(val) {
 function handleToggleControl(server) {
   // Control 토글 시 상태 업데이트 로직
   if (server.control) {
-    server.status = "Online";
-    server.connection = "Connected";
+    server.status = 'Online';
+    server.connection = 'Connected';
   } else {
-    server.status = "Offline";
-    server.connection = "Disconnected";
+    server.status = 'Offline';
+    server.connection = 'Disconnected';
   }
 }
 function handleFormUpdate(updatedForm) {
@@ -158,27 +158,27 @@ function handleFormUpdate(updatedForm) {
 // 커스텀 렌더링 함수들
 function getStatusColor(status) {
   switch (status) {
-    case "Online":
-      return "success";
-    case "Offline":
-      return "error";
-    case "Maintenance":
-      return "warning";
+    case 'Online':
+      return 'success';
+    case 'Offline':
+      return 'error';
+    case 'Maintenance':
+      return 'warning';
     default:
-      return "default";
+      return 'default';
   }
 }
 
 function getConnectionColor(connection) {
   switch (connection) {
-    case "Connected":
-      return "success";
-    case "Disconnected":
-      return "error";
-    case "Pending":
-      return "warning";
+    case 'Connected':
+      return 'success';
+    case 'Disconnected':
+      return 'error';
+    case 'Pending':
+      return 'warning';
     default:
-      return "default";
+      return 'default';
   }
 }
 </script>
@@ -285,21 +285,21 @@ function getConnectionColor(connection) {
           v-model="form.name"
           label="서버 이름"
           class="mb-3"
-          @update:model-value="(val) => updateForm('name', val)"
+          @update:model-value="val => updateForm('name', val)"
         />
         <VSelect
           v-model="form.status"
           :items="statuses"
           label="상태"
           class="mb-3"
-          @update:model-value="(val) => updateForm('status', val)"
+          @update:model-value="val => updateForm('status', val)"
         />
         <VSelect
           v-model="form.connection"
           :items="connections"
           label="연결 상태"
           class="mb-3"
-          @update:model-value="(val) => updateForm('connection', val)"
+          @update:model-value="val => updateForm('connection', val)"
         />
         <div class="d-flex align-center">
           <VSwitch
@@ -307,7 +307,7 @@ function getConnectionColor(connection) {
             label="Control"
             color="primary"
             class="mr-2"
-            @update:model-value="(val) => updateForm('control', val)"
+            @update:model-value="val => updateForm('control', val)"
           />
           <span class="text-caption text-medium-emphasis"
             >서버 활성화/비활성화</span
@@ -333,14 +333,14 @@ function getConnectionColor(connection) {
           :items="statuses"
           label="상태"
           class="mb-3"
-          @update:model-value="(val) => updateForm('status', val)"
+          @update:model-value="val => updateForm('status', val)"
         />
         <VSelect
           v-model="form.connection"
           :items="connections"
           label="연결 상태"
           class="mb-3"
-          @update:model-value="(val) => updateForm('connection', val)"
+          @update:model-value="val => updateForm('connection', val)"
         />
         <div class="d-flex align-center">
           <VSwitch
@@ -348,7 +348,7 @@ function getConnectionColor(connection) {
             label="Control"
             color="primary"
             class="mr-2"
-            @update:model-value="(val) => updateForm('control', val)"
+            @update:model-value="val => updateForm('control', val)"
           />
           <span class="text-caption text-medium-emphasis"
             >서버 활성화/비활성화</span

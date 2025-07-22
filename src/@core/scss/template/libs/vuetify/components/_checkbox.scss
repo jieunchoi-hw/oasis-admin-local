@@ -1,7 +1,7 @@
-@use "sass:list";
-@use "sass:map";
-@use "@styles/variables/vuetify";
-@use "@configured-variables" as variables;
+@use 'sass:list';
+@use 'sass:map';
+@use '@styles/variables/vuetify';
+@use '@configured-variables' as variables;
 
 // 👉 checkbox box shadow
 .v-checkbox-btn {
@@ -10,7 +10,9 @@
       .v-icon.custom-checkbox-checked,
       .v-icon.custom-checkbox-indeterminate {
         // ℹ️ Using filter: drop-shadow() instead of box-shadow because box-shadow creates white background for SVG;Usingfilter
-        filter: drop-shadow(rgba(var(--v-shadow-key-umbra-color), 16%) 0 2px 4px);
+        filter: drop-shadow(
+          rgba(var(--v-shadow-key-umbra-color), 16%) 0 2px 4px
+        );
       }
     }
   }
@@ -30,7 +32,10 @@
   &:not(.v-selection-control--dirty) {
     .v-selection-control__input {
       > .v-icon {
-        color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
+        color: rgba(
+          var(--v-theme-on-surface),
+          var(--v-medium-emphasis-opacity)
+        );
         opacity: 1;
       }
 

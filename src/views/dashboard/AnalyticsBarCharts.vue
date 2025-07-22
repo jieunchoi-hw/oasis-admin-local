@@ -1,23 +1,19 @@
 <script setup>
-import { useTheme } from 'vuetify'
+import { useTheme } from 'vuetify';
 
-const vuetifyTheme = useTheme()
-const currentTheme = computed(() => vuetifyTheme.current.value.colors)
+const vuetifyTheme = useTheme();
+const currentTheme = computed(() => vuetifyTheme.current.value.colors);
 
-const series = [{
-  name: '2020',
-  data: [
-    35,
-    85,
-    55,
-    50,
-    70,
-  ],
-}]
+const series = [
+  {
+    name: '2020',
+    data: [35, 85, 55, 50, 70],
+  },
+];
 
 const chartOptions = computed(() => {
-  const backgroundColor = currentTheme.value['track-bg']
-  
+  const backgroundColor = currentTheme.value['track-bg'];
+
   return {
     chart: {
       type: 'bar',
@@ -104,16 +100,14 @@ const chartOptions = computed(() => {
         },
       },
     ],
-  }
-})
+  };
+});
 </script>
 
 <template>
   <VCard>
     <VCardText>
-      <h4 class="text-h4">
-        2,856
-      </h4>
+      <h4 class="text-h4">2,856</h4>
 
       <VueApexCharts
         :options="chartOptions"
@@ -122,9 +116,7 @@ const chartOptions = computed(() => {
         class="my-1"
       />
 
-      <h6 class="text-h6 text-center">
-        Sessions
-      </h6>
+      <h6 class="text-h6 text-center">Sessions</h6>
     </VCardText>
   </VCard>
 </template>

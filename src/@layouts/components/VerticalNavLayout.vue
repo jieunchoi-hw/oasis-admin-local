@@ -1,6 +1,6 @@
 <script>
-import VerticalNav from "@layouts/components/VerticalNav.vue";
-import { useDisplay } from "vuetify";
+import VerticalNav from '@layouts/components/VerticalNav.vue';
+import { useDisplay } from 'vuetify';
 
 export default defineComponent({
   props: {
@@ -30,19 +30,19 @@ export default defineComponent({
           isNavCollapsed: props.isNavCollapsed,
         },
         {
-          "nav-header": () =>
-            slots["vertical-nav-header"]?.({ toggleIsOverlayNavActive }),
-          "before-nav-items": () => slots["before-vertical-nav-items"]?.(),
-          default: () => slots["vertical-nav-content"]?.(),
-          "after-nav-items": () => slots["after-vertical-nav-items"]?.(),
+          'nav-header': () =>
+            slots['vertical-nav-header']?.({ toggleIsOverlayNavActive }),
+          'before-nav-items': () => slots['before-vertical-nav-items']?.(),
+          default: () => slots['vertical-nav-content']?.(),
+          'after-nav-items': () => slots['after-vertical-nav-items']?.(),
         }
       );
 
       // 👉 Navbar
-      const navbar = h("header", { class: ["layout-navbar navbar-blur"] }, [
+      const navbar = h('header', { class: ['layout-navbar navbar-blur'] }, [
         h(
-          "div",
-          { class: "navbar-content-container" },
+          'div',
+          { class: 'navbar-content-container' },
           slots.navbar?.({
             toggleVerticalOverlayNavActive: toggleIsOverlayNavActive,
           })
@@ -50,37 +50,37 @@ export default defineComponent({
       ]);
 
       const main = h(
-        "main",
-        { class: "layout-page-content" },
-        h("div", { class: "page-content-container" }, slots.default?.())
+        'main',
+        { class: 'layout-page-content' },
+        h('div', { class: 'page-content-container' }, slots.default?.())
       );
 
       // 👉 Footer
-      const footer = h("footer", { class: "layout-footer" }, [
-        h("div", { class: "footer-content-container" }, slots.footer?.()),
+      const footer = h('footer', { class: 'layout-footer' }, [
+        h('div', { class: 'footer-content-container' }, slots.footer?.()),
       ]);
 
       // 👉 Overlay
-      const layoutOverlay = h("div", {
-        class: ["layout-overlay", { visible: isLayoutOverlayVisible.value }],
+      const layoutOverlay = h('div', {
+        class: ['layout-overlay', { visible: isLayoutOverlayVisible.value }],
         onClick: () => {
           isLayoutOverlayVisible.value = !isLayoutOverlayVisible.value;
         },
       });
 
       return h(
-        "div",
+        'div',
         {
           class: [
-            "layout-wrapper layout-nav-type-vertical layout-navbar-static layout-footer-static layout-content-width-fluid",
-            mdAndDown.value && "layout-overlay-nav",
-            props.isNavCollapsed && "layout-vertical-nav-collapsed",
+            'layout-wrapper layout-nav-type-vertical layout-navbar-static layout-footer-static layout-content-width-fluid',
+            mdAndDown.value && 'layout-overlay-nav',
+            props.isNavCollapsed && 'layout-vertical-nav-collapsed',
             route.meta.layoutWrapperClasses,
           ],
         },
         [
           verticalNav,
-          h("div", { class: "layout-content-wrapper" }, [navbar, main, footer]),
+          h('div', { class: 'layout-content-wrapper' }, [navbar, main, footer]),
           layoutOverlay,
         ]
       );
@@ -90,9 +90,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@use "@configured-variables" as variables;
-@use "@layouts/styles/placeholders";
-@use "@layouts/styles/mixins";
+@use '@configured-variables' as variables;
+@use '@layouts/styles/placeholders';
+@use '@layouts/styles/mixins';
 
 .layout-wrapper.layout-nav-type-vertical {
   // TODO(v2): Check why we need height in vertical nav & min-height in horizontal nav

@@ -55,26 +55,26 @@
           v-model="form.name"
           label="이름"
           class="mb-3"
-          @update:model-value="(val) => updateForm('name', val)"
+          @update:model-value="val => updateForm('name', val)"
         />
         <VTextField
           v-model="form.userId"
           label="ID"
           class="mb-3"
-          @update:model-value="(val) => updateForm('userId', val)"
+          @update:model-value="val => updateForm('userId', val)"
         />
         <VTextField
           v-model="form.email"
           label="이메일"
           class="mb-3"
-          @update:model-value="(val) => updateForm('email', val)"
+          @update:model-value="val => updateForm('email', val)"
         />
         <VSelect
           v-model="form.role"
           :items="roles"
           label="권한"
           class="mb-3"
-          @update:model-value="(val) => updateForm('role', val)"
+          @update:model-value="val => updateForm('role', val)"
         />
       </template>
     </CommonModal>
@@ -93,36 +93,36 @@
           v-model="form.name"
           label="이름"
           class="mb-3"
-          @update:model-value="(val) => updateForm('name', val)"
+          @update:model-value="val => updateForm('name', val)"
         />
         <VTextField
           v-model="form.userId"
           label="ID"
           class="mb-3"
-          @update:model-value="(val) => updateForm('userId', val)"
+          @update:model-value="val => updateForm('userId', val)"
         />
         <VTextField
           v-model="form.email"
           label="이메일"
           class="mb-3"
-          @update:model-value="(val) => updateForm('email', val)"
+          @update:model-value="val => updateForm('email', val)"
         />
         <VSelect
           v-model="form.role"
           :items="roles"
           label="권한"
           class="mb-3"
-          @update:model-value="(val) => updateForm('role', val)"
+          @update:model-value="val => updateForm('role', val)"
         />
       </template>
     </CommonModal>
   </div>
 </template>
 <script setup>
-import { ref, computed } from "vue";
-import CommonTable from "@/components/CommonTable.vue";
-import CommonModal from "@/components/CommonModal.vue";
-import { VBtn, VSelect, VTextField, VSpacer } from "vuetify/components";
+import { ref, computed } from 'vue';
+import CommonTable from '@/components/CommonTable.vue';
+import CommonModal from '@/components/CommonModal.vue';
+import { VBtn, VSelect, VTextField, VSpacer } from 'vuetify/components';
 
 // props: tenants, selectedTenant 등 필요시 받을 수 있음
 // defineProps<{ tenants: any, selectedTenant: any }>()
@@ -130,64 +130,64 @@ import { VBtn, VSelect, VTextField, VSpacer } from "vuetify/components";
 const tenantAdmins = ref([
   {
     id: 1,
-    name: "최지은",
-    userId: "choijieun",
-    email: "111@aaa.com",
-    role: "Tenant Admin",
-    updated: "2025-05-12 10:21",
+    name: '최지은',
+    userId: 'choijieun',
+    email: '111@aaa.com',
+    role: 'Tenant Admin',
+    updated: '2025-05-12 10:21',
   },
   {
     id: 2,
-    name: "김종성",
-    userId: "ziippy",
-    email: "ziippy@hanwha.com",
-    role: "Tenant Operator",
-    updated: "2025-05-12 10:21",
+    name: '김종성',
+    userId: 'ziippy',
+    email: 'ziippy@hanwha.com',
+    role: 'Tenant Operator',
+    updated: '2025-05-12 10:21',
   },
   {
     id: 3,
-    name: "민지영",
-    userId: "gzeromin",
-    email: "gzeromin@hanwha.com",
-    role: "Tenant Operator",
-    updated: "2025-05-12 10:21",
+    name: '민지영',
+    userId: 'gzeromin',
+    email: 'gzeromin@hanwha.com',
+    role: 'Tenant Operator',
+    updated: '2025-05-12 10:21',
   },
 ]);
 
-const roles = ["Tenant Admin", "Tenant Operator"];
+const roles = ['Tenant Admin', 'Tenant Operator'];
 const columns = [
-  { key: "name", label: "이름" },
-  { key: "userId", label: "ID" },
-  { key: "email", label: "이메일" },
-  { key: "role", label: "권한" },
-  { key: "updated", label: "Last Updated" },
+  { key: 'name', label: '이름' },
+  { key: 'userId', label: 'ID' },
+  { key: 'email', label: '이메일' },
+  { key: 'role', label: '권한' },
+  { key: 'updated', label: 'Last Updated' },
 ];
 const modalFields = [
-  { key: "name", label: "이름", type: "text", required: true },
-  { key: "userId", label: "ID", type: "text", required: true },
-  { key: "email", label: "이메일", type: "text", required: true },
+  { key: 'name', label: '이름', type: 'text', required: true },
+  { key: 'userId', label: 'ID', type: 'text', required: true },
+  { key: 'email', label: '이메일', type: 'text', required: true },
   {
-    key: "role",
-    label: "권한",
-    type: "select",
+    key: 'role',
+    label: '권한',
+    type: 'select',
     options: roles,
     required: true,
   },
 ];
 const filterColumns = [
-  { label: "이름", key: "name" },
-  { label: "ID", key: "userId" },
-  { label: "이메일", key: "email" },
-  { label: "권한", key: "role" },
+  { label: '이름', key: 'name' },
+  { label: 'ID', key: 'userId' },
+  { label: '이메일', key: 'email' },
+  { label: '권한', key: 'role' },
 ];
 const selectedColumn = ref(filterColumns[0]);
-const searchValue = ref("");
+const searchValue = ref('');
 const filteredAdmins = computed(() => {
   if (!Array.isArray(tenantAdmins.value)) return [];
   if (!searchValue.value) return tenantAdmins.value;
   const key = selectedColumn.value.key;
-  return tenantAdmins.value.filter((admin) =>
-    String(admin[key] ?? "").includes(searchValue.value)
+  return tenantAdmins.value.filter(admin =>
+    String(admin[key] ?? '').includes(searchValue.value)
   );
 });
 const page = ref(1);
@@ -196,16 +196,16 @@ const totalItems = computed(() => filteredAdmins.value.length);
 const dialogAdd = ref(false);
 const dialogEdit = ref(false);
 const modalForm = ref({
-  name: "",
-  userId: "",
-  email: "",
+  name: '',
+  userId: '',
+  email: '',
   role: roles[0],
 });
 function openAddDialog() {
   modalForm.value = {
-    name: "",
-    userId: "",
-    email: "",
+    name: '',
+    userId: '',
+    email: '',
     role: roles[0],
   };
   dialogAdd.value = true;
@@ -221,19 +221,19 @@ function handleAddConfirm(form) {
     userId: form.userId,
     email: form.email,
     role: form.role,
-    updated: new Date().toISOString().slice(0, 16).replace("T", " "),
+    updated: new Date().toISOString().slice(0, 16).replace('T', ' '),
   });
   dialogAdd.value = false;
 }
 function handleEditConfirm(form) {
-  const admin = tenantAdmins.value.find((a) => a.id === form.id);
+  const admin = tenantAdmins.value.find(a => a.id === form.id);
   if (admin) {
     Object.assign(admin, form);
   }
   dialogEdit.value = false;
 }
 function handleDelete(admin) {
-  tenantAdmins.value = tenantAdmins.value.filter((a) => a.id !== admin.id);
+  tenantAdmins.value = tenantAdmins.value.filter(a => a.id !== admin.id);
 }
 function handlePageChange(val) {
   page.value = val;

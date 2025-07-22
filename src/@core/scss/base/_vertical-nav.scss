@@ -1,9 +1,9 @@
-@use "@core/scss/base/placeholders" as *;
-@use "@core/scss/template/placeholders" as *;
-@use "@layouts/styles/mixins" as layoutsMixins;
-@use "@configured-variables" as variables;
-@use "@core/scss/base/mixins" as mixins;
-@use "vuetify/lib/styles/tools/states" as vuetifyStates;
+@use '@core/scss/base/placeholders' as *;
+@use '@core/scss/template/placeholders' as *;
+@use '@layouts/styles/mixins' as layoutsMixins;
+@use '@configured-variables' as variables;
+@use '@core/scss/base/mixins' as mixins;
+@use 'vuetify/lib/styles/tools/states' as vuetifyStates;
 
 .layout-nav-type-vertical {
   // 👉 Layout Vertical nav
@@ -46,7 +46,9 @@
 
             @include layoutsMixins.rtl {
               transform: translateX(
-                -(variables.$vertical-nav-header-logo-translate-x-when-vertical-nav-mini)
+                -(
+                    variables.$vertical-nav-header-logo-translate-x-when-vertical-nav-mini
+                  )
               );
             }
           }
@@ -222,7 +224,9 @@
 // SECTION: Transitions
 .vertical-nav-section-title-enter-active,
 .vertical-nav-section-title-leave-active {
-  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+  transition:
+    opacity 0.1s ease-in-out,
+    transform 0.1s ease-in-out;
 }
 
 .vertical-nav-section-title-enter-from,
@@ -237,7 +241,9 @@
 
 .transition-slide-x-enter-active,
 .transition-slide-x-leave-active {
-  transition: opacity 0.1s ease-in-out, transform 0.12s ease-in-out;
+  transition:
+    opacity 0.1s ease-in-out,
+    transform 0.12s ease-in-out;
 }
 
 .transition-slide-x-enter-from,
@@ -252,7 +258,9 @@
 
 .vertical-nav-app-title-enter-active,
 .vertical-nav-app-title-leave-active {
-  transition: opacity 0.1s ease-in-out, transform 0.12s ease-in-out;
+  transition:
+    opacity 0.1s ease-in-out,
+    transform 0.12s ease-in-out;
 }
 
 .vertical-nav-app-title-enter-from,

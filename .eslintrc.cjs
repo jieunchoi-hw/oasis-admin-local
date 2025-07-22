@@ -1,0 +1,42 @@
+module.exports = {
+  root: true,
+  env: {
+    node: true,
+    es2022: true,
+    browser: true,
+  },
+  extends: [
+    '@antfu/eslint-config-vue',
+    'eslint:recommended',
+    '@vue/eslint-config-typescript',
+    'plugin:vue/vue3-recommended',
+    'plugin:prettier/recommended', // Prettier와 충돌 방지
+  ],
+  plugins: ['prettier'],
+  rules: {
+    'prettier/prettier': 'error',
+    'vue/multi-word-component-names': 'off',
+    'vue/no-v-html': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+  },
+  globals: {
+    defineProps: 'readonly',
+    defineEmits: 'readonly',
+    defineExpose: 'readonly',
+    withDefaults: 'readonly',
+    defineComponent: 'readonly',
+    h: 'readonly',
+    ref: 'readonly',
+    reactive: 'readonly',
+    computed: 'readonly',
+    watch: 'readonly',
+    watchEffect: 'readonly',
+    onMounted: 'readonly',
+    onUnmounted: 'readonly',
+    nextTick: 'readonly',
+    useRoute: 'readonly',
+    useRouter: 'readonly',
+    useToggle: 'readonly',
+    syncRef: 'readonly',
+  },
+};

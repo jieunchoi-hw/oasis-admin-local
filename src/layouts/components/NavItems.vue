@@ -1,15 +1,15 @@
 <script setup>
-import { computed } from "vue";
-import VerticalNavSectionTitle from "@/@layouts/components/VerticalNavSectionTitle.vue";
-import VerticalNavGroup from "@layouts/components/VerticalNavGroup.vue";
-import VerticalNavLink from "@layouts/components/VerticalNavLink.vue";
-import { useTenantStore } from "@/stores/tenant";
+import { computed } from 'vue';
+import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue';
+import VerticalNavGroup from '@layouts/components/VerticalNavGroup.vue';
+import VerticalNavLink from '@layouts/components/VerticalNavLink.vue';
+import { useTenantStore } from '@/stores/tenant';
 
 // props 정의
 const props = defineProps({
   currentAccountType: {
     type: String,
-    default: "System",
+    default: 'System',
   },
 });
 
@@ -17,130 +17,130 @@ const props = defineProps({
 const menuStructure = {
   System: {
     dashboard: {
-      title: "Dashboard",
-      icon: "ri-home-smile-line",
-      to: "/dashboard",
+      title: 'Dashboard',
+      icon: 'ri-home-smile-line',
+      to: '/dashboard',
     },
     systemAdmin: {
-      title: "System Admin 사용자 관리",
-      icon: "ri-user-settings-line",
-      to: "/system/admin-users",
+      title: 'System Admin 사용자 관리',
+      icon: 'ri-user-settings-line',
+      to: '/system/admin-users',
     },
     llmManagement: {
-      title: "LLM 관리",
-      icon: "ri-robot-line",
-      to: "/system/llm-management",
+      title: 'LLM 관리',
+      icon: 'ri-robot-line',
+      to: '/system/llm-management',
     },
     mcpServer: {
-      title: "MCP 서버 관리",
-      icon: "ri-server-line",
-      to: "/system/mcp-server",
+      title: 'MCP 서버 관리',
+      icon: 'ri-server-line',
+      to: '/system/mcp-server',
     },
     vectorDB: {
-      title: "Vector DB 관리",
-      icon: "ri-database-2-line",
-      to: "/system/vector-db",
+      title: 'Vector DB 관리',
+      icon: 'ri-database-2-line',
+      to: '/system/vector-db',
     },
     officialSecretary: {
-      title: "공식 비서 관리",
-      icon: "ri-customer-service-2-line",
-      to: "/system/official-secretary",
+      title: '공식 비서 관리',
+      icon: 'ri-customer-service-2-line',
+      to: '/system/official-secretary',
     },
     tenantManagement: {
-      title: "Tenant 관리",
-      icon: "ri-building-line",
-      to: "/system/tenant-management",
+      title: 'Tenant 관리',
+      icon: 'ri-building-line',
+      to: '/system/tenant-management',
     },
     systemTenantSettings: {
-      title: "Tenant별 설정",
-      icon: "ri-settings-3-line",
-      to: "/system/tenant-settings",
+      title: 'Tenant별 설정',
+      icon: 'ri-settings-3-line',
+      to: '/system/tenant-settings',
       hasTabs: true,
       tabs: [
         {
-          title: "Tenant Admin 사용자 관리",
-          to: "/system/tenant-settings/admin-users",
+          title: 'Tenant Admin 사용자 관리',
+          to: '/system/tenant-settings/admin-users',
         },
-        { title: "LLM 배정", to: "/system/tenant-settings/llm" },
+        { title: 'LLM 배정', to: '/system/tenant-settings/llm' },
         {
-          title: "MCP 서버 배정",
-          to: "/system/tenant-settings/mcp-server",
-        },
-        {
-          title: "Vector DB 배정",
-          to: "/system/tenant-settings/vectordb",
+          title: 'MCP 서버 배정',
+          to: '/system/tenant-settings/mcp-server',
         },
         {
-          title: "공식비서 배정",
-          to: "/system/tenant-settings/secretary",
+          title: 'Vector DB 배정',
+          to: '/system/tenant-settings/vectordb',
+        },
+        {
+          title: '공식비서 배정',
+          to: '/system/tenant-settings/secretary',
         },
       ],
     },
   },
   Tenant: {
     dashboard: {
-      title: "Dashboard",
-      icon: "ri-home-smile-line",
-      to: "/dashboard",
+      title: 'Dashboard',
+      icon: 'ri-home-smile-line',
+      to: '/dashboard',
     },
     tenantSettings: {
-      title: "테넌트 설정",
-      icon: "ri-settings-3-line",
-      to: "/tenant/settings",
+      title: '테넌트 설정',
+      icon: 'ri-settings-3-line',
+      to: '/tenant/settings',
       hasTabs: true,
       tabs: [
-        { title: "기본정보 관리", to: "/tenant/settings/basic-info" },
+        { title: '기본정보 관리', to: '/tenant/settings/basic-info' },
         {
-          title: "Tenant Admin 사용자 관리",
-          to: "/tenant/settings/admin-users",
+          title: 'Tenant Admin 사용자 관리',
+          to: '/tenant/settings/admin-users',
         },
-        { title: "LLM 사용 설정", to: "/tenant/settings/llm-usage" },
-        { title: "MCP 서버 사용 설정", to: "/tenant/settings/mcp-usage" },
-        { title: "Vector DB 사용 설정", to: "/tenant/settings/vector-usage" },
-        { title: "전사 비서 설정", to: "/tenant/settings/company-secretary" },
-        { title: "비서 승인 관리", to: "/tenant/settings/secretary-approval" },
+        { title: 'LLM 사용 설정', to: '/tenant/settings/llm-usage' },
+        { title: 'MCP 서버 사용 설정', to: '/tenant/settings/mcp-usage' },
+        { title: 'Vector DB 사용 설정', to: '/tenant/settings/vector-usage' },
+        { title: '전사 비서 설정', to: '/tenant/settings/company-secretary' },
+        { title: '비서 승인 관리', to: '/tenant/settings/secretary-approval' },
       ],
     },
     workspaceSettings: {
-      title: "Workspace 별설정",
-      icon: "ri-layout-grid-line",
-      to: "/tenant/workspace-settings",
+      title: 'Workspace 별설정',
+      icon: 'ri-layout-grid-line',
+      to: '/tenant/workspace-settings',
       hasTabs: true,
       tabs: [
-        { title: "LLM 배정", to: "/tenant/workspace-settings/llm-assignment" },
+        { title: 'LLM 배정', to: '/tenant/workspace-settings/llm-assignment' },
         {
-          title: "MCP 서버 배정",
-          to: "/tenant/workspace-settings/mcp-assignment",
+          title: 'MCP 서버 배정',
+          to: '/tenant/workspace-settings/mcp-assignment',
         },
         {
-          title: "비서 배정",
-          to: "/tenant/workspace-settings/secretary-assignment",
+          title: '비서 배정',
+          to: '/tenant/workspace-settings/secretary-assignment',
         },
       ],
     },
   },
   Workspace: {
     dashboard: {
-      title: "Dashboard",
-      icon: "ri-home-smile-line",
-      to: "/dashboard",
+      title: 'Dashboard',
+      icon: 'ri-home-smile-line',
+      to: '/dashboard',
     },
     workspaceSettings: {
-      title: "Workspace 설정",
-      icon: "ri-settings-3-line",
-      to: "/workspace/settings",
+      title: 'Workspace 설정',
+      icon: 'ri-settings-3-line',
+      to: '/workspace/settings',
       hasTabs: true,
       tabs: [
-        { title: "Workspace 사용자 관리", to: "/workspace/settings/users" },
-        { title: "LLM 배정", to: "/workspace/settings/llm-assignment" },
-        { title: "MCP 서버 배정", to: "/workspace/settings/mcp-assignment" },
-        { title: "비서 배정", to: "/workspace/settings/secretary-assignment" },
+        { title: 'Workspace 사용자 관리', to: '/workspace/settings/users' },
+        { title: 'LLM 배정', to: '/workspace/settings/llm-assignment' },
+        { title: 'MCP 서버 배정', to: '/workspace/settings/mcp-assignment' },
+        { title: '비서 배정', to: '/workspace/settings/secretary-assignment' },
       ],
     },
     userSecretary: {
-      title: "사용자 비서 관리",
-      icon: "ri-user-heart-line",
-      to: "/workspace/user-secretary",
+      title: '사용자 비서 관리',
+      icon: 'ri-user-heart-line',
+      to: '/workspace/user-secretary',
     },
   },
 };
@@ -152,7 +152,7 @@ const currentMenus = computed(() => {
 const tenantStore = useTenantStore();
 
 function getTabTo(tabTo) {
-  if (tabTo.startsWith("/system/tenant-settings/")) {
+  if (tabTo.startsWith('/system/tenant-settings/')) {
     return { path: tabTo, query: { tenantId: tenantStore.tenantId } };
   }
   return tabTo;

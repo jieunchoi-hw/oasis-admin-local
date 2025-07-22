@@ -1,4 +1,4 @@
-@use "@configured-variables" as variables;
+@use '@configured-variables' as variables;
 
 // 👉 Badge
 .v-badge {
@@ -15,7 +15,10 @@
     @each $color-name in variables.$theme-colors-name {
       .v-badge__wrapper {
         .v-badge__badge.bg-#{$color-name} {
-          background-color: rgba(var(--v-theme-#{$color-name}), var(--v-activated-opacity)) !important;
+          background-color: rgba(
+            var(--v-theme-#{$color-name}),
+            var(--v-activated-opacity)
+          ) !important;
           color: rgb(var(--v-theme-#{$color-name})) !important;
         }
       }

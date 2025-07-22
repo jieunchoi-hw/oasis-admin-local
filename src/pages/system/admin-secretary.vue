@@ -1,7 +1,7 @@
 <script setup>
-import { ref, computed } from "vue";
-import CommonTable from "@/components/CommonTable.vue";
-import CommonModal from "@/components/CommonModal.vue";
+import { ref, computed } from 'vue';
+import CommonTable from '@/components/CommonTable.vue';
+import CommonModal from '@/components/CommonModal.vue';
 import {
   VBtn,
   VSelect,
@@ -11,100 +11,100 @@ import {
   VSpacer,
   VChip,
   VTextarea,
-} from "vuetify/components";
+} from 'vuetify/components';
 
 // Mock 데이터
 const secretaries = ref([
   {
     id: 1,
-    name: "전사 업무 규정",
-    description: "회사 업무 규정 Q&A, 업무 담당자 검색 등 전사 공통 업무 비서",
+    name: '전사 업무 규정',
+    description: '회사 업무 규정 Q&A, 업무 담당자 검색 등 전사 공통 업무 비서',
     capabilities: [
-      "첨부된 파일 기반 질문/답변",
-      "실시간 검색 + 이미지 생성/편집 능력",
+      '첨부된 파일 기반 질문/답변',
+      '실시간 검색 + 이미지 생성/편집 능력',
     ],
     monthlyUsage: 100,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
   {
     id: 2,
-    name: "키워드 검색",
-    description: "키워드만 넣으면 핵심 정보와 최신 소식 정리",
+    name: '키워드 검색',
+    description: '키워드만 넣으면 핵심 정보와 최신 소식 정리',
     capabilities: [
-      "첨부된 파일 기반 질문/답변",
-      "실시간 검색 + 이미지 생성/편집 능력",
+      '첨부된 파일 기반 질문/답변',
+      '실시간 검색 + 이미지 생성/편집 능력',
     ],
     monthlyUsage: 100,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
   {
     id: 3,
-    name: "데이터 분석",
-    description: "엑셀/CSV 올리고 분석, 편집 요청",
+    name: '데이터 분석',
+    description: '엑셀/CSV 올리고 분석, 편집 요청',
     capabilities: [
-      "첨부된 파일 기반 질문/답변",
-      "실시간 검색 + 이미지 생성/편집 능력",
+      '첨부된 파일 기반 질문/답변',
+      '실시간 검색 + 이미지 생성/편집 능력',
     ],
     monthlyUsage: 200,
-    updated: "2025-05-12 10:21",
+    updated: '2025-05-12 10:21',
   },
 ]);
 
 const capabilities = [
-  "첨부된 파일 기반 질문/답변",
-  "실시간 검색 + 이미지 생성/편집 능력",
-  "데이터 분석 및 시각화",
-  "문서 요약 및 번역",
-  "코드 분석 및 생성",
+  '첨부된 파일 기반 질문/답변',
+  '실시간 검색 + 이미지 생성/편집 능력',
+  '데이터 분석 및 시각화',
+  '문서 요약 및 번역',
+  '코드 분석 및 생성',
 ];
 
 // 테이블 컬럼 정의
 const columns = [
-  { key: "name", label: "이름" },
-  { key: "description", label: "비서 소개" },
-  { key: "capabilities", label: "능력" },
-  { key: "monthlyUsage", label: "월 이용 횟수" },
-  { key: "updated", label: "Last Updated" },
+  { key: 'name', label: '이름' },
+  { key: 'description', label: '비서 소개' },
+  { key: 'capabilities', label: '능력' },
+  { key: 'monthlyUsage', label: '월 이용 횟수' },
+  { key: 'updated', label: 'Last Updated' },
 ];
 
 // 모달 필드 정의
 const modalFields = [
-  { key: "name", label: "비서 이름", type: "text", required: true },
-  { key: "description", label: "비서 소개", type: "textarea", required: true },
+  { key: 'name', label: '비서 이름', type: 'text', required: true },
+  { key: 'description', label: '비서 소개', type: 'textarea', required: true },
   {
-    key: "capabilities",
-    label: "능력",
-    type: "multiselect",
+    key: 'capabilities',
+    label: '능력',
+    type: 'multiselect',
     options: capabilities,
     required: true,
   },
   {
-    key: "monthlyUsage",
-    label: "월 이용 횟수",
-    type: "number",
+    key: 'monthlyUsage',
+    label: '월 이용 횟수',
+    type: 'number',
     required: true,
   },
 ];
 
 // 검색/필터
 const filterColumns = [
-  { label: "이름", key: "name" },
-  { label: "비서 소개", key: "description" },
-  { label: "능력", key: "capabilities" },
+  { label: '이름', key: 'name' },
+  { label: '비서 소개', key: 'description' },
+  { label: '능력', key: 'capabilities' },
 ];
 const selectedColumn = ref(filterColumns[0]);
-const searchValue = ref("");
+const searchValue = ref('');
 const filteredSecretaries = computed(() => {
   if (!Array.isArray(secretaries.value)) return [];
   if (!searchValue.value) return secretaries.value;
   const key = selectedColumn.value.key;
-  return secretaries.value.filter((secretary) => {
-    if (key === "capabilities") {
-      return secretary.capabilities.some((cap) =>
+  return secretaries.value.filter(secretary => {
+    if (key === 'capabilities') {
+      return secretary.capabilities.some(cap =>
         cap.includes(searchValue.value)
       );
     }
-    return String(secretary[key] ?? "").includes(searchValue.value);
+    return String(secretary[key] ?? '').includes(searchValue.value);
   });
 });
 
@@ -117,16 +117,16 @@ const totalItems = computed(() => filteredSecretaries.value.length);
 const dialogAdd = ref(false);
 const dialogEdit = ref(false);
 const modalForm = ref({
-  name: "",
-  description: "",
+  name: '',
+  description: '',
   capabilities: [],
   monthlyUsage: 0,
 });
 
 function openAddDialog() {
   modalForm.value = {
-    name: "",
-    description: "",
+    name: '',
+    description: '',
     capabilities: [],
     monthlyUsage: 0,
   };
@@ -143,19 +143,19 @@ function handleAddConfirm(form) {
     description: form.description,
     capabilities: form.capabilities,
     monthlyUsage: form.monthlyUsage,
-    updated: new Date().toISOString().slice(0, 16).replace("T", " "),
+    updated: new Date().toISOString().slice(0, 16).replace('T', ' '),
   });
   dialogAdd.value = false;
 }
 function handleEditConfirm(form) {
-  const secretary = secretaries.value.find((s) => s.id === form.id);
+  const secretary = secretaries.value.find(s => s.id === form.id);
   if (secretary) {
     Object.assign(secretary, form);
   }
   dialogEdit.value = false;
 }
 function handleDelete(secretary) {
-  secretaries.value = secretaries.value.filter((s) => s.id !== secretary.id);
+  secretaries.value = secretaries.value.filter(s => s.id !== secretary.id);
 }
 function handlePageChange(val) {
   page.value = val;
@@ -266,14 +266,14 @@ function handleFormUpdate(updatedForm) {
           v-model="form.name"
           label="비서 이름"
           class="mb-3"
-          @update:model-value="(val) => updateForm('name', val)"
+          @update:model-value="val => updateForm('name', val)"
         />
         <VTextarea
           v-model="form.description"
           label="비서 소개"
           class="mb-3"
           rows="3"
-          @update:model-value="(val) => updateForm('description', val)"
+          @update:model-value="val => updateForm('description', val)"
         />
         <VSelect
           v-model="form.capabilities"
@@ -282,7 +282,7 @@ function handleFormUpdate(updatedForm) {
           multiple
           chips
           class="mb-3"
-          @update:model-value="(val) => updateForm('capabilities', val)"
+          @update:model-value="val => updateForm('capabilities', val)"
         />
         <VTextField
           v-model="form.monthlyUsage"
@@ -290,7 +290,7 @@ function handleFormUpdate(updatedForm) {
           type="number"
           class="mb-3"
           @update:model-value="
-            (val) => updateForm('monthlyUsage', parseInt(val) || 0)
+            val => updateForm('monthlyUsage', parseInt(val) || 0)
           "
         />
       </template>
@@ -312,14 +312,14 @@ function handleFormUpdate(updatedForm) {
           v-model="form.name"
           label="비서 이름"
           class="mb-3"
-          @update:model-value="(val) => updateForm('name', val)"
+          @update:model-value="val => updateForm('name', val)"
         />
         <VTextarea
           v-model="form.description"
           label="비서 소개"
           class="mb-3"
           rows="3"
-          @update:model-value="(val) => updateForm('description', val)"
+          @update:model-value="val => updateForm('description', val)"
         />
         <VSelect
           v-model="form.capabilities"
@@ -328,7 +328,7 @@ function handleFormUpdate(updatedForm) {
           multiple
           chips
           class="mb-3"
-          @update:model-value="(val) => updateForm('capabilities', val)"
+          @update:model-value="val => updateForm('capabilities', val)"
         />
         <VTextField
           v-model="form.monthlyUsage"
@@ -336,7 +336,7 @@ function handleFormUpdate(updatedForm) {
           type="number"
           class="mb-3"
           @update:model-value="
-            (val) => updateForm('monthlyUsage', parseInt(val) || 0)
+            val => updateForm('monthlyUsage', parseInt(val) || 0)
           "
         />
       </template>

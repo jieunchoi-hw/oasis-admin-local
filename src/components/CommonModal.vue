@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch } from 'vue';
 import {
   VDialog,
   VCard,
@@ -8,7 +8,7 @@ import {
   VCardActions,
   VBtn,
   VIcon,
-} from "vuetify/components";
+} from 'vuetify/components';
 
 const props = defineProps({
   visible: { type: Boolean, required: true },
@@ -16,29 +16,29 @@ const props = defineProps({
   title: { type: String, required: true },
   form: { type: Object, required: true },
   fields: { type: Array, required: true }, // [{ key: 'name', label: '이름', type: 'text', required: true }]
-  maxWidth: { type: String, default: "500" },
+  maxWidth: { type: String, default: '500' },
 });
-const emit = defineEmits(["confirm", "close", "update:form"]);
+const emit = defineEmits(['confirm', 'close', 'update:form']);
 
 // v-model proxy for dialog
 const dialogProxy = ref(props.visible);
 watch(
   () => props.visible,
-  (val) => {
+  val => {
     dialogProxy.value = val;
   }
 );
-watch(dialogProxy, (val) => {
-  if (!val) emit("close");
+watch(dialogProxy, val => {
+  if (!val) emit('close');
 });
 
 function handleConfirm() {
-  emit("confirm", { ...props.form });
+  emit('confirm', { ...props.form });
 }
 
 function updateForm(key, value) {
   const updatedForm = { ...props.form, [key]: value };
-  emit("update:form", updatedForm);
+  emit('update:form', updatedForm);
 }
 </script>
 
@@ -57,7 +57,7 @@ function updateForm(key, value) {
       </VCardText>
       <VCardActions class="justify-end">
         <VBtn color="black" @click="handleConfirm">
-          {{ mode === "add" ? "Confirm" : "Save" }}
+          {{ mode === 'add' ? 'Confirm' : 'Save' }}
         </VBtn>
       </VCardActions>
     </VCard>

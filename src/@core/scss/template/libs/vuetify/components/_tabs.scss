@@ -1,5 +1,5 @@
-@use "@configured-variables" as variables;
-@use "@core/scss/base/mixins";
+@use '@configured-variables' as variables;
+@use '@core/scss/base/mixins';
 
 body {
   .v-tabs {
@@ -25,7 +25,8 @@ body {
 
     &:not(.v-tabs-pill) {
       &.v-tabs--vertical {
-        border-inline-end: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+        border-inline-end: 1px solid
+          rgba(var(--v-border-color), var(--v-border-opacity));
 
         .v-tab__slider {
           inset-inline-end: 0;
@@ -34,7 +35,8 @@ body {
       }
 
       &.v-tabs--horizontal {
-        border-block-end: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+        border-block-end: 1px solid
+          rgba(var(--v-border-color), var(--v-border-opacity));
 
         .v-tab__slider {
           inset-block-end: 1px;

@@ -40,7 +40,7 @@ const salesByCountries = [
     sales: '42k',
     color: 'error',
   },
-]
+];
 
 const moreList = [
   {
@@ -55,7 +55,7 @@ const moreList = [
     title: 'Last Month',
     value: 'Last Month',
   },
-]
+];
 </script>
 
 <template>
@@ -72,16 +72,9 @@ const moreList = [
 
     <VCardText>
       <VList class="card-list">
-        <VListItem
-          v-for="data in salesByCountries"
-          :key="data.country"
-        >
+        <VListItem v-for="data in salesByCountries" :key="data.country">
           <template #prepend>
-            <VAvatar
-              :color="data.color"
-              variant="tonal"
-              size="40"
-            >
+            <VAvatar :color="data.color" variant="tonal" size="40">
               {{ data.abbr }}
             </VAvatar>
           </template>
@@ -95,7 +88,11 @@ const moreList = [
               :color="data.change.charAt(0) === '+' ? 'success' : 'error'"
               class="mx-1"
             >
-              {{ data.change.charAt(0) === '+' ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line' }}
+              {{
+                data.change.charAt(0) === '+'
+                  ? 'ri-arrow-up-s-line'
+                  : 'ri-arrow-down-s-line'
+              }}
             </VIcon>
             <div
               :class="`${data.change.charAt(0) === '+' ? 'text-success' : 'text-error'}`"
@@ -114,9 +111,7 @@ const moreList = [
               <h6 class="text-h6 mb-1">
                 {{ data.sales }}
               </h6>
-              <div class="text-body-2 text-disabled text-end">
-                Sales
-              </div>
+              <div class="text-body-2 text-disabled text-end">Sales</div>
             </div>
           </template>
         </VListItem>
@@ -125,8 +120,8 @@ const moreList = [
   </VCard>
 </template>
 
-  <style lang="scss" scoped>
-  .card-list {
-    --v-card-list-gap: 0.875rem;
-  }
-  </style>
+<style lang="scss" scoped>
+.card-list {
+  --v-card-list-gap: 0.875rem;
+}
+</style>

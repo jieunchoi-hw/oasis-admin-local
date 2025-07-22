@@ -1,13 +1,13 @@
 <script setup>
-import { ref, watch, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { VTabs, VTab, VSelect } from "vuetify/components";
-import { useTenantStore } from "@/stores/tenant";
+import { ref, watch, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { VTabs, VTab, VSelect } from 'vuetify/components';
+import { useTenantStore } from '@/stores/tenant';
 
 const tenants = ref([
-  { id: 1, name: "한화시스템" },
-  { id: 2, name: "한화비전" },
-  { id: 3, name: "한화오션" },
+  { id: 1, name: '한화시스템' },
+  { id: 2, name: '한화비전' },
+  { id: 3, name: '한화오션' },
 ]);
 const selectedTenant = ref(tenants.value[0]);
 
@@ -15,22 +15,22 @@ const route = useRoute();
 const router = useRouter();
 
 const tabs = [
-  { title: "Tenant Admin 관리", key: "admin", path: "admin-users" },
-  { title: "LLM", key: "llm", path: "llm" },
-  { title: "MCP 서버", key: "mcp", path: "mcp-server" },
-  { title: "Vector DB", key: "vectordb", path: "vectordb" },
-  { title: "공식 비서", key: "secretary", path: "secretary" },
+  { title: 'Tenant Admin 관리', key: 'admin', path: 'admin-users' },
+  { title: 'LLM', key: 'llm', path: 'llm' },
+  { title: 'MCP 서버', key: 'mcp', path: 'mcp-server' },
+  { title: 'Vector DB', key: 'vectordb', path: 'vectordb' },
+  { title: '공식 비서', key: 'secretary', path: 'secretary' },
 ];
 const activeTab = ref(0);
 
 watch(
   () => route.path,
-  (newPath) => {
-    if (newPath.includes("/admin-users")) activeTab.value = 0;
-    else if (newPath.includes("/llm")) activeTab.value = 1;
-    else if (newPath.includes("/mcp-server")) activeTab.value = 2;
-    else if (newPath.includes("/vectordb")) activeTab.value = 3;
-    else if (newPath.includes("/secretary")) activeTab.value = 4;
+  newPath => {
+    if (newPath.includes('/admin-users')) activeTab.value = 0;
+    else if (newPath.includes('/llm')) activeTab.value = 1;
+    else if (newPath.includes('/mcp-server')) activeTab.value = 2;
+    else if (newPath.includes('/vectordb')) activeTab.value = 3;
+    else if (newPath.includes('/secretary')) activeTab.value = 4;
   },
   { immediate: true }
 );

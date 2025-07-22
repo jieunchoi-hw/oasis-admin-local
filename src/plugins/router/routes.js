@@ -1,110 +1,110 @@
 export const routes = [
-  { path: "/", redirect: "/dashboard" },
+  { path: '/', redirect: '/dashboard' },
   {
-    path: "/",
-    component: () => import("@/layouts/default.vue"),
+    path: '/',
+    component: () => import('@/layouts/default.vue'),
     children: [
       {
-        path: "dashboard",
-        component: () => import("@/pages/dashboard.vue"),
+        path: 'dashboard',
+        component: () => import('@/pages/dashboard.vue'),
       },
       {
-        path: "account-settings",
-        component: () => import("@/pages/account-settings.vue"),
+        path: 'account-settings',
+        component: () => import('@/pages/account-settings.vue'),
       },
       {
-        path: "typography",
-        component: () => import("@/pages/typography.vue"),
+        path: 'typography',
+        component: () => import('@/pages/typography.vue'),
       },
       {
-        path: "icons",
-        component: () => import("@/pages/icons.vue"),
+        path: 'icons',
+        component: () => import('@/pages/icons.vue'),
       },
       {
-        path: "cards",
-        component: () => import("@/pages/cards.vue"),
+        path: 'cards',
+        component: () => import('@/pages/cards.vue'),
       },
       {
-        path: "tables",
-        component: () => import("@/pages/tables.vue"),
+        path: 'tables',
+        component: () => import('@/pages/tables.vue'),
       },
       {
-        path: "form-layouts",
-        component: () => import("@/pages/form-layouts.vue"),
+        path: 'form-layouts',
+        component: () => import('@/pages/form-layouts.vue'),
       },
       {
-        path: "system/admin-users",
-        component: () => import("@/pages/system/admin-users.vue"),
+        path: 'system/admin-users',
+        component: () => import('@/pages/system/admin-users.vue'),
       },
       {
-        path: "system/llm-management",
-        component: () => import("@/pages/system/admin-llm.vue"),
+        path: 'system/llm-management',
+        component: () => import('@/pages/system/admin-llm.vue'),
       },
       {
-        path: "system/mcp-server",
-        component: () => import("@/pages/system/admin-mcp.vue"),
+        path: 'system/mcp-server',
+        component: () => import('@/pages/system/admin-mcp.vue'),
       },
       {
-        path: "system/vector-db",
-        component: () => import("@/pages/system/admin-vectordb.vue"),
+        path: 'system/vector-db',
+        component: () => import('@/pages/system/admin-vectordb.vue'),
       },
       {
-        path: "system/official-secretary",
-        component: () => import("@/pages/system/admin-secretary.vue"),
+        path: 'system/official-secretary',
+        component: () => import('@/pages/system/admin-secretary.vue'),
       },
       {
-        path: "system/tenant-management",
-        component: () => import("@/pages/system/admin-tenant.vue"),
+        path: 'system/tenant-management',
+        component: () => import('@/pages/system/admin-tenant.vue'),
       },
       {
-        path: "system/tenant-settings",
-        component: () => import("@/pages/system/tenant-settings/index.vue"),
+        path: 'system/tenant-settings',
+        component: () => import('@/pages/system/tenant-settings/index.vue'),
         children: [
-          { path: "", redirect: "admin-users" },
+          { path: '', redirect: 'admin-users' },
           {
-            path: "admin-users",
+            path: 'admin-users',
             component: () =>
-              import("@/pages/system/tenant-settings/TenantAdminTab.vue"),
+              import('@/pages/system/tenant-settings/TenantAdminTab.vue'),
           },
           {
-            path: "llm",
+            path: 'llm',
             component: () =>
-              import("@/pages/system/tenant-settings/LLMTab.vue"),
+              import('@/pages/system/tenant-settings/LLMTab.vue'),
           },
           {
-            path: "mcp-server",
+            path: 'mcp-server',
             component: () =>
-              import("@/pages/system/tenant-settings/MCPServerTab.vue"),
+              import('@/pages/system/tenant-settings/MCPServerTab.vue'),
           },
           {
-            path: "vectordb",
+            path: 'vectordb',
             component: () =>
-              import("@/pages/system/tenant-settings/VectorDBTab.vue"),
+              import('@/pages/system/tenant-settings/VectorDBTab.vue'),
           },
           {
-            path: "secretary",
+            path: 'secretary',
             component: () =>
-              import("@/pages/system/tenant-settings/SecretaryTab.vue"),
+              import('@/pages/system/tenant-settings/SecretaryTab.vue'),
           },
         ],
       },
     ],
   },
   {
-    path: "/",
-    component: () => import("@/layouts/blank.vue"),
+    path: '/',
+    component: () => import('@/layouts/blank.vue'),
     children: [
       {
-        path: "login",
-        component: () => import("@/pages/login.vue"),
+        path: 'login',
+        component: () => import('@/pages/login.vue'),
       },
       {
-        path: "register",
-        component: () => import("@/pages/register.vue"),
+        path: 'register',
+        component: () => import('@/pages/register.vue'),
       },
       {
-        path: "/:pathMatch(.*)*",
-        component: () => import("@/pages/[...error].vue"),
+        path: '/:pathMatch(.*)*',
+        component: () => import('@/pages/[...error].vue'),
       },
     ],
   },
