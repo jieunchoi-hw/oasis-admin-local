@@ -1,5 +1,7 @@
 <script setup>
 import { useTheme } from 'vuetify';
+import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/user';
 import AuthProvider from '@/views/pages/authentication/AuthProvider.vue';
 import authV1MaskDark from '@images/pages/auth-v1-mask-dark.png';
 import authV1MaskLight from '@images/pages/auth-v1-mask-light.png';
@@ -12,6 +14,9 @@ const form = ref({
   remember: false,
 });
 
+const router = useRouter();
+const userStore = useUserStore();
+
 const vuetifyTheme = useTheme();
 
 const authThemeMask = computed(() => {
@@ -21,6 +26,25 @@ const authThemeMask = computed(() => {
 });
 
 const isPasswordVisible = ref(false);
+
+// 로그인 처리 함수
+const handleLogin = () => {
+  // 데모 목적으로 이메일이 'admin@example.com'이면 'admin' 권한, 그 외는 'system' 권한을 부여
+  const role = form.value.email === 'admin@example.com' ? 'admin' : 'system';
+  
+  // 사용자 정보 저장
+  userStore.setUser({
+    email: form.value.email,
+    role: role,
+  });
+  
+  // 권한에 따라 리다이렉션
+  if (role === 'system') {
+    router.push('/system/dashboard');
+  } else {
+    router.push('/dashboard');
+  }
+};
 </script>
 
 <template>
@@ -90,7 +114,7 @@ const isPasswordVisible = ref(false);
               </div>
 
               <!-- login button -->
-              <VBtn block type="submit" to="/"> Login </VBtn>
+              <VBtn block type="submit" @click="handleLogin"> Login </VBtn>
             </VCol>
 
             <!-- create account -->

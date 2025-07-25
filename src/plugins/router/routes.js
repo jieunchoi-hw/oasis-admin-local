@@ -33,6 +33,10 @@ export const routes = [
         component: () => import('@/pages/form-layouts.vue'),
       },
       {
+        path: 'system/dashboard',
+        component: () => import('@/pages/system/dashboard.vue'),
+      },
+      {
         path: 'system/admin-users',
         component: () => import('@/pages/system/admin-users.vue'),
       },

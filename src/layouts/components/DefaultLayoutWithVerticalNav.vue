@@ -2,6 +2,8 @@
 import NavItems from '@/layouts/components/NavItems.vue';
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue';
 import { useDisplay } from 'vuetify';
+import { useRouter } from 'vue-router';
+
 // Components
 import Footer from '@/layouts/components/Footer.vue';
 import NavbarThemeSwitcher from '@/layouts/components/NavbarThemeSwitcher.vue';
@@ -31,7 +33,7 @@ const accounts = ref([
 
 const currentAccount = ref(accounts.value[0]);
 const isAccountMenuOpen = ref(false);
-
+const router = useRouter();
 const switchAccount = account => {
   currentAccount.value = account;
   isAccountMenuOpen.value = false;
