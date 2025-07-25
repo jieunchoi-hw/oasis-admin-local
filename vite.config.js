@@ -9,6 +9,9 @@ import svgLoader from 'vite-svg-loader';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // GitHub Pages에서 서브디렉토리로 배포될 경우 필요한 설정
+  // 환경 변수에 따라 base 경로를 설정 (GitHub Actions에서 사용)
+  base: process.env.NODE_ENV === 'production' ? '/oasis-admin-local/' : '/',
   plugins: [
     vue(),
     vueJsx(),

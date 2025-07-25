@@ -1,47 +1,28 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OASIS | AI Orchestration Platform</title>
+    <title>Oasis Admin</title>
     <link rel="stylesheet" type="text/css" href="/loader.css" />
+    <script>
+      // GitHub Pages 404 리디렉션 처리
+      (function() {
+        // 세션 스토리지에서 리디렉션 경로를 확인
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        
+        // 리디렉션이 필요한 경우 경로를 수정
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect.split(location.host)[1]);
+        }
+      })();
+    </script>
   </head>
 
   <body>
-    <div id="app">
-      <div id="loading-bg">
-        <div class="loading-logo">
-          <!-- Logo Image -->
-          <img
-            src="/logo.png"
-            alt="logo"
-            style="width: 86px; height: 48px; object-fit: contain"
-          />
-        </div>
-        <div class="loading">
-          <div class="effect-1 effects"></div>
-          <div class="effect-2 effects"></div>
-          <div class="effect-3 effects"></div>
-        </div>
-      </div>
-    </div>
+    <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
-    <script>
-      const loaderColor = '#FFFFFF';
-      const primaryColor = '#165ef0';
-
-      if (loaderColor)
-        document.documentElement.style.setProperty(
-          '--initial-loader-bg',
-          loaderColor
-        );
-
-      if (primaryColor)
-        document.documentElement.style.setProperty(
-          '--initial-loader-color',
-          primaryColor
-        );
-    </script>
   </body>
 </html>
