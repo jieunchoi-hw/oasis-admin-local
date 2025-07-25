@@ -35,6 +35,9 @@ jobs:
 
       - name: Build project
         run: pnpm run build
+        env:
+          NODE_ENV: production
+          VITE_BASE_URL: '/oasis-admin-local/'
 
       - name: Prepare for GitHub Pages
         run: |
@@ -42,6 +45,9 @@ jobs:
           cp dist/index.html dist/404.html
           # .nojekyll 파일이 빌드 폴더에 복사되었는지 확인
           touch dist/.nojekyll
+          # assets와 경로 확인을 위한 디버그
+          ls -la dist/
+          ls -la dist/assets/ || echo "No assets directory found"
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

@@ -1,16 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <title>Oasis Admin</title>
-  <script>
-    // 단일 페이지 애플리케이션을 GitHub Pages에서 사용하기 위한 해결책
-    // 모든 404 요청을 인덱스 페이지로 리디렉션
-    sessionStorage.redirect = location.href;
-  </script>
-  <meta http-equiv="refresh" content="0;URL='/'">
-</head>
-<body>
-  GitHub Pages에서 단일 페이지 앱을 지원하기 위한 리디렉션 중...
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Oasis Admin</title>
+    <script>
+      // 단일 페이지 애플리케이션을 GitHub Pages에서 사용하기 위한 해결책
+      // 모든 404 요청을 인덱스 페이지로 리디렉션
+      const path = window.location.pathname;
+      const segments = path.split('/');
+      // GitHub Pages에서 저장소 이름이 경로에 포함되므로 그에 맞게 리디렉션
+      const repo =
+        segments[1] === 'oasis-admin-local' ? '/oasis-admin-local' : '';
+
+      // 현재 URL 저장
+      sessionStorage.redirect = window.location.href;
+
+      // 메인 페이지로 리디렉션
+      window.location.replace(`${repo}/`);
+    </script>
+  </head>
+  <body>
+    <h2>페이지 리디렉션 중...</h2>
+    <p>
+      GitHub Pages에서 단일 페이지 앱을 지원하기 위한 리디렉션 중입니다.
+      자동으로 리디렉션되지 않으면 <a href="/oasis-admin-local/">여기</a>를
+      클릭하세요.
+    </p>
+  </body>
 </html>
