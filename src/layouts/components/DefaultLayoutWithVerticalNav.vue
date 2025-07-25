@@ -37,7 +37,17 @@ const router = useRouter();
 const switchAccount = account => {
   currentAccount.value = account;
   isAccountMenuOpen.value = false;
-  router.push('/dashboard');
+  
+  // 계정 타입에 따라 다른 대시보드 경로로 이동
+  if (account.type === 'System') {
+    router.push('/dashboard');
+  } else if (account.type === 'Tenant') {
+    router.push('/tenant/dashboard');
+  } else if (account.type === 'Workspace') {
+    router.push('/workspace/dashboard');
+  } else {
+    router.push('/dashboard'); // 기본 경로
+  }
 };
 
 const display = useDisplay();

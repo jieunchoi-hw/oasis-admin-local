@@ -92,6 +92,14 @@ export const routes = [
           },
         ],
       },
+      {
+        path: 'tenant/dashboard',
+        component: () => import('@/pages/tenant/dashboard.vue'),
+      },
+      {
+        path: 'workspace/dashboard',
+        component: () => import('@/pages/workspace/dashboard.vue'),
+      },
     ],
   },
   {
