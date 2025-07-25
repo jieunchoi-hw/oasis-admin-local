@@ -2,27 +2,29 @@
 import aviato from '@images/logos/aviato.png';
 import bitbank from '@images/logos/bitbank.png';
 import zipcar from '@images/logos/zipcar.png';
-
+import openaiLogo from '@/assets/images/logos/openai.png';
+import awsLogo from '@/assets/images/logos/aws.png';
+import aoaiLogo from '@/assets/images/logos/aoai.png';
 const earnings = [
   {
-    avatar: zipcar,
-    title: 'Zipcar',
-    subtitle: 'Vuejs, React & HTML',
-    amount: '$24,895.65',
+    avatar: openaiLogo,
+    title: 'OpenAI',
+    subtitle: 'LLM Provider',
+    amount: '1,000',
     progress: 'primary',
   },
   {
-    avatar: bitbank,
-    title: 'Bitbank',
-    subtitle: 'Sketch, Figma & XD',
-    amount: '$8,6500.20',
+    avatar: awsLogo,
+    title: 'Azure',
+    subtitle: 'LLM Provider',
+    amount: '500',
     progress: 'info',
   },
   {
-    avatar: aviato,
-    title: 'Aviato',
-    subtitle: 'HTML & Anguler',
-    amount: '$1,2450.80',
+    avatar: aoaiLogo,
+    title: 'Local LLM',
+    subtitle: 'LLM Provider',
+    amount: '200',
     progress: 'secondary',
   },
 ];
@@ -46,7 +48,7 @@ const moreList = [
 <template>
   <VCard>
     <VCardItem>
-      <VCardTitle>Total Earning</VCardTitle>
+      <VCardTitle>LLM별 사용량</VCardTitle>
 
       <template #append>
         <div class="me-n3">
@@ -57,12 +59,11 @@ const moreList = [
 
     <VCardText>
       <div class="d-flex align-center">
-        <h3 class="text-h3">$24,895</h3>
-
+        <h3 class="text-h3">총 1,700회</h3>
         <VIcon size="24" icon="ri-arrow-up-s-line" color="success" />
-        <div class="text-success">10%</div>
+        <div class="text-success">최근 10% 증가</div>
       </div>
-      <div class="text-body-1 mb-12">Compared to $84,325 last year</div>
+      <div class="text-body-1 mb-12">최근 1주일 기준</div>
 
       <VList class="card-list">
         <VListItem v-for="earning in earnings" :key="earning.title">

@@ -1,44 +1,28 @@
 <script setup>
 const salesByCountries = [
   {
-    abbr: 'US',
-    amount: '$8,656k',
-    country: 'United states of america',
-    change: '+25.8%',
-    sales: '894k',
-    color: 'success',
+    abbr: 'SP',
+    amount: '120',
+    country: 'SharePoint',
+    change: '+10%',
+    sales: '120',
+    color: 'primary',
   },
   {
-    abbr: 'UK',
-    amount: '$2,415k',
-    country: 'United kingdom',
-    change: '-6.2%',
-    sales: '645k',
-    color: 'error',
+    abbr: 'OD',
+    amount: '80',
+    country: 'OneDrive',
+    change: '+5%',
+    sales: '80',
+    color: 'info',
   },
   {
-    abbr: 'IN',
-    amount: '$865k',
-    country: 'India',
-    change: '+12.4%',
-    sales: '148k',
-    color: 'warning',
-  },
-  {
-    abbr: 'JA',
-    amount: '$745k',
-    country: 'Japan',
-    change: '-11.9%',
-    sales: '86k',
+    abbr: 'DOC',
+    amount: '30',
+    country: '문서 파일',
+    change: '+2%',
+    sales: '30',
     color: 'secondary',
-  },
-  {
-    abbr: 'KO',
-    amount: '$45k',
-    country: 'Korea',
-    change: '+16.2%',
-    sales: '42k',
-    color: 'error',
   },
 ];
 
@@ -61,10 +45,10 @@ const moreList = [
 <template>
   <VCard>
     <VCardItem>
-      <VCardTitle>Sales by Countries</VCardTitle>
+      <VCardTitle>문서 소스별 쿼리</VCardTitle>
 
       <template #append>
-        <div class="me-n3">
+        <div class="me-n3 pa-0">
           <MoreBtn :menu-list="moreList" />
         </div>
       </template>
@@ -111,7 +95,7 @@ const moreList = [
               <h6 class="text-h6 mb-1">
                 {{ data.sales }}
               </h6>
-              <div class="text-body-2 text-disabled text-end">Sales</div>
+              <div class="text-body-2 text-disabled text-end">쿼리 수</div>
             </div>
           </template>
         </VListItem>

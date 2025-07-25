@@ -6,7 +6,7 @@ const vuetifyTheme = useTheme();
 
 const series = [
   {
-    data: [0, 20, 5, 30, 15, 45],
+    data: [10, 20, 30, 35, 40, 42],
   },
 ];
 
@@ -69,7 +69,7 @@ const chartOptions = computed(() => {
 <template>
   <VCard>
     <VCardText>
-      <h4 class="text-h4">$86.4k</h4>
+      <h4 class="text-h4">42%</h4>
       <VueApexCharts
         type="line"
         :options="chartOptions"
@@ -78,7 +78,7 @@ const chartOptions = computed(() => {
         class="my-1"
       />
 
-      <h6 class="text-h6 text-center">Total Profit</h6>
+      <h6 class="text-h6 text-center">RAG 엔진 활용률</h6>
     </VCardText>
   </VCard>
 </template>

@@ -6,8 +6,8 @@ const currentTheme = computed(() => vuetifyTheme.current.value.colors);
 
 const series = [
   {
-    name: '2020',
-    data: [35, 85, 55, 50, 70],
+    name: 'Error/Warning',
+    data: [1, 2, 2, 4, 0],
   },
 ];
 
@@ -107,7 +107,7 @@ const chartOptions = computed(() => {
 <template>
   <VCard>
     <VCardText>
-      <h4 class="text-h4">2,856</h4>
+      <h4 class="text-h5">Error 0, Warning 2</h4>
 
       <VueApexCharts
         :options="chartOptions"
@@ -116,7 +116,7 @@ const chartOptions = computed(() => {
         class="my-1"
       />
 
-      <h6 class="text-h6 text-center">Sessions</h6>
+      <h6 class="text-h6 text-center">System Error/Warning</h6>
     </VCardText>
   </VCard>
 </template>

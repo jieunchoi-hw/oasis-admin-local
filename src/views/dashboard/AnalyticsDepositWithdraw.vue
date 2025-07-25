@@ -9,70 +9,43 @@ import gumroad from '@images/logos/gumroad.png';
 import mastercardLabel from '@images/logos/mastercard-label.png';
 import slack from '@images/logos/slack.png';
 import stripe from '@images/logos/stripe.png';
+import openaiLogo from '@/assets/images/logos/openai.png';
+import aoaiLogo from '@/assets/images/logos/aoai.png';
+import awsLogo from '@/assets/images/logos/aws.png';
 
 const deposits = [
   {
-    title: 'Gumroad Account',
-    subtitle: 'Sell UI Kit',
-    amount: '+$4,650',
-    logo: gumroad,
+    title: 'MCP 서버',
+    subtitle: '상태',
+    amount: '정상',
+    logo: awsLogo,
   },
   {
-    title: 'Mastercard',
-    subtitle: 'Wallet deposit',
-    amount: '+$92,705',
-    logo: mastercardLabel,
+    title: '외부 MCP',
+    subtitle: '연동 개수',
+    amount: '1개',
+    logo: openaiLogo,
   },
   {
-    title: 'Stripe Account',
-    subtitle: 'iOS Application',
-    amount: '+$957',
-    logo: stripe,
-  },
-  {
-    title: 'American Bank',
-    subtitle: 'American Bank',
-    amount: '+$6,837',
-    logo: americanBank,
-  },
-  {
-    title: 'Bank Account',
-    subtitle: 'Wallet deposit',
-    amount: '+$8,934',
-    logo: citiBank,
+    title: 'Inference 요청',
+    subtitle: '오늘',
+    amount: '1,700',
+    logo: aoaiLogo,
   },
 ];
 
 const withdraws = [
   {
-    title: 'Google Adsense',
-    subtitle: 'PayPal deposit',
-    amount: '-$145',
-    logo: google,
+    title: 'LLM Proxy',
+    subtitle: '상태',
+    amount: '정상',
+    logo: openaiLogo,
   },
   {
-    title: 'GitHub Enterprise',
-    subtitle: 'Security & compliance',
-    amount: '-$1870',
-    logo: github,
-  },
-  {
-    title: 'Upgrade Slack Plan',
-    subtitle: 'Debit card deposit',
-    amount: '-$450',
-    logo: slack,
-  },
-  {
-    title: 'DigitalOcean',
-    subtitle: 'Cloud Hosting',
-    amount: '-$540',
-    logo: digitalOcean,
-  },
-  {
-    title: 'AWS Account',
-    subtitle: 'Choosing a Cloud Platform',
-    amount: '-$21',
-    logo: aws,
+    title: 'Local LLM',
+    subtitle: '상태',
+    amount: '정상',
+    logo: aoaiLogo,
   },
 ];
 </script>
@@ -82,7 +55,7 @@ const withdraws = [
     <VRow no-gutters>
       <VCol cols="12" md="6">
         <VCardItem>
-          <VCardTitle>Deposit</VCardTitle>
+          <VCardTitle>MCP/Inference 현황</VCardTitle>
 
           <template #append>
             <h6 class="text-h6">
@@ -121,7 +94,7 @@ const withdraws = [
 
       <VCol cols="12" md="6">
         <VCardItem>
-          <VCardTitle>Withdraw</VCardTitle>
+          <VCardTitle>LLM Proxy/Local LLM</VCardTitle>
 
           <template #append>
             <h6 class="text-h6">

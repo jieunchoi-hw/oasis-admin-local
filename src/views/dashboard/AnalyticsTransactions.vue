@@ -1,27 +1,27 @@
 <script setup>
 const statistics = [
   {
-    title: 'Sales',
-    stats: '245k',
-    icon: 'ri-pie-chart-2-line',
+    title: '인증 요청',
+    stats: '1,234',
+    icon: 'ri-shield-user-line',
     color: 'primary',
   },
   {
-    title: 'Customers',
-    stats: '12.5k',
-    icon: 'ri-group-line',
+    title: '채팅 메시지',
+    stats: '2,345',
+    icon: 'ri-message-2-line',
     color: 'success',
   },
   {
-    title: 'Product',
-    stats: '1.54k',
-    icon: 'ri-macbook-line',
+    title: 'RAG 활용 쿼리',
+    stats: '520',
+    icon: 'ri-database-2-line',
     color: 'warning',
   },
   {
-    title: 'Revenue',
-    stats: '$88k',
-    icon: 'ri-money-dollar-circle-line',
+    title: '활성 사용자',
+    stats: '123',
+    icon: 'ri-user-smile-line',
     color: 'info',
   },
 ];
@@ -43,14 +43,9 @@ const moreList = [
 </script>
 
 <template>
-  <VCard title="Transactions">
+  <VCard title="OASIS 주요 지표">
     <template #subtitle>
-      <p class="text-body-1 mb-0">
-        <span class="d-inline-block font-weight-medium text-high-emphasis"
-          >Total 48.5% Growth</span
-        >
-        <span class="text-high-emphasis">😎</span> this month
-      </p>
+      <p class="text-body-1 mb-0">오늘 기준 주요 서비스 현황입니다.</p>
     </template>
 
     <template #append>

@@ -82,7 +82,7 @@ const options = computed(() => {
 
 const series = [
   {
-    data: [37, 57, 45, 75, 57, 40, 65],
+    data: [500, 600, 520, 700, 580, 400, 279],
   },
 ];
 
@@ -105,13 +105,13 @@ const moreList = [
 <template>
   <VCard>
     <VCardItem>
-      <VCardTitle>Weekly Overview</VCardTitle>
+      <VCardTitle>주간 인증/채팅 트렌드</VCardTitle>
 
-      <template #append>
+      <!-- <template #append>
         <div class="me-n3">
           <MoreBtn :menu-list="moreList" />
         </div>
-      </template>
+      </template> -->
     </VCardItem>
 
     <VCardText>
@@ -123,11 +123,10 @@ const moreList = [
       />
 
       <div class="d-flex align-center mb-5 gap-x-4">
-        <h4 class="text-h4">45%</h4>
+        <h4 class="text-h4">3,579</h4>
         <p class="mb-0">
-          Your sales performance is 45%
-          <span class="text-high-emphasis">😎</span> better compared to last
-          month
+          이번주 인증/채팅 총합
+          <span class="text-high-emphasis">📈</span> 지난주 대비 12% 증가
         </p>
       </div>
 
