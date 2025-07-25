@@ -19,7 +19,7 @@ const menuStructure = {
     dashboard: {
       title: 'Dashboard',
       icon: 'ri-home-smile-line',
-      to: '/dashboard',
+      to: '/system/dashboard',
     },
     systemAdmin: {
       title: 'System Admin 사용자 관리',
@@ -81,7 +81,7 @@ const menuStructure = {
     dashboard: {
       title: 'Dashboard',
       icon: 'ri-home-smile-line',
-      to: '/dashboard',
+      to: '/tenant/dashboard',
     },
     tenantSettings: {
       title: '테넌트 설정',
@@ -123,7 +123,7 @@ const menuStructure = {
     dashboard: {
       title: 'Dashboard',
       icon: 'ri-home-smile-line',
-      to: '/dashboard',
+      to: '/workspace/dashboard',
     },
     workspaceSettings: {
       title: 'Workspace 설정',
