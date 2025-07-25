@@ -97,6 +97,60 @@ export const routes = [
         component: () => import('@/pages/tenant/dashboard.vue'),
       },
       {
+        path: 'tenant/settings',
+        component: () => import('@/pages/tenant/settings/index.vue'),
+        children: [
+          { path: '', redirect: 'basic-info' },
+          {
+            path: 'basic-info',
+            component: () => import('@/pages/tenant/settings/BasicInfoTab.vue'),
+          },
+          {
+            path: 'admin-users',
+            component: () => import('@/pages/tenant/settings/AdminUsersTab.vue'),
+          },
+          {
+            path: 'llm-usage',
+            component: () => import('@/pages/tenant/settings/LlmUsageTab.vue'),
+          },
+          {
+            path: 'mcp-usage',
+            component: () => import('@/pages/tenant/settings/McpUsageTab.vue'),
+          },
+          {
+            path: 'vector-usage',
+            component: () => import('@/pages/tenant/settings/VectorUsageTab.vue'),
+          },
+          {
+            path: 'company-secretary',
+            component: () => import('@/pages/tenant/settings/CompanySecretaryTab.vue'),
+          },
+          {
+            path: 'secretary-approval',
+            component: () => import('@/pages/tenant/settings/SecretaryApprovalTab.vue'),
+          },
+        ],
+      },
+      {
+        path: 'tenant/workspace-settings',
+        component: () => import('@/pages/tenant/workspace-settings/index.vue'),
+        children: [
+          { path: '', redirect: 'llm-assignment' },
+          {
+            path: 'llm-assignment',
+            component: () => import('@/pages/tenant/workspace-settings/LlmAssignmentTab.vue'),
+          },
+          {
+            path: 'mcp-assignment',
+            component: () => import('@/pages/tenant/workspace-settings/McpAssignmentTab.vue'),
+          },
+          {
+            path: 'secretary-assignment',
+            component: () => import('@/pages/tenant/workspace-settings/SecretaryAssignmentTab.vue'),
+          },
+        ],
+      },
+      {
         path: 'workspace/dashboard',
         component: () => import('@/pages/workspace/dashboard.vue'),
       },
