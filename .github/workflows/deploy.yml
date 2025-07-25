@@ -14,10 +14,12 @@ jobs:
     # GitHub Actions에 저장소 쓰기 권한 추가
     permissions:
       contents: write
+      pages: write
+      id-token: write
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -25,7 +27,7 @@ jobs:
           version: latest
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'pnpm'
@@ -46,13 +48,15 @@ jobs:
           # .nojekyll 파일이 빌드 폴더에 복사되었는지 확인
           touch dist/.nojekyll
           # assets와 경로 확인을 위한 디버그
+          echo "=== Dist directory contents ==="
           ls -la dist/
+          echo "=== Assets directory contents ==="
           ls -la dist/assets/ || echo "No assets directory found"
+          echo "=== Index.html content preview ==="
+          head -20 dist/index.html
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          folder: dist # 빌드된 파일이 저장되는 폴더
-          branch: gh-pages # 배포될 브랜치
-          token: ${{ secrets.GITHUB_TOKEN }} # GitHub에서 자동으로 제공하는 토큰
-          clean: true # 이전 배포 파일을 정리
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
