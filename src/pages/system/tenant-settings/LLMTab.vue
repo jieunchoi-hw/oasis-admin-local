@@ -49,7 +49,7 @@
               v-bind="llm.variant ? { variant: llm.variant } : {}"
             >
               <div class="d-flex align-center justify-space-between">
-                <div class="d-flex align-center gap-3">
+                <div class="d-flex align-start gap-3">
                   <template
                     v-if="
                       llm.icon.endsWith &&
@@ -67,9 +67,17 @@
                   </template>
                   <div>
                     <div class="text-heading-6 font-weight-medium">
+                      <VChip
+                        color="primary"
+                        size="x-small"
+                        class="text-caption"
+                      >
+                        {{ llm.provider }}
+                      </VChip>
                       {{ llm.name }} ({{ llm.level }})
                     </div>
-                    <div class="text-caption text-medium-emphasis">
+
+                    <div class="text-caption text-medium-emphasis mt-2 ms-2">
                       {{ llm.desc }}
                     </div>
                   </div>
@@ -136,7 +144,7 @@
               class="pa-3"
             >
               <div class="d-flex align-center justify-space-between">
-                <div class="d-flex align-center gap-3">
+                <div class="d-flex align-start gap-3">
                   <template
                     v-if="
                       llm.icon.endsWith &&
@@ -154,9 +162,17 @@
                   </template>
                   <div>
                     <div class="text-heading-6 font-weight-medium">
+                      <VChip
+                        color="primary"
+                        size="x-small"
+                        class="text-caption"
+                      >
+                        {{ llm.provider }}
+                      </VChip>
                       {{ llm.name }} ({{ llm.level }})
                     </div>
-                    <div class="text-caption text-medium-emphasis">
+
+                    <div class="text-caption text-medium-emphasis mt-2 ms-2">
                       {{ llm.desc }}
                     </div>
                   </div>
