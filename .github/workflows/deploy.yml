@@ -3,8 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # main 브랜치에 푸시될 때만 실행
-  workflow_dispatch:  # 수동으로 워크플로우를 실행할 수 있게 함
+      - main # main 브랜치에 푸시될 때만 실행
+    paths-ignore:
+      - '**.md' # README.md 등의 마크다운 파일 변경 시 실행하지 않음
+  workflow_dispatch: # 수동으로 워크플로우를 실행할 수 있게 함eploy to GitHub Pages
 
 jobs:
   build-and-deploy:
@@ -13,28 +15,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'pnpm'
-          
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: false
-          
+
       - name: Install dependencies
-        run: pnpm install
-        
+        run: pnpm install --no-frozen-lockfile
+
       - name: Build project
         run: pnpm run build
-        
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist  # 빌드된 파일이 저장되는 폴더
-          branch: gh-pages  # 배포될 브랜치
-          token: ${{ secrets.GITHUB_TOKEN }}  # GitHub에서 자동으로 제공하는 토큰
+          folder: dist # 빌드된 파일이 저장되는 폴더
+          branch: gh-pages # 배포될 브랜치
+          token: ${{ secrets.GITHUB_TOKEN }} # GitHub에서 자동으로 제공하는 토큰
