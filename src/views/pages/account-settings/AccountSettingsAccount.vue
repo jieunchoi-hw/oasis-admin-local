@@ -1,8 +1,8 @@
 <script setup>
-import avatar1 from '@images/avatars/avatar-1.png';
+import avatar2 from '@images/avatars/avatar-2.png';
 
 const accountData = {
-  avatarImg: avatar1,
+  avatarImg: avatar2,
   firstName: 'john',
   lastName: 'Doe',
   email: 'johnDoe@example.com',

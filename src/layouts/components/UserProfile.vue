@@ -1,5 +1,5 @@
 <script setup>
-import avatar1 from '@images/avatars/avatar-1.png';
+import avatar2 from '@images/avatars/avatar-2.png';
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import avatar1 from '@images/avatars/avatar-1.png';
     bordered
   >
     <VAvatar class="cursor-pointer" color="primary" variant="tonal">
-      <VImg :src="avatar1" />
+      <VImg :src="avatar2" />
 
       <!-- SECTION Menu -->
       <VMenu activator="parent" width="230" location="bottom end" offset="14px">
