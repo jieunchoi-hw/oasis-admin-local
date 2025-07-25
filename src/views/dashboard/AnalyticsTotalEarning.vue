@@ -3,7 +3,7 @@ import aviato from '@images/logos/aviato.png';
 import bitbank from '@images/logos/bitbank.png';
 import zipcar from '@images/logos/zipcar.png';
 import openaiLogo from '@/assets/images/logos/openai.png';
-import awsLogo from '@/assets/images/logos/aws.png';
+import ollamaLogo from '@/assets/images/logos/ollama.png';
 import aoaiLogo from '@/assets/images/logos/aoai.png';
 const earnings = [
   {
@@ -14,14 +14,14 @@ const earnings = [
     progress: 'primary',
   },
   {
-    avatar: awsLogo,
-    title: 'Azure',
+    avatar: aoaiLogo,
+    title: 'Azure OpenAI',
     subtitle: 'LLM Provider',
     amount: '500',
     progress: 'info',
   },
   {
-    avatar: aoaiLogo,
+    avatar: ollamaLogo,
     title: 'Local LLM',
     subtitle: 'LLM Provider',
     amount: '200',

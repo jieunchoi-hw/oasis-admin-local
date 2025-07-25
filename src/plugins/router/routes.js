@@ -154,6 +154,33 @@ export const routes = [
         path: 'workspace/dashboard',
         component: () => import('@/pages/workspace/dashboard.vue'),
       },
+      {
+        path: 'workspace/settings',
+        component: () => import('@/pages/workspace/settings/index.vue'),
+        children: [
+          { path: '', redirect: 'users' },
+          {
+            path: 'users',
+            component: () => import('@/pages/workspace/settings/UsersTab.vue'),
+          },
+          {
+            path: 'llm-assignment',
+            component: () => import('@/pages/workspace/settings/LlmAssignmentTab.vue'),
+          },
+          {
+            path: 'mcp-assignment',
+            component: () => import('@/pages/workspace/settings/McpAssignmentTab.vue'),
+          },
+          {
+            path: 'secretary-assignment',
+            component: () => import('@/pages/workspace/settings/SecretaryAssignmentTab.vue'),
+          },
+        ],
+      },
+      {
+        path: 'workspace/user-secretary',
+        component: () => import('@/pages/workspace/user-secretary.vue'),
+      },
     ],
   },
   {
