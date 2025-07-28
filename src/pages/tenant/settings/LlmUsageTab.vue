@@ -3,7 +3,7 @@
     <!-- 상단 설명 및 Save 버튼 -->
     <div class="d-flex justify-space-between align-center mb-4">
       <div class="text-body-2 text-medium-emphasis">
-        ■ System Admin에서 부터 내려온 LLM 중 사용할 LLM 을 설정한다.
+        ■ System Admin에 의해 배정된 LLM 중 사용할 LLM 을 설정한다.
       </div>
       <VBtn color="primary" @click="saveLLMAssignments"> Save </VBtn>
     </div>
@@ -134,7 +134,7 @@
       <div class="flex-grow-1 d-flex flex-column flex-1-1-0">
         <div class="d-flex align-center justify-space-between mb-3">
           <div class="d-flex align-center">
-            <div class="text-body-2 ms-1">현재 사용하는 전사 LLM 리스트</div>
+            <div class="text-body-2 ms-1">현재 사용하는 전사 LLM</div>
           </div>
           <div class="d-flex align-center gap-2 me-3">
             <VBtn variant="text" size="small"> 전체선택 </VBtn>
