@@ -1,9 +1,10 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue';
 import VerticalNavGroup from '@layouts/components/VerticalNavGroup.vue';
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue';
 import { useTenantStore } from '@/stores/tenant';
+import { useUserStore } from '@/stores/user';
 
 // props 정의
 const props = defineProps({
@@ -12,6 +13,9 @@ const props = defineProps({
     default: 'System',
   },
 });
+
+// 사용자 스토어에서 현재 계정 타입 가져오기
+const userStore = useUserStore();
 
 // 권한별 메뉴 구조 정의
 const menuStructure = {
@@ -150,6 +154,12 @@ const currentMenus = computed(() => {
   return menuStructure[props.currentAccountType] || menuStructure.System;
 });
 const tenantStore = useTenantStore();
+
+// 현재 props로 받은 계정 타입과 userStore의 계정 타입이 일치하지 않는 경우 업데이트
+// 이 코드는 새로고침 이후 올바른 계정 타입이 유지되도록 돕습니다
+if (props.currentAccountType && userStore.currentAccountType !== props.currentAccountType) {
+  userStore.setAccountType(props.currentAccountType);
+}
 
 function getTabTo(tabTo) {
   if (tabTo.startsWith('/system/tenant-settings/')) {

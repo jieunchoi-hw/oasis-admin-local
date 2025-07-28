@@ -31,16 +31,29 @@ const accounts = ref([
   },
 ]);
 
-const currentAccount = ref(accounts.value[0]);
+import { useUserStore } from '@/stores/user';
+const userStore = useUserStore();
+
+// 로컬 스토리지에서 저장된 계정 타입 불러오기
+const findAccountByType = (type) => {
+  return accounts.value.find(acc => acc.type === type) || accounts.value[0];
+};
+
+// 로컬 스토리지에 저장된 계정 타입 기반으로 현재 계정 설정
+const currentAccount = ref(findAccountByType(userStore.currentAccountType));
 const isAccountMenuOpen = ref(false);
 const router = useRouter();
+
 const switchAccount = account => {
   currentAccount.value = account;
   isAccountMenuOpen.value = false;
   
+  // 사용자 스토어에 계정 타입 저장
+  userStore.setAccountType(account.type);
+  
   // 계정 타입에 따라 다른 대시보드 경로로 이동
   if (account.type === 'System') {
-    router.push('/dashboard');
+    router.push('/system/dashboard');
   } else if (account.type === 'Tenant') {
     router.push('/tenant/dashboard');
   } else if (account.type === 'Workspace') {

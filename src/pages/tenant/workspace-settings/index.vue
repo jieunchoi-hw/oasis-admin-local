@@ -16,7 +16,7 @@
   <div class="mb-4 text-body-1 text-medium-emphasis">
     Workspace 별로 사용할 Resource를 배정한다.
   </div>
-  <VTabs v-model="tab" class="mb-4" @update:model-value="handleTabChange">
+  <VTabs v-model="tab" class="mb-4">
     <VTab
       min-width="100"
       v-for="item in tabItems"
