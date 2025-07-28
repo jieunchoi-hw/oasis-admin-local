@@ -88,7 +88,7 @@ const menuStructure = {
       to: '/tenant/dashboard',
     },
     tenantSettings: {
-      title: '테넌트 설정',
+      title: 'Tenant 설정',
       icon: 'ri-settings-3-line',
       to: '/tenant/settings',
       hasTabs: true,
@@ -106,7 +106,7 @@ const menuStructure = {
       ],
     },
     workspaceSettings: {
-      title: 'Workspace 별설정',
+      title: 'Workspace별 설정',
       icon: 'ri-layout-grid-line',
       to: '/tenant/workspace-settings',
       hasTabs: true,
@@ -157,7 +157,10 @@ const tenantStore = useTenantStore();
 
 // 현재 props로 받은 계정 타입과 userStore의 계정 타입이 일치하지 않는 경우 업데이트
 // 이 코드는 새로고침 이후 올바른 계정 타입이 유지되도록 돕습니다
-if (props.currentAccountType && userStore.currentAccountType !== props.currentAccountType) {
+if (
+  props.currentAccountType &&
+  userStore.currentAccountType !== props.currentAccountType
+) {
   userStore.setAccountType(props.currentAccountType);
 }
 
