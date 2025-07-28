@@ -1,12 +1,14 @@
 <template>
   <div>
     <div class="d-flex justify-end mb-4">
+      <VSpacer />
       <VTextField
         class="me-2"
         v-model="filterText"
         placeholder="부서명으로 검색"
         variant="outlined"
         density="compact"
+        style="max-width: 250px"
         hide-details
         prepend-inner-icon="ri-search-line"
       />
