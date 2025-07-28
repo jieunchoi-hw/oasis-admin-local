@@ -36,8 +36,11 @@
             density="compact"
             hide-details
             style="min-width: 200px"
+            @keyup.enter="applySearch"
           />
-          <VBtn color="primary" variant="outlined"> 검색 </VBtn>
+          <VBtn color="primary" variant="outlined" @click="applySearch">
+            검색
+          </VBtn>
         </div>
 
         <!-- 뷰 전환 버튼 -->
@@ -249,6 +252,7 @@ import CommonTable from '@/components/CommonTable.vue';
 const selectedStatus = ref('all');
 const selectedSecretary = ref('비서명');
 const searchQuery = ref('');
+const appliedSearchQuery = ref(''); // 실제 필터링에 적용되는 검색어
 const viewMode = ref('card');
 const showRequestModal = ref(false);
 const selectedRequest = ref(null);
@@ -407,8 +411,8 @@ const filteredRequests = computed(() => {
   }
 
   // 검색 필터
-  if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase();
+  if (appliedSearchQuery.value) {
+    const query = appliedSearchQuery.value.toLowerCase();
     filtered = filtered.filter(
       request =>
         request.secretaryName.toLowerCase().includes(query) ||
@@ -477,6 +481,11 @@ const saveRequest = async () => {
   } finally {
     isSaving.value = false;
   }
+};
+
+// 검색 적용 함수
+const applySearch = () => {
+  appliedSearchQuery.value = searchQuery.value;
 };
 
 // 테이블 액션 핸들러
