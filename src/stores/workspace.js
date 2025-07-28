@@ -7,16 +7,16 @@ export const useWorkspaceStore = defineStore('workspace', () => {
     { id: 1, name: 'AI솔루션팀', level: 0, isCustom: false },
     { id: 2, name: 'AI사업팀', level: 0, isCustom: false },
     { id: 3, name: 'XXXX팀', level: 0, isCustom: false },
-    { id: 4, name: '-AI솔루션개발팀', level: 1, parentId: 1, isCustom: false },
+    { id: 4, name: 'AI솔루션개발팀', level: 1, parentId: 1, isCustom: false },
     {
       id: 5,
-      name: '-AI솔루션테스트팀',
+      name: 'AI솔루션테스트팀',
       level: 1,
       parentId: 1,
       isCustom: false,
     },
-    { id: 6, name: '--XXX프로젝트 TF', level: 2, parentId: 4, isCustom: true },
-    { id: 7, name: '--YYY프로젝트 TF', level: 2, parentId: 5, isCustom: true },
+    { id: 6, name: 'XXX프로젝트 TF', level: 2, parentId: 4, isCustom: true },
+    { id: 7, name: 'YYY프로젝트 TF', level: 2, parentId: 5, isCustom: true },
   ]);
 
   // 선택된 Workspace

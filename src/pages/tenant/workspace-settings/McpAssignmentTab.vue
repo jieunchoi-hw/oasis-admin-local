@@ -127,8 +127,7 @@
                 <div
                   class="text-truncate"
                   :style="{
-                    marginLeft:
-                      workspaceStore.getIndentLevel(workspace.name) + 'px',
+                    marginLeft: workspace.level * 20 + 'px',
                   }"
                   :title="workspaceStore.getDisplayName(workspace.name)"
                 >
