@@ -247,7 +247,7 @@ import CommonTable from '@/components/CommonTable.vue';
 
 // 상태 관리
 const selectedStatus = ref('all');
-const selectedSecretary = ref('');
+const selectedSecretary = ref('비서명');
 const searchQuery = ref('');
 const viewMode = ref('card');
 const showRequestModal = ref(false);
@@ -269,7 +269,14 @@ const tableColumns = ref([
 ]);
 
 // 옵션 데이터
-const secretaryOptions = ref(['신중한 똑쟁이', '예쁜 지은이', '모든 비서']);
+
+const secretaryOptions = ref([
+  '비서명',
+  '신중한 똑쟁이',
+  '진지한 똑쟁이',
+  '글잘쓰는 지은이',
+  'STT특화',
+]);
 
 const statusOptions = ref([
   { title: '대기중', value: 'waiting' },
@@ -393,7 +400,7 @@ const filteredRequests = computed(() => {
   }
 
   // 비서 필터
-  if (selectedSecretary.value && selectedSecretary.value !== '모든 비서') {
+  if (selectedSecretary.value && selectedSecretary.value !== '비서명') {
     filtered = filtered.filter(
       request => request.secretaryName === selectedSecretary.value
     );
