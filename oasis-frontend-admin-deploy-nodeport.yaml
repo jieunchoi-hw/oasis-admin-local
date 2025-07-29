@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oasis-frontend-admin
+  namespace: haiqv
+  uid: c2b86d9f-9b4b-4276-829b-530f55d6921b
+  resourceVersion: '23256146'
+  creationTimestamp: '2025-07-29T01:00:11Z'
+  labels:
+    app: oasis-frontend-admin
+    app.kubernetes.io/managed-by: Helm
+    k8slens-edit-resource-version: v1
+    service: oasis-frontend-admin
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"oasis-frontend-admin","app.kubernetes.io/managed-by":"Helm","service":"oasis-frontend-admin"},"name":"oasis-frontend-admin","namespace":"haiqv"},"spec":{"internalTrafficPolicy":"Cluster","ipFamilyPolicy":"SingleStack","ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":3000}],"selector":{"app":"oasis-frontend-admin"},"sessionAffinity":"None","type":"ClusterIP"}}
+  managedFields:
+    - manager: kubectl-client-side-apply
+      operation: Update
+      apiVersion: v1
+      time: '2025-07-29T01:00:11Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:kubectl.kubernetes.io/last-applied-configuration: {}
+          f:labels:
+            .: {}
+            f:app: {}
+            f:app.kubernetes.io/managed-by: {}
+            f:service: {}
+        f:spec:
+          f:internalTrafficPolicy: {}
+          f:ipFamilyPolicy: {}
+          f:ports:
+            .: {}
+            k:{"port":80,"protocol":"TCP"}:
+              .: {}
+              f:name: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector: {}
+          f:sessionAffinity: {}
+    - manager: node-fetch
+      operation: Update
+      apiVersion: v1
+      time: '2025-07-29T01:03:14Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            f:k8slens-edit-resource-version: {}
+        f:spec:
+          f:externalTrafficPolicy: {}
+          f:ports:
+            k:{"port":80,"protocol":"TCP"}:
+              f:nodePort: {}
+          f:type: {}
+  selfLink: /api/v1/namespaces/haiqv/services/oasis-frontend-admin
+status:
+  loadBalancer: {}
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: 32068
+  selector:
+    app: oasis-frontend-admin
+  clusterIP: 10.233.47.134
+  clusterIPs:
+    - 10.233.47.134
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
