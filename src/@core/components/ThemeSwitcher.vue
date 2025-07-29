@@ -1,3 +1,12 @@
+<template>
+  <IconBtn @click="changeTheme">
+    <VIcon :icon="props.themes[currentThemeIndex].icon" />
+    <VTooltip activator="parent" open-delay="1000" scroll-strategy="close">
+      <span class="text-capitalize">{{ currentThemeName }}</span>
+    </VTooltip>
+  </IconBtn>
+</template>
+
 <script setup>
 import { useTheme } from 'vuetify';
 
@@ -31,12 +40,3 @@ watch(
   }
 );
 </script>
-
-<template>
-  <IconBtn @click="changeTheme">
-    <VIcon :icon="props.themes[currentThemeIndex].icon" />
-    <VTooltip activator="parent" open-delay="1000" scroll-strategy="close">
-      <span class="text-capitalize">{{ currentThemeName }}</span>
-    </VTooltip>
-  </IconBtn>
-</template>

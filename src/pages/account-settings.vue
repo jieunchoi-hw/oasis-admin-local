@@ -1,32 +1,3 @@
-<script setup>
-import { useRoute } from 'vue-router';
-import AccountSettingsAccount from '@/views/pages/account-settings/AccountSettingsAccount.vue';
-import AccountSettingsNotification from '@/views/pages/account-settings/AccountSettingsNotification.vue';
-import AccountSettingsSecurity from '@/views/pages/account-settings/AccountSettingsSecurity.vue';
-
-const route = useRoute();
-const activeTab = ref(route.params.tab);
-
-// tabs
-const tabs = [
-  {
-    title: 'Account',
-    icon: 'ri-group-line',
-    tab: 'account',
-  },
-  {
-    title: 'Security',
-    icon: 'ri-lock-line',
-    tab: 'security',
-  },
-  {
-    title: 'Notifications',
-    icon: 'ri-notification-3-line',
-    tab: 'notification',
-  },
-];
-</script>
-
 <template>
   <div>
     <VTabs v-model="activeTab" show-arrows class="v-tabs-pill">
@@ -58,3 +29,32 @@ const tabs = [
     </VWindow>
   </div>
 </template>
+
+<script setup>
+import { useRoute } from 'vue-router';
+import AccountSettingsAccount from '@/views/pages/account-settings/AccountSettingsAccount.vue';
+import AccountSettingsNotification from '@/views/pages/account-settings/AccountSettingsNotification.vue';
+import AccountSettingsSecurity from '@/views/pages/account-settings/AccountSettingsSecurity.vue';
+
+const route = useRoute();
+const activeTab = ref(route.params.tab);
+
+// tabs
+const tabs = [
+  {
+    title: 'Account',
+    icon: 'ri-group-line',
+    tab: 'account',
+  },
+  {
+    title: 'Security',
+    icon: 'ri-lock-line',
+    tab: 'security',
+  },
+  {
+    title: 'Notifications',
+    icon: 'ri-notification-3-line',
+    tab: 'notification',
+  },
+];
+</script>

@@ -1,19 +1,3 @@
-<script setup>
-import { useTheme } from 'vuetify';
-import misc404 from '@images/pages/404.png';
-import miscMaskDark from '@images/pages/misc-mask-dark.png';
-import miscMaskLight from '@images/pages/misc-mask-light.png';
-import tree from '@images/pages/tree.png';
-
-const vuetifyTheme = useTheme();
-
-const authThemeMask = computed(() => {
-  return vuetifyTheme.global.name.value === 'light'
-    ? miscMaskLight
-    : miscMaskDark;
-});
-</script>
-
 <template>
   <div class="misc-wrapper">
     <ErrorHeader
@@ -34,6 +18,22 @@ const authThemeMask = computed(() => {
     <VImg :src="authThemeMask" class="misc-footer-img d-none d-md-block" />
   </div>
 </template>
+
+<script setup>
+import { useTheme } from 'vuetify';
+import misc404 from '@images/pages/404.png';
+import miscMaskDark from '@images/pages/misc-mask-dark.png';
+import miscMaskLight from '@images/pages/misc-mask-light.png';
+import tree from '@images/pages/tree.png';
+
+const vuetifyTheme = useTheme();
+
+const authThemeMask = computed(() => {
+  return vuetifyTheme.global.name.value === 'light'
+    ? miscMaskLight
+    : miscMaskDark;
+});
+</script>
 
 <style lang="scss">
 @use '@core/scss/template/pages/misc.scss';

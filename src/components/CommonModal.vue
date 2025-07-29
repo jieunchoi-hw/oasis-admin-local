@@ -1,3 +1,25 @@
+<template>
+  <VDialog v-model="dialogProxy" :max-width="maxWidth">
+    <VCard>
+      <VCardTitle class="d-flex align-center justify-space-between">
+        <span class="font-weight-bold">{{ title }}</span>
+        <VBtn icon @click="$emit('close')" color="black" variant="plain">
+          <VIcon icon="ri-close-line" />
+        </VBtn>
+      </VCardTitle>
+      <VCardText>
+        <!-- Slot을 통한 커스텀 폼 필드 -->
+        <slot :form="form" :update-form="updateForm" :fields="fields" />
+      </VCardText>
+      <VCardActions class="justify-end">
+        <VBtn color="black" @click="handleConfirm">
+          {{ mode === 'add' ? 'Confirm' : 'Save' }}
+        </VBtn>
+      </VCardActions>
+    </VCard>
+  </VDialog>
+</template>
+
 <script setup>
 import { ref, watch } from 'vue';
 import {
@@ -41,27 +63,5 @@ function updateForm(key, value) {
   emit('update:form', updatedForm);
 }
 </script>
-
-<template>
-  <VDialog v-model="dialogProxy" :max-width="maxWidth">
-    <VCard>
-      <VCardTitle class="d-flex align-center justify-space-between">
-        <span class="font-weight-bold">{{ title }}</span>
-        <VBtn icon @click="$emit('close')" color="black" variant="plain">
-          <VIcon icon="ri-close-line" />
-        </VBtn>
-      </VCardTitle>
-      <VCardText>
-        <!-- Slot을 통한 커스텀 폼 필드 -->
-        <slot :form="form" :update-form="updateForm" :fields="fields" />
-      </VCardText>
-      <VCardActions class="justify-end">
-        <VBtn color="black" @click="handleConfirm">
-          {{ mode === 'add' ? 'Confirm' : 'Save' }}
-        </VBtn>
-      </VCardActions>
-    </VCard>
-  </VDialog>
-</template>
 
 <style scoped></style>

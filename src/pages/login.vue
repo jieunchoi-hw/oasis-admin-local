@@ -1,82 +1,24 @@
-<script setup>
-import { useTheme } from 'vuetify';
-import { useRouter } from 'vue-router';
-import { useUserStore } from '@/stores/user';
-import AuthProvider from '@/views/pages/authentication/AuthProvider.vue';
-import authV1MaskDark from '@images/pages/auth-v1-mask-dark.png';
-import authV1MaskLight from '@images/pages/auth-v1-mask-light.png';
-import authV1Tree2 from '@images/pages/oasisImg.png';
-import authV1Tree from '@images/pages/oasisImg2.png';
-
-const form = ref({
-  email: '',
-  password: '',
-  remember: false,
-});
-
-const router = useRouter();
-const userStore = useUserStore();
-
-const vuetifyTheme = useTheme();
-
-const authThemeMask = computed(() => {
-  return vuetifyTheme.global.name.value === 'light'
-    ? authV1MaskLight
-    : authV1MaskDark;
-});
-
-const isPasswordVisible = ref(false);
-
-// 로그인 처리 함수
-const handleLogin = () => {
-  // 데모 목적으로 이메일이 'admin@example.com'이면 'admin' 권한, 그 외는 'system' 권한을 부여
-  const role = form.value.email === 'admin@example.com' ? 'admin' : 'system';
-  
-  // 사용자 정보 저장
-  userStore.setUser({
-    email: form.value.email,
-    role: role,
-  });
-  
-  // 권한에 따라 리다이렉션
-  if (role === 'system') {
-    router.push('/system/dashboard');
-  } else {
-    router.push('/dashboard');
-  }
-};
-</script>
-
 <template>
   <!-- eslint-disable vue/no-v-html -->
 
-  <div class="auth-wrapper d-flex align-center justify-center pa-4">
-    <!-- 배경 비디오 -->
-    <video
-      class="login-bg-video"
-      src="@/assets/video/background_video.mp4"
-      autoplay
-      muted
-      loop
-      playsinline
-    ></video>
+  <div class="auth-wrapper d-flex">
+    <!-- Left Column - Login Form -->
+    <div class="auth-form-section d-flex align-center justify-center pa-4">
+      <div class="auth-form-content">
+        <div class="d-flex align-center justify-center mb-6">
+          <!-- eslint-disable vue/no-v-html -->
 
-    <VCard class="auth-card pa-4 pt-7" max-width="448">
-      <VCardItem class="d-flex align-center justify-center">
-        <!-- eslint-disable vue/no-v-html -->
+          <img src="/logo.png" alt="logo" class="me-2" style="height: 40px" />
+          <img src="/logo_full.png" alt="logo" style="height: 40px" />
+        </div>
 
-        <img src="/logo.png" alt="logo" class="me-2" style="height: 40px" />
-        <img src="/logo_full.png" alt="logo" style="height: 40px" />
-      </VCardItem>
+        <div class="pt-2 mb-6">
+          <h4 class="text-h4 mb-1">Welcome to OASIS! 👋🏻</h4>
+          <p class="mb-0">
+            Please sign-in to your account and start the adventure
+          </p>
+        </div>
 
-      <VCardText class="pt-2">
-        <h4 class="text-h4 mb-1">Welcome to OASIS! 👋🏻</h4>
-        <p class="mb-0">
-          Please sign-in to your account and start the adventure
-        </p>
-      </VCardText>
-
-      <VCardText>
         <VForm @submit.prevent="() => {}">
           <VRow>
             <!-- email -->
@@ -89,7 +31,7 @@ const handleLogin = () => {
               <VTextField
                 v-model="form.password"
                 label="Password"
-                placeholder="············"
+                placeholder="••••••••••••"
                 :type="isPasswordVisible ? 'text' : 'password'"
                 autocomplete="password"
                 :append-inner-icon="
@@ -137,43 +79,107 @@ const handleLogin = () => {
             </VCol>
           </VRow>
         </VForm>
-      </VCardText>
-    </VCard>
-    <!-- <VImg
-      :src="authV1Tree2"
-      class="auth-footer-end-tree d-none d-md-block"
-      :width="200"
-    />
+      </div>
+    </div>
 
-    <VImg
-      class="auth-footer-start-tree d-none d-md-block"
-      :src="authV1Tree"
-      :width="180"
-    /> -->
-
-    <!-- bg img -->
-    <!-- <VImg class="auth-footer-mask d-none d-md-block" :src="authThemeMask" /> -->
+    <!-- Right Column - Video Background -->
+    <div class="auth-video-section">
+      <video
+        class="login-bg-video"
+        src="@/assets/video/background_video.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+    </div>
   </div>
 </template>
+
+<script setup>
+import { useTheme } from 'vuetify';
+import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/user';
+import AuthProvider from '@/views/pages/authentication/AuthProvider.vue';
+import authV1MaskDark from '@images/pages/auth-v1-mask-dark.png';
+import authV1MaskLight from '@images/pages/auth-v1-mask-light.png';
+import authV1Tree2 from '@images/pages/oasisImg.png';
+import authV1Tree from '@images/pages/oasisImg2.png';
+
+const form = ref({
+  email: '',
+  password: '',
+  remember: false,
+});
+
+const router = useRouter();
+const userStore = useUserStore();
+
+const vuetifyTheme = useTheme();
+
+const authThemeMask = computed(() => {
+  return vuetifyTheme.global.name.value === 'light'
+    ? authV1MaskLight
+    : authV1MaskDark;
+});
+
+const isPasswordVisible = ref(false);
+
+// 로그인 처리 함수
+const handleLogin = () => {
+  // 데모 목적으로 이메일이 'admin@example.com'이면 'admin' 권한, 그 외는 'system' 권한을 부여
+  const role = form.value.email === 'admin@example.com' ? 'admin' : 'system';
+
+  // 사용자 정보 저장
+  userStore.setUser({
+    email: form.value.email,
+    role: role,
+  });
+
+  // 권한에 따라 리다이렉션
+  if (role === 'system') {
+    router.push('/system/dashboard');
+  } else {
+    router.push('/dashboard');
+  }
+};
+</script>
 
 <style lang="scss">
 @use '@core/scss/template/pages/page-auth';
 
-// 로그인 배경 비디오 스타일
-.login-bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: 0;
-  pointer-events: none;
+// Two-column layout styles
+.auth-wrapper {
+  min-height: 100vh;
+  width: 100%;
 }
 
-.auth-wrapper {
+.auth-form-section {
+  width: 30%;
+  background: white;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+.auth-form-content {
+  width: 100%;
+  max-width: 320px;
+}
+
+.auth-video-section {
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+}
+
+// 로그인 배경 비디오 스타일
+.login-bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .checkbox-remember {
@@ -189,6 +195,22 @@ const handleLogin = () => {
       font-size: 13px;
       line-height: 1.4;
     }
+  }
+}
+
+// Responsive design
+@media (max-width: 960px) {
+  .auth-wrapper {
+    flex-direction: column;
+  }
+
+  .auth-form-section {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .auth-video-section {
+    display: none;
   }
 }
 </style>

@@ -1,52 +1,27 @@
-<script setup>
-import { useTheme } from 'vuetify';
-import AuthProvider from '@/views/pages/authentication/AuthProvider.vue';
-import authV1MaskDark from '@images/pages/auth-v1-mask-dark.png';
-import authV1MaskLight from '@images/pages/auth-v1-mask-light.png';
-import authV1Tree2 from '@images/pages/auth-v1-tree-2.png';
-import authV1Tree from '@images/pages/auth-v1-tree.png';
-
-const form = ref({
-  username: '',
-  email: '',
-  password: '',
-  privacyPolicies: false,
-});
-
-const vuetifyTheme = useTheme();
-
-const authThemeMask = computed(() => {
-  return vuetifyTheme.global.name.value === 'light'
-    ? authV1MaskLight
-    : authV1MaskDark;
-});
-
-const isPasswordVisible = ref(false);
-</script>
-
 <template>
   <!-- eslint-disable vue/no-v-html -->
 
-  <div class="auth-wrapper d-flex align-center justify-center pa-4">
-    <VCard class="auth-card pa-4 pt-7" max-width="448">
-      <VCardItem class="justify-center">
-        <RouterLink to="/" class="d-flex align-center gap-3">
-          <!-- eslint-disable vue/no-v-html -->
-          <img src="/logo.png" alt="logo" class="me-2" style="height: 40px" />
-          <img
-            src="/logo_full.png"
-            alt="logo"
-            style="height: 32px; object-fit: contain"
-          />
-        </RouterLink>
-      </VCardItem>
+  <div class="auth-wrapper d-flex">
+    <!-- Left Column - Registration Form -->
+    <div class="auth-form-section d-flex align-center justify-center pa-4">
+      <div class="auth-form-content">
+        <div class="justify-center mb-6">
+          <RouterLink to="/" class="d-flex align-center gap-3">
+            <!-- eslint-disable vue/no-v-html -->
+            <img src="/logo.png" alt="logo" class="me-2" style="height: 40px" />
+            <img
+              src="/logo_full.png"
+              alt="logo"
+              style="height: 32px; object-fit: contain"
+            />
+          </RouterLink>
+        </div>
 
-      <VCardText class="pt-2">
-        <h4 class="text-h4 mb-1">Adventure starts here 🚀</h4>
-        <p class="mb-0">Make your app management easy and fun!</p>
-      </VCardText>
+        <div class="pt-2 mb-6">
+          <h4 class="text-h4 mb-1">Adventure starts here 🚀</h4>
+          <p class="mb-0">Make your app management easy and fun!</p>
+        </div>
 
-      <VCardText>
         <VForm @submit.prevent="() => {}">
           <VRow>
             <!-- Username -->
@@ -72,7 +47,7 @@ const isPasswordVisible = ref(false);
               <VTextField
                 v-model="form.password"
                 label="Password"
-                placeholder="············"
+                placeholder="••••••••••••"
                 :type="isPasswordVisible ? 'text' : 'password'"
                 autocomplete="password"
                 :append-inner-icon="
@@ -117,26 +92,99 @@ const isPasswordVisible = ref(false);
             </VCol>
           </VRow>
         </VForm>
-      </VCardText>
-    </VCard>
+      </div>
+    </div>
 
-    <!-- <VImg
-      class="auth-footer-start-tree d-none d-md-block"
-      :src="authV1Tree"
-      :width="250"
-    />
-
-    <VImg
-      :src="authV1Tree2"
-      class="auth-footer-end-tree d-none d-md-block"
-      :width="350"
-    /> -->
-
-    <!-- bg img -->
-    <!-- <VImg class="auth-footer-mask d-none d-md-block" :src="authThemeMask" /> -->
+    <!-- Right Column - Video Background -->
+    <div class="auth-video-section">
+      <video
+        class="login-bg-video"
+        src="@/assets/video/background_video.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+    </div>
   </div>
 </template>
 
+<script setup>
+import { useTheme } from 'vuetify';
+import AuthProvider from '@/views/pages/authentication/AuthProvider.vue';
+import authV1MaskDark from '@images/pages/auth-v1-mask-dark.png';
+import authV1MaskLight from '@images/pages/auth-v1-mask-light.png';
+import authV1Tree2 from '@images/pages/auth-v1-tree-2.png';
+import authV1Tree from '@images/pages/auth-v1-tree.png';
+
+const form = ref({
+  username: '',
+  email: '',
+  password: '',
+  privacyPolicies: false,
+});
+
+const vuetifyTheme = useTheme();
+
+const authThemeMask = computed(() => {
+  return vuetifyTheme.global.name.value === 'light'
+    ? authV1MaskLight
+    : authV1MaskDark;
+});
+
+const isPasswordVisible = ref(false);
+</script>
+
 <style lang="scss">
 @use '@core/scss/template/pages/page-auth';
+
+// Two-column layout styles
+.auth-wrapper {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.auth-form-section {
+  width: 30%;
+  background: white;
+  position: relative;
+  z-index: 2;
+}
+
+.auth-form-content {
+  width: 100%;
+  max-width: 320px;
+}
+
+.auth-video-section {
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+}
+
+// 로그인 배경 비디오 스타일
+.login-bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+// Responsive design
+@media (max-width: 960px) {
+  .auth-wrapper {
+    flex-direction: column;
+  }
+
+  .auth-form-section {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .auth-video-section {
+    display: none;
+  }
+}
 </style>
