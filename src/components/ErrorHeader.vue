@@ -1,9 +1,5 @@
 <script setup>
 const props = defineProps({
-  statusCode: {
-    type: [String, Number],
-    required: false,
-  },
   title: {
     type: String,
     required: false,
@@ -21,7 +17,7 @@ const props = defineProps({
     <h1 v-if="props.statusCode" class="header-title font-weight-medium">
       {{ props.statusCode }}
     </h1>
-    <h5 v-if="props.title" class="text-h5 font-weight-medium mb-3">
+    <h5 v-if="props.title" class="header-title text-h1 font-weight-medium mb-3">
       {{ props.title }}
     </h5>
     <p v-if="props.description">
